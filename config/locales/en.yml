@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    enums:
+      user:
+        sex:
+          unknown: "unknown"
+          male: "male"
+          femininity: "femininity"

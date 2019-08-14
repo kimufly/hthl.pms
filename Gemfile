@@ -30,6 +30,12 @@ gem 'jbuilder', '~> 2.5'
 gem "paranoia", "~> 2.2"
 # devise
 gem 'devise'
+gem 'omniauth'
+
+
+gem "enumize"
+
+gem 'rails-i18n'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

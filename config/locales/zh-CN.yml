@@ -1,0 +1,9 @@
+en:
+  hello: "你好，世界。"
+  activerecord:
+    enums:
+      user:
+        sex:
+          unknown: "未知"
+          male: "男"
+          femininity: "女"
