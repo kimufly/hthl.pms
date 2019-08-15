@@ -31,14 +31,17 @@ gem "paranoia", "~> 2.2"
 # devise
 gem 'devise'
 gem 'omniauth'
+gem "omniauth-rails_csrf_protection"
 
 
 gem "enumize"
-
 gem 'rails-i18n'
 
+# admin panel
 gem 'trestle'
 
+gem 'cancancan'
+gem 'role_core'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

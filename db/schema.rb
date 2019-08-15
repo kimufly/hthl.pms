@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_060729) do
+ActiveRecord::Schema.define(version: 2019_08_14_142519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customer_contacts", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "telephone", default: "", null: false
+    t.string "phone_number"
+    t.string "other_phone"
+    t.string "email", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "position", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_customer_contacts_on_customer_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "company_name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "permissions"
+    t.string "type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "phone_number", default: "", null: false
@@ -39,12 +67,16 @@ ActiveRecord::Schema.define(version: 2019_08_14_060729) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "role_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "customer_contacts", "customers"
+  add_foreign_key "users", "roles"
 end
