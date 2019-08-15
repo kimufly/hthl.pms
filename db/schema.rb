@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_142519) do
+ActiveRecord::Schema.define(version: 2019_08_14_142715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,34 @@ ActiveRecord::Schema.define(version: 2019_08_14_142519) do
     t.index ["customer_id"], name: "index_customer_contacts_on_customer_id"
   end
 
+  create_table "customer_contacts_projects", id: false, force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "customer_contact_id", null: false
+    t.index ["project_id", "customer_contact_id"], name: "unique_relationship", unique: true
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "company_name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name", default: "", null: false, comment: "项目名称"
+    t.text "support_details", default: "", null: false, comment: "支持细节/内容"
+    t.datetime "expected_at", comment: "期望日期"
+    t.integer "genre", default: 0, null: false, comment: "类型"
+    t.integer "auditor", comment: "审核人"
+    t.integer "tech_auditor", comment: "技术审核人"
+    t.text "remake", comment: "备注"
+    t.float "time_limit", default: 0.0, null: false, comment: "工期"
+    t.integer "status", default: 0, null: false, comment: "状态"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", comment: "项目归属人/项目经理"
+    t.bigint "customer_id", comment: "客户公司名"
+    t.index ["customer_id"], name: "index_projects_on_customer_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -78,5 +102,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_142519) do
   end
 
   add_foreign_key "customer_contacts", "customers"
+  add_foreign_key "projects", "customers"
+  add_foreign_key "projects", "users"
   add_foreign_key "users", "roles"
 end

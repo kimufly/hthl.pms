@@ -9,6 +9,7 @@ class CreateProjects < ActiveRecord::Migration[5.2]
       t.integer :tech_auditor, comment: "技术审核人"
       t.text :remake, comment: "备注"
       t.float :time_limit, null: false, default: 0.0, comment: "工期"
+      t.integer :status, null: false, default: 0, comment: "状态"
       t.timestamps
     end
     add_reference :projects, :user, foreign_key: true, comment: "项目归属人/项目经理"

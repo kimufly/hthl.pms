@@ -38,3 +38,13 @@ en:
           unknown: "unknown"
           male: "male"
           femininity: "femininity"
+      project:
+        status:
+          approving: "approving"
+          correction: "return to correction"
+          doing: "doing"
+          done: "done"
+          close: "close"
+        genre:
+          pre-sale: "Pre-Sale Service"
+          after-sale: "After-Sale Service"

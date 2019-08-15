@@ -7,3 +7,13 @@ en:
           unknown: "未知"
           male: "男"
           femininity: "女"
+      project:
+        status:
+          approving: "审核中"
+          correction: "返回修订"
+          doing: "进行中"
+          done: "完成"
+          close: "关闭"
+        genre:
+          pre-sale: "售前服务"
+          after-sale: "售后服务"
