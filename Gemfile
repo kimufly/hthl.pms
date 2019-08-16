@@ -30,8 +30,6 @@ gem 'jbuilder', '~> 2.5'
 gem "paranoia", "~> 2.2"
 # devise
 gem 'devise'
-# gem 'omniauth'
-# gem "omniauth-rails_csrf_protection"
 
 
 gem "enumize"
