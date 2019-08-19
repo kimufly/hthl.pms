@@ -58,7 +58,9 @@
   }
   
   /* Other styles for the page not related to the animated dropdown */
-  
+  #user-index-icon{
+    font-size:150%
+  }
   body {
 
   }
