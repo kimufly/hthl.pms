@@ -13,4 +13,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require_tree ./bootstrap-datepicker
+//= require_tree ./bootstrap-datepicker/locales
 //= require_tree .
