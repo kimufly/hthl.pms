@@ -1,0 +1,16 @@
+development:
+  address: 'smtp.exmail.qq.com'
+  port: 465
+  domain: 'qq.com'
+  user_name: 'system_pms@hthl-tech.com'
+  password: 'pmsP@ssw0rd'
+  authentication: 'plain'
+  ssl: true
+production:
+  address: 'smtp.exmail.qq.com'
+  port: 465
+  domain: 'qq.com'
+  user_name: 'system_pms@hthl-tech.com'
+  password: 'pmsP@ssw0rd'
+  authentication: 'plain'
+  ssl: true
