@@ -44,7 +44,12 @@ gem 'role_core'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+<<<<<<< HEAD
 
+=======
+# Use Capistrano for deployment
+gem 'capistrano-rails', group: :development
+>>>>>>> a7bd31901d85e38e25e64abbe537e78f9304ff70
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
