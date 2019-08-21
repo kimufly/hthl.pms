@@ -66,6 +66,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
 end
 
 group :test do

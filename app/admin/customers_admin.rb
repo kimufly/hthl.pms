@@ -7,7 +7,7 @@ Trestle.resource(:customers) do
   #
   table do
     column :id
-    column :company_name
+    column :name
     column :created_at, align: :center
     actions
   end
@@ -15,7 +15,7 @@ Trestle.resource(:customers) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |customer|
-    text_field :company_name
+    text_field :name
 
   #   row do
   #     col(xs: 6) { datetime_field :updated_at }
