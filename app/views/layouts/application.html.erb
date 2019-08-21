@@ -88,11 +88,10 @@
           <span>项目管理</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <%= link_to "• 我的申请", projects_url, class: "dropdown-item" %>
-          <%= link_to "• 我的项目", my_projects_projects_url, class: "dropdown-item" %>
-          
-          <a class="dropdown-item" href="forgot-password.html">• 我的待办</a>
-          <a class="dropdown-item" href="forgot-password.html">• 成本管理</a>
+          <%= link_to "• 我的申请", approves_index_url, class: "dropdown-item" %>
+          <%= link_to "• 我的项目", projects_index_url, class: "dropdown-item" %>
+          <%= link_to "• 我的待办", todos_index_url, class: "dropdown-item" %>
+          <%= link_to "• 成本管理", costs_index_url, class: "dropdown-item" %>
         </div>
       </li>
       <li class="nav-item dropdown">
