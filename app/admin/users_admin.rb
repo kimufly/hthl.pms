@@ -22,7 +22,7 @@ Trestle.resource(:users) do
     text_field :email
     text_field :phone_number
     text_field :password
-    text_field :role_id
+    select :role_id, Role.all.select(:id, :name)
     select :sex, User.sex_options.to_h
   
     # row do
