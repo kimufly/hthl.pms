@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="card mb-3">
+    <div class="card-header">
+    <i class="fas fa-chart-area"></i>添加用户
+    </div>
+    <div class="card-body" >
+
+    <%= form_for :user, url: users_path do |f| %>
+
+    <div class="form-group">
+    <label for="exampleInputPassword1">真实名字</label>
+    <%= f.text_area :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "请输入真实名字", required: true %>
+    </div>
+
+
+    
+
+
+    <div class="form-group">
+    <label for="exampleInputPassword1">用户名</label>
+    <%= f.text_area :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "请输入用户名", required: true %>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">角色</label>
+      <%= f.select :role_id, [['admin', 1], ['test', 2]], {}, class:"form-control"%>
+    </div>
+
+
+   <div class="form-group">
+      <label for="exampleInputPassword1">岗位类型</label>
+      <select class="form-control">
+        <option>请选择岗位类型</option>
+        <option>1</option>
+        <option>2</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">所属部门</label>
+      <select class="form-control">
+        <option>请选择所属部门</option>
+        <option>1</option>
+        <option>2</option>
+      </select>
+      <p>选择所属部门后默认继承部门权限，可在成员列表中单独设置权限</p>
+    </div>
+
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">性别</label>
+      <%= f.select :sex, [['未知', 'unknown'], ['男', 'male'], ['女', 'femininity']], {}, class:"form-control"%>
+    
+    </div>
+  
+    <div class="form-group">
+    <label for="exampleInputPassword1">电话</label>
+    <%= f.text_area :phone_number, autofocus: true, autocomplete: "phone_number", class: "form-control", placeholder: "请输入电话", required: true %>
+    </div>
+
+    <div class="form-group">
+    <label for="exampleInputPassword1">登录密码</label>
+    <%= f.text_area :encrypted_password, autofocus: true, autocomplete: "encrypted_password", class: "form-control", placeholder: "请输入密码", required: true %>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleInputPassword1">用户级别</label>
+      <select class="form-control">
+        <option>请选择用户级别</option>
+        <option>1</option>
+        <option>2</option>
+      </select>
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPassword1">单价(元/单位)</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入单价">
+    </div>
+ 
+
+    
+    <div class="form-group">
+      <label for="exampleInputPassword1">状态</label>
+      <%= f.select :locked_at, [['启用', 1], ['禁用', 0]], {}, class:"form-control"%>
+    </div>
+
+    
+    <div class="form-group">
+      <label for="exampleInputPassword1">备注信息</label></br>
+      <textarea id="" class:"form-control" cols="200" rows="6" placeholder="请输入内容..."></textarea>
+    
+    </div>
+
+    
+    <p><%= f.submit class:"btn btn-w-m btn-info" %></p></br></br>
+  <% end %>
+   
+  </form>
+    </div>
+  </div>
+</div>

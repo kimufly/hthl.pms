@@ -110,7 +110,7 @@
           <span>客户配置</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-        <%= link_to "• 客户设置", clients_index_url, class: "dropdown-item" %>
+        <%= link_to "• 客户设置", customers_url, class: "dropdown-item" %>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -120,10 +120,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <%= link_to "• 用户管理", users_url, class: "dropdown-item" %>
-          <%= link_to "• 角色管理", roles_index_url, class: "dropdown-item" %>
+          <%= link_to "• 角色管理", roles_url, class: "dropdown-item" %>
           <a class="dropdown-item" href="forgot-password.html">• 系统设置</a>
-          <a class="dropdown-item" href="forgot-password.html">• 修改个人密码</a>
-          <a class="dropdown-item" href="forgot-password.html">• 修改个人信息</a>
+          <%= link_to "• 修改个人密码", up_personal_password_users_url, class: "dropdown-item" %>
+          <%= link_to "• 修改个人信息", up_personal_data_users_url, class: "dropdown-item" %>
         </div>
       </li>
     </ul>

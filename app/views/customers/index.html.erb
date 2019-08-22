@@ -38,7 +38,10 @@
             <td><%= customerContact.position %></td>
             <td><%= customerContact.email %></td>
             <td><%= customerContact.address %></td>
-            <td><a href="#">添加</a>&nbsp;<a href="#">编辑</a>&nbsp;<a href="#">删除</a></td>
+            <td><%= link_to '添加', edit_customer_customers_url%>
+                &nbsp;<%= link_to '编辑', edit_customer_customers_path(customerContact)%>
+                &nbsp;<%= link_to "删除", edit_customer_customers_path(customerContact) %>
+            </td>
           </tr>
           <% end %>
         </tbody>

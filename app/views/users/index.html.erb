@@ -49,10 +49,11 @@
             <td><%= user.phone_number %></td>
             <td><%= "状态" %></td>
             <td><%= user.created_at %></td>
-            <td><%= user.locked_at.nil? ? "是" : "否" %></td>
-            <td><%= link_to '添加', user_path(user) %>&nbsp;<a href="#">编辑</a>&nbsp;
-              <%= link_to "删除", user_path(user) %>
-              <a href="#">删除</a></td>
+            <td><%= user.locked_at == 1 ? "是" : "否" %></td>
+            <td><%= link_to '添加', edit_user_users_url%>
+                &nbsp;<%= link_to '编辑', edit_user_users_path(user)%>
+                &nbsp;<%= link_to "删除", user_path(user) %>
+            </td>
           </tr>
         <% end %>
         </tbody>

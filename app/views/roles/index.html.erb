@@ -33,7 +33,15 @@
             <td><%= role.name %></td>
             <td><%= role.permissions %></td>
             <td><%= role.updated_at %></td>
-            <td><a href="#">添加</a>&nbsp;<a href="#">编辑</a>&nbsp;<a href="#">删除</a></td>
+            <td>
+            <!-- Large modal -->
+            
+            <%= link_to '权限设置', role_permission_roles_url%>
+            <%= link_to '添加', edit_role_roles_url%>
+                &nbsp;<%= link_to '编辑', edit_role_roles_path(role)%>
+                &nbsp;<%= link_to "删除", user_path(role) %>
+            </td>
+           
           </tr>
           <% end %>
   
@@ -55,3 +63,4 @@
   </div>
 
 </div>
+
