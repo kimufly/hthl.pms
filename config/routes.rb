@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'customers/index'
   get 'costs/index'
   get 'todos/index'
   resources :projects do 
