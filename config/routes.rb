@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'user_password/index'
 
   resources :customers do 
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
   end
   
 
+=======
+  get 'customers/index'
+>>>>>>> 45198ea3c43b07caed9bb828151db93326ce50c2
   get 'costs/index'
   get 'todos/index'
 
