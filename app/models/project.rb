@@ -8,7 +8,6 @@ class Project < ApplicationRecord
 
   scope :mine, -> (user_id) { where(user_id: user_id) }
   scope :approving, -> { where(status: [:approving, :correction]) }
-  scope :todo, -> { where(auditor: user_id) }
   scope :closed, -> { where(status: :close) }
 
   after_create :generate_number

@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   def index
-
     @projects = current_user.projects
   end
 
@@ -9,7 +8,6 @@ class ProjectsController < ApplicationController
   end
 
   def todo
-    @projects = current_user.projects.approving
   end
   
 end
