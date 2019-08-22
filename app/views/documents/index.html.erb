@@ -14,8 +14,10 @@
           <civ class="row">
             <span>文档名称：<input type="search" class="form-control form-control-sm"  aria-controls="document"  placeholder="文档名称"></span>
             <button type="button" class="elements-on-right btn-primary ">
-            搜索
-           </button>
+            搜&nbsp;&nbsp;&nbsp;索
+           </button>&nbsp;&nbsp;
+           <%= link_to "文档上传", upload_files_documents_url, class: "btn btn-success" %>&nbsp;&nbsp;
+           <%= link_to "文档分享", share_files_documents_url, class: "btn btn-success" %>
           </div>
 
 

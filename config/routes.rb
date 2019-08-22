@@ -18,7 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'documents/index'
+  resources :documents do 
+    collection do 
+      get :upload_files
+      get :share_files
+    end
+  end
 
 
 
