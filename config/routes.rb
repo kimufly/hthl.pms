@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   
   get 'costs/index'
   get 'todos/index'
-  get 'approves/index'
-  get 'projects/index'
+  resources :projects do 
+    collection do 
+      get :approving
+      get :todo
+    end
+  end
+
   get 'documents/index'
   get 'clients/index'
   get 'roles/index'

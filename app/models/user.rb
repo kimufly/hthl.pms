@@ -8,6 +8,8 @@ class User < ApplicationRecord
   enum sex: %i[unknown male femininity]
 
   belongs_to :role
+  has_many :projects
+  
   delegate :computed_permissions, to: :role
 
 end

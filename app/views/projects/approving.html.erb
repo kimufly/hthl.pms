@@ -4,17 +4,17 @@
 <div class="card mb-3">
   <div class="card-header">
     <i class="fas fa-table"></i>
-    我的项目</div>
+    我的申请</div>
   <div class="card-body">
 
-          <civ class="row">
-            <span>项目名称：<input type="search" class="form-control form-control-sm"  aria-controls="my_project"  placeholder="项目名称"></span>
-            <button type="button" class="elements-on-right btn-primary ">
-            搜索
-           </button>
-          </div>
-          <%= render 'list', projects: @projects %>
+    <civ class="row">
+      <span>项目名称：<input type="search" class="form-control form-control-sm"  aria-controls="my_approve"  placeholder="项目名称"></span>
+      <button type="button" class="elements-on-right btn-primary ">
+      搜索
+      </button>
+    </div>
 
+    <%= render 'list', projects: @projects %>
 
     <!--分页-->
     <div class="row elements-on-right">

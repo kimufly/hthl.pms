@@ -86,7 +86,7 @@
                 <a href="#">我的待办<span class="elements-on-right">(111)</span></a>
               </div>
               <div class ="col-xl-4 col-sm-7 mb-4">
-                <a href="#">我的申请<span class="elements-on-right">(111)</span></a>
+                <a href="#">我的申请<span class="elements-on-right">(<%= @current_user.projects.approving.size %>)</span></a>
               </div>
             </div>
              <hr>
