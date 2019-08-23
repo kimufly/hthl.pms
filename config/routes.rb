@@ -14,6 +14,14 @@ Rails.application.routes.draw do
     collection do 
       get :approving
       get :todo
+      get :show_approving
+      get :approving_flow_apply
+      get :approving_change_flow_apply
+      get :show_flow_apply
+      get :show_project
+      get :project_flow_apply
+      get :project_change_flow_apply
+      get :project_finish_file_upload
     end
   end
 
@@ -23,10 +31,6 @@ Rails.application.routes.draw do
       get :share_files
     end
   end
-
-
-
-  get 'clients/index'
 
   resources :roles do 
     collection do 

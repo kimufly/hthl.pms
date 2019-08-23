@@ -6,17 +6,12 @@
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
                 <div class="card-body-icon">
-                  <i class="fas fa-fw fa-comments"></i>
+                  <i class="fas fa-angle-right"></i>
                 </div>
                 <div class="mr-5">我的项目</div>
-                <span>10</span>
+                <span><%= @current_user.projects.size %></span>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">查看所有项目</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
+                <%= link_to "查看所有项目", projects_url, class: "card-footer text-white clearfix small z-1" %>
             </div>
           </div>
           <div class="col-xl-3 col-sm-6 mb-3">
@@ -28,12 +23,7 @@
                 <div class="mr-5">我的任务</div>
                 <span>10</span>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">查看所有任务</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
+              <%= link_to "查看所有任务", todo_projects_url, class: "card-footer text-white clearfix small z-1" %>
             </div>
           </div>
           <div class="col-xl-3 col-sm-6 mb-3">
@@ -80,13 +70,18 @@
           <div class="card-body">
             <div class="row">
               <div class ="col-xl-4 col-sm-7 mb-4">
-                <a href="#">我的项目<span class="elements-on-right">(<%= @current_user.projects.size %>)</span></a>
+              <%= link_to "我的项目", projects_url%>
+              <span class="elements-on-right">(<%= @current_user.projects.size %>)</span>
+
               </div>
               <div class ="col-xl-4 col-sm-7 mb-4">
-                <a href="#">我的待办<span class="elements-on-right">(111)</span></a>
+                <%= link_to "我的待办", todo_projects_url%>
+                <span class="elements-on-right">(111)</span>
               </div>
               <div class ="col-xl-4 col-sm-7 mb-4">
-                <a href="#">我的申请<span class="elements-on-right">(<%= @current_user.projects.approving.size %>)</span></a>
+              <%= link_to "我的申请", approving_projects_url%>
+              <span class="elements-on-right">(<%= @current_user.projects.approving.size %>)</span>
+
               </div>
             </div>
              <hr>
@@ -111,22 +106,16 @@
           <div class="card-body">
             <div class="row">
               <div class ="col-xl-1 col-sm-4 mb-1">
-                <a href="#">
                   <p><i class="fas fa-user-cog fa-fw index-quick-entry-icon"></i></p>
-                  <span>流程发起</span>
-                </a>
+                  <%= link_to "流程发起", approving_projects_url%>
               </div>
               <div class ="col-xl-1 col-sm-4 mb-1">
-                <a href="#">
-                  <p><i id="user-index-icon" class="fas fa-user-cog fa-fw index-quick-entry-icon"></i></p>
-                  <span>变更流程</span>
-                </a>
+                  <p><i class="fas fa-user-cog fa-fw index-quick-entry-icon"></i></p>
+                  <%= link_to "变更流程", approving_projects_url%>
               </div>
               <div class ="col-xl-1 col-sm-4 mb-1">
-                <a href="#">
-                  <p><i id="user-index-icon" class="fas fa-user-cog fa-fw index-quick-entry-icon"></i></p>
-                  <span>用户管理</span>
-                </a>
+                  <p><i class="fas fa-user-cog fa-fw index-quick-entry-icon"></i></p>
+                  <%= link_to "用户管理", users_url%>
               </div>
             </div>
           </div>

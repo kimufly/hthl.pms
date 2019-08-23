@@ -13,65 +13,71 @@
  *= require_tree ./bootstrap-datepicker
  *= require_self
  */
- @media (min-width: 992px) {
+
+@media (min-width: 992px) {
     .animate {
-      animation-duration: 0.3s;
-      -webkit-animation-duration: 0.3s;
-      animation-fill-mode: both;
-      -webkit-animation-fill-mode: both;
+        animation-duration: 0.3s;
+        -webkit-animation-duration: 0.3s;
+        animation-fill-mode: both;
+        -webkit-animation-fill-mode: both;
     }
-  }
-  
-  @keyframes slideIn {
+}
+
+@keyframes slideIn {
     0% {
-      transform: translateY(1rem);
-      opacity: 0;
+        transform: translateY(1rem);
+        opacity: 0;
     }
     100% {
-      transform:translateY(0rem);
-      opacity: 1;
+        transform: translateY(0rem);
+        opacity: 1;
     }
     0% {
-      transform: translateY(1rem);
-      opacity: 0;
+        transform: translateY(1rem);
+        opacity: 0;
     }
-  }
-  
-  @-webkit-keyframes slideIn {
+}
+
+@-webkit-keyframes slideIn {
     0% {
-      -webkit-transform: transform;
-      -webkit-opacity: 0;
+        -webkit-transform: transform;
+        -webkit-opacity: 0;
     }
     100% {
-      -webkit-transform: translateY(0);
-      -webkit-opacity: 1;
+        -webkit-transform: translateY(0);
+        -webkit-opacity: 1;
     }
     0% {
-      -webkit-transform: translateY(1rem);
-      -webkit-opacity: 0;
+        -webkit-transform: translateY(1rem);
+        -webkit-opacity: 0;
     }
-  }
-  
-  .slideIn {
+}
+
+.slideIn {
     -webkit-animation-name: slideIn;
     animation-name: slideIn;
-  }
-  
-  /* Other styles for the page not related to the animated dropdown */
-  .application-user-icon{
-    font-size:150%
-  }
+}
 
-  .index-quick-entry-icon{
-    font-size:150%;
+
+/* Other styles for the page not related to the animated dropdown */
+
+.application-user-icon {
+    font-size: 150%
+}
+
+.index-quick-entry-icon {
+    font-size: 150%;
     margin-left: 20%
-  }
-  
-  .index-project-statistics-icon{
+}
+
+.index-project-statistics-icon {
     margin-left: 25%
-  }
-  .elements-on-right{
-    float:right
-  }
+}
 
+.elements-on-right {
+    float: right
+}
 
+.elements-on-margin-top {
+    margin-top: 3%;
+}

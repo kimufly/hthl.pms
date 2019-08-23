@@ -1,0 +1,242 @@
+<div id="content-wrapper">
+      <div class="container-fluid">
+        
+        
+
+
+        <!-- 快捷入口-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>发起变更流程申请
+          </div>
+          <div class="card-body">
+          <form>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">单位名称</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入单位名称">
+          </div>
+      
+          <div class="form-group">
+            <label for="exampleInputPassword1">项目名称</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入项目名称">
+          </div>
+      
+          <div class="form-group">
+            <label for="exampleInputPassword1">联系人</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入联系人">
+          </div>
+      
+          <div class="form-group">
+      
+            <label for="exampleInputPassword1">客户电话</label></dr>
+            <div class="form-inline">
+              <input type="password" class="form-control col-md-6 col-xs-4" id="exampleInputPassword1" placeholder="请输入客户手机号码">
+              <input type="password" class="form-control col-md-6 col-xs-4" id="exampleInputPassword1" placeholder="请输入客户座机号码">
+            </div>  </br>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入客户其它号码">
+          </div>
+      
+          <div class="form-group">
+            <label for="exampleInputPassword1">邮箱地址</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入邮箱地址">
+          </div>
+      
+          <div class="form-group">
+            <label for="exampleInputPassword1">客户职位</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入客户职位">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">希望安排的时间</label>
+            <%= datetime_local_field(:user, :graduation_day) %>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">支持内容</label>
+            <textarea class="form-control" rows="6" placeholder="请输入内容..."></textarea>
+          </div>
+      
+          <div class="form-group">
+            <label for="exampleInputPassword1">支持地址</label>
+            <textarea class="form-control" rows="3" placeholder="请输入支持地址..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">建议派遣工程师</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入建议派遣工程师">
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-inline">
+             <span>事项：</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="inlineCheckbox1" value="option1"> 售前服务
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="inlineCheckbox2" value="option2"> 售后服务
+            </label>
+          </div>
+
+          
+
+        
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">指定技术负责人审批</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入指定技术负责人审批">
+          </div>
+      
+      
+          <p><button type="button" class="btn btn-w-m btn-info">下一步</button>&nbsp;<button type="button" class="btn btn-w-m btn-info">提交</button></p></br></br>
+          
+        </form>
+          </div>
+        </div>
+
+        <!-- 快捷入口-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>操作日志记录
+          </div>
+          <div class="card-body">
+
+       
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="my_cost" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+            
+          </tr>
+        </thead>
+       
+        <tbody>
+          <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+            
+          </tr>
+          <tr>
+            <td>Garrett Winters</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+            
+          </tr>
+          <tr>
+            <td>Ashton Cox</td>
+            <td>Junior Technical Author</td>
+            <td>San Francisco</td>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+      
+          </tr>
+          <tr>
+            <td>Cedric Kelly</td>
+            <td>Senior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+            
+          </tr>
+          <tr>
+            <td>Airi Satou</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>33</td>
+            <td>2008/11/28</td>
+            <td>$162,700</td>
+           
+          </tr>
+          <tr>
+            <td>Brielle Williamson</td>
+            <td>Integration Specialist</td>
+            <td>New York</td>
+            <td>61</td>
+            <td>2012/12/02</td>
+            <td>$372,000</td>
+           
+          </tr>
+          <tr>
+            <td>Herrod Chandler</td>
+            <td>Sales Assistant</td>
+            <td>San Francisco</td>
+            <td>59</td>
+            <td>2012/08/06</td>
+            <td>$137,500</td>
+            
+          </tr>
+          <tr>
+            <td>Rhona Davidson</td>
+            <td>Integration Specialist</td>
+            <td>Tokyo</td>
+            <td>55</td>
+            <td>2010/10/14</td>
+            <td>$327,900</td>
+           
+          </tr>
+          <tr>
+            <td>Colleen Hurst</td>
+            <td>Javascript Developer</td>
+            <td>San Francisco</td>
+            <td>39</td>
+            <td>2009/09/15</td>
+            <td>$205,500</td>
+            
+          </tr>
+          <tr>
+            <td>Sonya Frost</td>
+            <td>Software Engineer</td>
+            <td>Edinburgh</td>
+            <td>23</td>
+            <td>2008/12/13</td>
+            <td>$103,600</td>
+            
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
+
+    <!--分页-->
+    <div class="row elements-on-right">
+    <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+    </ul>
+    </nav>
+  </div>
+        </div>
+
+
+        
+        
+
+        
+
+      </div>
+      <!-- /.container-fluid -->
+
+
+    </div>
+

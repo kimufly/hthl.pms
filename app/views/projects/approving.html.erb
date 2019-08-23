@@ -11,10 +11,46 @@
       <span>项目名称：<input type="search" class="form-control form-control-sm"  aria-controls="my_approve"  placeholder="项目名称"></span>
       <button type="button" class="elements-on-right btn-primary ">
       搜索
-      </button>
+      </button>&nbsp;&nbsp;
+      <%= link_to "发起流程申请", approving_flow_apply_projects_url, class: "btn btn-success" %>&nbsp;&nbsp;
+      <%= link_to "发起变更流程申请", approving_change_flow_apply_projects_url, class: "btn btn-success" %>
     </div>
+    
 
-    <%= render 'list', projects: @projects %>
+    <div class="table-responsive">
+    <table class="table table-bordered" id="my_approve" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>项目名称</th>
+          <th>项目编码</th>
+          <th>处理环节</th>
+          <th>流程状态</th>
+          <th>单位名称</th>
+          <th>开始时间</th>
+          <th>结束时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.id %></td>
+          <td><%= project.name %></td>
+          <td><%= project.number %></td>
+          <td><%= project.genre_name %></td>
+          <td><%= project.status_name %></td>
+          <td><%= project.customer.name %></td>
+          <td><%= project.approved_at %></td>
+          <td><%= project.done_at %></td>
+    
+          <td><%= link_to '查看', show_approving_projects_url%></td>
+        </tr>
+       <% end %>
+    
+      </tbody>
+    </table>
+    </div>
 
     <!--分页-->
     <div class="row elements-on-right">
