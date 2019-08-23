@@ -34,7 +34,6 @@ Rails.application.routes.draw do
 
   resources :roles do 
     collection do 
-      get :edit_role
       get :role_permission
     end
   end

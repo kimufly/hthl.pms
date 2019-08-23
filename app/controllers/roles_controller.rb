@@ -3,10 +3,50 @@ class RolesController < ApplicationController
     @roles = Role.all
   end
 
-  def edit_role
+  def show
+    @role = Role.find(params[:id])
+  end
+
+  def new
+    @role = Role.new
+  end
+
+  def edit
+    @role = Role.find(params[:id])
+  end
+
+  def create
+    @role = Role.new(role_params)
+    if @role.save
+      redirect_to roles_path
+    else
+      redirect_to edit_role_roles_url
+    end
+  end
+
+  def update
+    @role = Role.find(params[:id])
+    if @role.update(role_params)
+      redirect_to roles_path
+    else
+      redirect_to edit_role_path
+    end
+  end
+
+  def destroy
+    @role = Role.find(params[:id])
+    @role.destroy
+    redirect_to roles_path
   end
 
   def role_permission
   end
+
+  private
+  def role_params
+    params.require(:role).permit(:type, :name, :explain, :status)
+  end
+
+
   
 end

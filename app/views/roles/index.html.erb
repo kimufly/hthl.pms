@@ -21,6 +21,7 @@
             <th>角色名称</th>
             <th>角色定义说明</th>
             <th>更新时间</th>
+            <th>状态</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -31,17 +32,19 @@
             <td><%= role.id %></td>
             <td><%= role.type %></td>
             <td><%= role.name %></td>
-            <td><%= role.permissions %></td>
+            <td><%= role.explain %></td>
             <td><%= role.updated_at %></td>
+            <td><%= (role.status.eql?'1')? '是' : '否' %></td>
             <td>
-            <!-- Large modal -->
-            
             <%= link_to '权限设置', role_permission_roles_url%>
-            <%= link_to '添加', edit_role_roles_url%>
-                &nbsp;<%= link_to '编辑', edit_role_roles_path(role)%>
-                &nbsp;<%= link_to "删除", user_path(role) %>
+            <%= link_to '添加', new_role_path %>
+            &nbsp;<%= link_to '编辑', edit_role_path(role) %>
+                &nbsp;<%= link_to '删除', role_path(role),
+                method: :delete,
+                data: { confirm: 'Are you role?' } %>
+                
+              
             </td>
-           
           </tr>
           <% end %>
   
