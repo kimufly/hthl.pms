@@ -20,7 +20,7 @@ class RolesController < ApplicationController
     if @role.save
       redirect_to roles_path
     else
-      redirect_to edit_role_roles_url
+      render 'new'
     end
   end
 
@@ -29,7 +29,7 @@ class RolesController < ApplicationController
     if @role.update(role_params)
       redirect_to roles_path
     else
-      redirect_to edit_role_path
+      render 'edit'
     end
   end
 

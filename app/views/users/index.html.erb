@@ -12,6 +12,7 @@
         <button type="button" class="elements-on-right btn-primary ">
           搜索
         </button>
+        &nbsp;&nbsp;<%= link_to '添加用户', new_user_path, class:"elements-on-right btn-primary" %>
       </div>
     </div>
     <div class="table-responsive">
@@ -47,12 +48,14 @@
             <td><%= "单价/人天" %></td>
             <td><%= user.sex_name %></td>
             <td><%= user.phone_number %></td>
-            <td><%= "状态" %></td>
+            <td><%= (user.status.eql?'1')? '忙碌' : '空闲' %></td>
             <td><%= user.created_at %></td>
             <td><%= user.locked_at == 1 ? "是" : "否" %></td>
-            <td><%= link_to '添加', edit_user_users_url%>
-                &nbsp;<%= link_to '编辑', edit_user_users_path(user)%>
-                &nbsp;<%= link_to "删除", user_path(user) %>
+            <td>
+            <%= link_to '编辑', edit_user_path(user) %>
+                &nbsp;<%= link_to '删除', user_path(user),
+                method: :delete,
+                data: { confirm: 'Are you user?' } %>
             </td>
           </tr>
         <% end %>

@@ -48,8 +48,6 @@ Rails.application.routes.draw do
     collection do 
       get :up_personal_password
       get :up_personal_data
-      get :edit_user
-      get :up_personal_data
     end
   end
 
