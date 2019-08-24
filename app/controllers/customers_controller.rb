@@ -1,8 +1,4 @@
 class CustomersController < ApplicationController
-  def index
-    @customerContacts = CustomerContact.all
-  end
-
 
   def create
     @customerContact = CustomerContact.new(customer_contact_params)

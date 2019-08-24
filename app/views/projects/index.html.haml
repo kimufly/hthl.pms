@@ -1,0 +1,68 @@
+%section.content-header
+  %h1
+    = @page_title
+%section.content
+  .box
+    .box-header
+      %h3.box-title 筛选查询
+    .box-body
+      .row
+        .col-md-4
+          %label.control-label{for:"project :_name"}
+            项目名称：
+          = text_field_tag :project_name
+        .col-md-4
+          %label.control-label{for:"project :_name"}
+            项目状态:
+          = select_tag :name, Project.status_options.to_h
+        .col-md-4
+          %label.control-label
+            时间:
+          = datetime_local_field(:user, :graduation_day)
+  .box
+    .box-header
+      .row
+        .col-md-6
+          %h3.box-title 数据列表
+        .col-md-6
+          .pull-right-container
+            = link_to "发起变更流程申请", project_change_flow_apply_projects_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+            = link_to "发起流程申请", project_flow_apply_projects_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+    .box-body
+      %table.table.table-hover
+        %tbody
+          %tr
+            %td 编号
+            %td 项目名称
+            %td 项目编号
+            %td 处理环节
+            %td 单位名称
+            %td 支持地址
+            %td 事项
+            %td 开始时间
+            %td 结束时间
+            %td 操作
+        - @projects.each do |project|
+          %tr
+            %td
+              = project.id
+            %td
+              = project.name
+            %td
+              = project.number
+            %td
+              = "技术领导审批"
+            %td
+              = project.customer.name
+            %td
+              = project.customer.customer_contacts.first.address
+            %td
+              = project.support_details
+            %td
+              = project.approved_at
+            %td
+              = project.done_at
+            %td
+              = link_to '查看', show_project_projects_url
+
+

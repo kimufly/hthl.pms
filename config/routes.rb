@@ -1,18 +1,14 @@
 Rails.application.routes.draw do
   get 'user_password/index'
 
-  resources :customers do 
-    collection do 
-      get :edit_customer
-      get :new_customer
-    end
-  end
-  
+  resources :customers
+  resources :customer_contacts
+
   get 'costs/index'
   get 'todos/index'
 
-  resources :projects do 
-    collection do 
+  resources :projects do
+    collection do
       get :approving
       get :todo
       get :show_approving
@@ -39,8 +35,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'home/index'
-  root 'hello#index'
+  resources :hello, only: [:index]
+  root 'home#index'
   devise_for :users, controllers: {
       sessions: 'users/sessions'
   }

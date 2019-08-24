@@ -18,6 +18,10 @@ RoleCore.permission_set_class.draw do
   #
   # You can also group permissions by using `group`:
   #
+  group :project do
+    permission :show
+    permission :destroy
+  end
   #   group :project do
   #     permission :create
   #     permission :destroy

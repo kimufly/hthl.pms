@@ -1,9 +1,7 @@
 class HelloController < ApplicationController
   def index
-    if user_signed_in?
-      render "hello/index"
-    else
-      redirect_to new_user_session_url
+    respond_to do |format|
+      format.any { render json: { message: :hello } }
     end
   end
 end

@@ -1,0 +1,107 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:charset => "utf-8"}
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %title HTHL PMS-主页
+  %body.skin-blue.sidebar-mini
+    - if notice
+      .alert.alert-info.mb-0{:role => "alert"}= notice
+    - if alert
+      .alert.alert-warning.mb-0{:role => "alert"}= alert
+    .wrapper
+      %header.main-header
+        = link_to root_path, class: 'logo' do
+          %span.logo-mini PMS
+          %span.logo-lg
+            %b> HTHL
+            \.PMS
+        %nav.navbar.navbar-static-top
+          #navbar-collapse.collapse.navbar-collapse.pull-left
+            %ul.nav.navbar-nav
+              %li.active
+                = link_to "首页", root_path
+              %li
+                = link_to "项目管理", approving_projects_url
+              %li
+                = link_to "文档管理", documents_url
+              %li
+                = link_to "客户管理", customer_contacts_url
+              %li
+                = link_to "系统管理", users_url
+          .navbar-custom-menu
+            %ul.nav.navbar-nav
+              %li.dropdown.user.user-menu
+                = link_to "#", class: "dropdown-toggle", 'data-toggle': "dropdown" do
+                  = image_tag "a3", class: "user-image", alt: "User Image"
+                  %span.hidden-xs
+                    = current_user.name
+
+      %aside.main-sidebar
+        %section.sidebar
+          %ul.sidebar-menu.tree{'data-widget': 'true'}
+            - if controller_name.eql? "home"
+              %li.text-center
+                = link_to root_path do
+                  %i.fa.fa-circle-o
+                  %span 系统首页
+              %li.text-center
+                = link_to up_personal_password_users_url do
+                  %i.fa.fa-circle-o
+                  %span 账户设置
+            - if controller_name.eql? "projects"
+              %li.text-center
+                = link_to approving_projects_url do
+                  %i.fa.fa-circle-o
+                  %span 我的申请
+              %li.text-center
+                = link_to projects_url do
+                  %i.fa.fa-circle-o
+                  %span 我的项目
+              %li.text-center
+                = link_to todo_projects_url do
+                  %i.fa.fa-circle-o
+                  %span 我的待办
+              %li.text-center
+                = link_to costs_index_url do
+                  %i.fa.fa-circle-o
+                  %span 成本管理
+            - if controller_name.eql? "documents"
+              %li.text-center
+                = link_to documents_url do
+                  %i.fa.fa-circle-o
+                  %span 文档列表
+            - if controller_name.eql? "customer_contacts"
+              %li.text-center
+                = link_to customer_contacts_url do
+                  %i.fa.fa-circle-o
+                  %span 客户管理
+            - if controller_name.eql? "users"
+              %li.text-center
+                = link_to users_url do
+                  %i.fa.fa-circle-o
+                  %span 用户管理
+              %li.text-center
+                = link_to roles_url do
+                  %i.fa.fa-circle-o
+                  %span 角色管理
+              %li.text-center
+                = link_to up_personal_password_users_url do
+                  %i.fa.fa-circle-o
+                  %span 修改个人密码
+              %li.text-center
+                = link_to up_personal_data_users_url do
+                  %i.fa.fa-circle-o
+                  %span 修改个人信息
+
+      .content-wrapper
+        = yield
+

@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title HTHL PMS
+    = csrf_meta_tags
+    = csp_meta_tag
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.js"}
+    %script{src: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"}
+    %link{href: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", rel: "stylesheet"}
+    %link{href: "https://use.fontawesome.com/releases/v5.8.2/css/all.css", rel: "stylesheet"}
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    - if notice
+      .alert.alert-info.mb-0{role: "alert"}= notice
+    - if alert
+      .alert.alert-warning.mb-0{role: "alert"}= alert
+    = yield

@@ -1,0 +1,49 @@
+%section.content-header
+  %h1
+    = @page_title
+%section.content
+  .box
+    .box-header
+      %h3.box-title 筛选查询
+    .box-body
+      .row
+        .col-md-4
+          %label.control-label{for:"company_name"}
+            文档标题：
+          = text_field_tag :company_name
+        .col-md-4
+          %label.control-label{for:"project_name"}
+            文档类型:
+          = text_field_tag :project_name
+        .col-md-4
+          %label.control-label
+            时间:
+          = datetime_local_field(:user, :graduation_day)
+  .box
+    .box-header
+      .row
+        .col-md-6
+          %h3.box-title 数据列表
+        .col-md-6
+          .pull-right-container
+            = link_to "发起变更流程申请", project_change_flow_apply_projects_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+            = link_to "发起流程申请", project_flow_apply_projects_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+    .box-body
+      %table.table.table-hover
+        %tbody
+          %tr
+            %td 编号
+            %td 项目名称
+            %td 文档标题
+            %td 文档类型
+            %td 创建人
+            %td 上传时间
+          %tr
+            %td
+            %td
+            %td
+            %td
+            %td
+            %td
+
+

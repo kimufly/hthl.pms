@@ -1,0 +1,57 @@
+%section.content-header
+  %h1
+    = @page_title
+%section.content
+  .box
+    .box-header
+      %h3.box-title 筛选查询
+    .box-body
+      .row
+        .col-md-4
+          %label.control-label{for:"company_name"}
+            单位名称：
+          = text_field_tag :company_name
+        .col-md-4
+          %label.control-label{for:"project_name"}
+            项目名称:
+          = text_field_tag :project_name
+  .box
+    .box-header
+      .row
+        .col-md-6
+          %h3.box-title 数据列表
+        .col-md-6
+          .pull-right-container
+            = link_to "添加客户", "#", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+    .box-body
+      %table.table.table-hover
+        %tbody
+          %tr
+            %td 编号
+            %td 单位名称
+            %td 联系人
+            %td 客户电话
+            %td 客户职位
+            %td 邮箱地址
+            %td 支持地址
+            %td 操作
+        - @customer_contacts.each do |customer_contact|
+          %tr
+            %td
+              = customer_contact.id
+            %td
+              = customer_contact.customer.name
+            %td
+              = customer_contact.name
+            %td
+              = customer_contact.telephone
+            %td
+              = customer_contact.position
+            %td
+              = customer_contact.email
+            %td
+              = customer_contact.address
+            %td
+              = link_to '查看', show_project_projects_url
+
+

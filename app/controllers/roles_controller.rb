@@ -46,7 +46,4 @@ class RolesController < ApplicationController
   def role_params
     params.require(:role).permit(:type, :name, :explain, :status)
   end
-
-
-  
 end

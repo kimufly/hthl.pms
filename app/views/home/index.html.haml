@@ -1,0 +1,77 @@
+%section.content-header
+  %h1 系统首页
+%section.content
+  .row
+    .col-lg-3.col-xs-6
+      .info-box
+        %span.info-box-icon.bg-aqua
+          %i.fa.fa-file-text-o
+        .info-box-content
+          %span.info-box-text 所有项目
+          %span.info-box-number
+            = @projects.size
+    .col-lg-3.col-xs-6
+      .info-box
+        %span.info-box-icon.bg-aqua
+          %i.fa.fa-tasks
+        .info-box-content
+          %span.info-box-text 我的任务
+          %span.info-box-number
+            = @projects.size
+    .col-md-12
+      .box
+        .box-header.with-border
+          %h3.box-title 待处理事务/已办事项
+        .box-body
+          .row
+            - 5.times do
+              .col-lg-3.col-xs-6
+                = link_to "" do
+                  .row
+                    .col-md-10
+                      我的项目
+                    .col-md-1
+                      = @projects.size
+    .col-md-12
+      .box
+        .box-header.with-border
+          %h3.box-title 快捷入口
+        .box-body
+          = link_to approving_projects_url, class: "btn btn-app" do
+            %i.fa.fa-tasks
+            发起流程
+          = link_to approving_projects_url, class: "btn btn-app" do
+            %i.fa.fa-tasks
+            发起变更流程
+          = link_to users_url, class: "btn btn-app" do
+            %i.fa.fa-user-o
+            用户管理
+    .col-md-12
+      .box
+        .box-header.with-border
+          %h3.box-title 项目统计
+        .box-body
+    .col-md-12
+      .box
+        .box-header.with-border
+          %h3.box-title 人力成本统计
+        .box-body
+          .box-header
+            .row
+              .col-md-8
+                %h4 项目列表
+              .col-md-4
+                = datetime_local_field(:user, :graduation_day)
+          .box-body
+            .row
+              .col-md-4
+                .row
+                  .col-md-6
+                    %ul
+                      - 5.times do
+                        %li 智能云项目
+                  .col-md-6
+              .col-md-8
+                .chart
+                  %canvas.lineChart
+

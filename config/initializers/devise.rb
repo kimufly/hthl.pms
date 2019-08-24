@@ -300,6 +300,6 @@ Devise.setup do |config|
 end
 
 Rails.application.config.to_prepare do
-  Devise::SessionsController.layout  "devise"
+  Devise::SessionsController.layout "devise"
   # And/or Sessions, Confirmations, Unlocks, Passwords
 end

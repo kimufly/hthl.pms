@@ -30,6 +30,9 @@ gem "paranoia", "~> 2.2"
 # devise
 gem 'devise'
 
+gem 'font-awesome-rails'
+gem 'rails-adminlte'
+gem 'haml'
 
 gem "enumize"
 gem 'rails-i18n'
