@@ -11,6 +11,7 @@
             <button type="button" class="elements-on-right btn-primary ">
             搜索
            </button>
+           &nbsp;&nbsp;<%= link_to '添加客户', new_customer_customers_path, class:"elements-on-right btn-primary" %>
           </div>
     <div class="table-responsive">
       <table class="table table-bordered" id="client" width="100%" cellspacing="0">
@@ -31,8 +32,8 @@
         <% @customerContacts.each do |customerContact| %>
           <tr>
             <td><%= customerContact.id %></td>
-            <td><%= "中国移动" %></td>
-            <td><%= "项目经理" %></td>
+            <td><%= customerContact.unit_name %></td>
+            <td><%= customerContact.project_name %></td>
             <td><%= customerContact.name %></td>
             <td><%= customerContact.telephone %></td>
             <td><%= customerContact.position %></td>
