@@ -1,10 +1,11 @@
 <div class="container-fluid">
   <div class="card mb-3">
     <div class="card-header">
-    <i class="fas fa-chart-area"></i>添加客户信息
+    <i class="fas fa-chart-area"></i>编辑客户信息
     </div>
     <div class="card-body" >
-    <%= form_for :customer_contact, url: customers_path do |f| %>
+
+    <%= form_for(@customerContact) do |f| %>
 
     <div class="form-group">
       <%= f.label :单位名称 %><br>

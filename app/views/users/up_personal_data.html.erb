@@ -4,8 +4,8 @@
     <i class="fas fa-chart-area"></i>添加用户
     </div>
     <div class="card-body" >
-
-    <%= form_for(@user) do |f| %>
+    <%= form_for :user, url: users_path do |f| %>
+    <%#<%= form_for(@user) do |f| %>
 
     <div class="form-group">
       <%= f.label :真实名字 %><br>
