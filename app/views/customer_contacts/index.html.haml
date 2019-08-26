@@ -22,7 +22,7 @@
           %h3.box-title 数据列表
         .col-md-6
           .pull-right-container
-            = link_to "添加客户", "#", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+          = link_to "添加", new_customer_contact_path, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5" 
     .box-body
       %table.table.table-hover
         %tbody
@@ -40,7 +40,7 @@
             %td
               = customer_contact.id
             %td
-              = customer_contact.customer.name
+              = customer_contact.position
             %td
               = customer_contact.name
             %td
@@ -52,6 +52,13 @@
             %td
               = customer_contact.address
             %td
-              = link_to '查看', show_project_projects_url
+              = link_to '查看', customer_contacts_url
+              = link_to "编辑", edit_customer_contact_path(customer_contact)
+              = link_to "删除", customer_contact_path(customer_contact),
+                method: :delete,
+                data: { confirm: 'Are you ucustomerser?' }
+       
+             
+              
 
 
