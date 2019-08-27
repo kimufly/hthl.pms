@@ -44,7 +44,8 @@
                   = image_tag "a3", class: "user-image", alt: "User Image"
                   %span.hidden-xs
                     = current_user.name
-
+              %li.dropdown.user.user-menu
+                = link_to "退出登录", destroy_user_session_url, class: "btn btn-primary"
       %aside.main-sidebar
         %section.sidebar
           %ul.sidebar-menu.tree{'data-widget': 'true'}
@@ -84,7 +85,7 @@
                 = link_to customer_contacts_url do
                   %i.fa.fa-circle-o
                   %span 客户管理
-            - if controller_name.eql? "users"
+            - if ["roles", "users"].any? controller_name
               %li.text-center
                 = link_to users_url do
                   %i.fa.fa-circle-o

@@ -55,7 +55,7 @@
             %td
               = project.customer.name
             %td
-              = project.customer.customer_contacts.first.address
+              = project.customer.customer_contacts.first&.address
             %td
               = project.support_details
             %td
