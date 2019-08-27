@@ -26,8 +26,11 @@
           %h3.box-title 数据列表
         .col-md-6
           .pull-right-container
-            = link_to "发起变更流程申请", project_change_flow_apply_projects_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
-            = link_to "发起流程申请", project_flow_apply_projects_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+           
+            
+            = link_to "分享", share_files_documents_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+            = link_to "下载", "", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+            = link_to "文件上传", upload_files_documents_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
     .box-body
       %table.table.table-hover
         %tbody

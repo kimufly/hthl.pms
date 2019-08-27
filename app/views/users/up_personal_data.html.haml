@@ -19,13 +19,12 @@
             = f.label :请选择角色类型
             %br/
             = f.select(:role_id, [['admin',             |
-              1], ['test', 2]], class: "form-control" ) |
+              1], ['test', 2]], {}, class:"form-control" ) |
           .form-group
             = f.label :请选择性别
             %br/
             = f.select(:sex, [['未知',                                  |
-              'unknown'], ['男', 'male'], ['女', 'femininity']], class: |
-              "form-control" )                                        |
+              'unknown'], ['男', 'male'], ['女', 'femininity']], {}, class:"form-control" )                                        |
           .form-group
             = f.label :电话
             %br/

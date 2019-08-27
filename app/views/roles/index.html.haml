@@ -53,8 +53,8 @@
             %td
             %td
               = link_to "查看", role_path(role)
+              = link_to "权限设置", role_permission_roles_url
               = link_to "编辑", edit_role_path(role)
               = link_to "删除", role_path(role),
                 method: :delete,
                 data: { confirm: 'Are you role?' }
-
