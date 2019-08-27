@@ -11,5 +11,6 @@ class User < ApplicationRecord
   has_many :projects
   
   delegate :computed_permissions, to: :role
+  scope :up_password, -> { where(email: email, password: password) }
 
 end

@@ -7,13 +7,13 @@ class ProjectsController < ApplicationController
   def approving
     @page_title = "我的申请"
     @projects = current_user.projects.approving
-    render 'projects/index'
+    render 'projects/approving'
   end
 
   def todo
     @page_title = "我的待办"
     @projects = Project.all
-    render 'projects/index'
+    render 'projects/todo'
   end
 
   def show_approving
