@@ -3,6 +3,19 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def up_password
+    print('进入方法.............................................\n\n\n\n\n\n\n\n\n\n')
+    @page_title = "修改个人密码"
+    @user = User.find(params[:email, password])
+    if @user.nil?
+      errors.add(:old_password, "旧密码错误")
+      #todo...用户名密码错误
+    else
+      @user.update_attributes(password: new_password)  
+      redirect_to root_path
+    end
+  end
+
   def show
     @user = User.find(params[:id])
   end
