@@ -37,6 +37,12 @@ class ProjectsController < ApplicationController
   def project_finish_file_upload
   end
 
+  
+  private
+  def project_params
+      params.require(:project).permit( :customer_id, :expected_at, :support_details, :support_details, :tech_auditor, :auditor)
+  end
+
 
   
 end
