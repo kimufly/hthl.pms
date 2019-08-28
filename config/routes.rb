@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     collection do 
       get :up_personal_password
       get :up_personal_data
+      post :up_password
     end
   end
 
