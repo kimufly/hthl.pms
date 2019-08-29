@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   get 'user_password/index'
 
   resources :customers
-  resources :customer_contacts
+
+  resources :customer_contacts do 
+    collection do 
+      get :find_unit_name
+    end
+  end
 
   get 'costs/index'
   get 'todos/index'

@@ -42,6 +42,11 @@ class CustomerContactsController < ApplicationController
     redirect_to customer_contacts_path
   end
 
+  def find_unit_name
+    @customer_contact = CustomerContact.where(unit_name: '新华集团').first
+    redirect_to approving_flow_apply_projects_path(@customer_contact)
+  end
+
 
 
 

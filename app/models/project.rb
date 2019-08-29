@@ -5,6 +5,7 @@ class Project < ApplicationRecord
 
   belongs_to :user
   belongs_to :customer
+  has_and_belongs_to_many :customer_contacts
 
   scope :mine, -> (user_id) { where(user_id: user_id) }
   scope :approving, -> { where(status: [:approving, :correction]) }
