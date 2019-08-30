@@ -13,4 +13,5 @@ class User < ApplicationRecord
   delegate :computed_permissions, to: :role
   scope :up_password, -> { where(email: email, password: password) }
 
+  ACCESSABLE_ATTRS = %i[name email role_id sex phone_number status password locked_at explain password password_confirmation current_password]
 end

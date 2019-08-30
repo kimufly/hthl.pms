@@ -24,8 +24,7 @@
         .form-group
           = f.label :请选择性别
           %br/
-          = f.select(:sex, [['未知',                                                     |
-            'unknown'], ['男', 'male'], ['女', 'femininity']], {}, class:"form-control") |
+          = f.select(:sex, User.sex_options, {}, class:"form-control") |
         .form-group
           = f.label :电话
           %br/

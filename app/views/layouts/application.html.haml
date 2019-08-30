@@ -55,7 +55,7 @@
                   %i.fa.fa-circle-o
                   %span 系统首页
               %li.text-center
-                = link_to up_personal_password_users_url do
+                = link_to edit_user_url(current_user) do
                   %i.fa.fa-circle-o
                   %span 账户设置
             - if controller_name.eql? "projects"
@@ -95,11 +95,11 @@
                   %i.fa.fa-circle-o
                   %span 角色管理
               %li.text-center
-                = link_to up_personal_password_users_url do
+                = link_to edit_user_url(current_user, {by: :update_password}) do
                   %i.fa.fa-circle-o
                   %span 修改个人密码
               %li.text-center
-                = link_to edit_user_path(current_user.id) do
+                = link_to edit_user_url(current_user) do
                   %i.fa.fa-circle-o
                   %span 修改个人信息
 
