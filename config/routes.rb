@@ -10,14 +10,12 @@ Rails.application.routes.draw do
   end
 
   get 'costs/index'
-  get 'todos/index'
 
   resources :projects do
     collection do
       get :approving
       get :todo
       get :show_approving
-      get :approving_flow_apply
       get :show_flow_apply
       get :show_project
       get :project_flow_apply

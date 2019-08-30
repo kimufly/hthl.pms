@@ -1,87 +1,78 @@
 <div id="content-wrapper">
       <div class="container-fluid">
         
-        
-
-
         <!-- 快捷入口-->
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-chart-area"></i>发起变更流程申请
           </div>
           <div class="card-body col-md-6">
-          <%= form_for(@project) do |f| %>
 
-          <div class="form-group">
-            
-
-          <%= f.fields_for :customer do |customer| %>
+  
+          <%= form_for @project do |f| %>
+            <%= f.fields_for :customer do |customer| %>
             <div class="form-group">
                 <%= customer.label :单位名称 %>
-                <%= customer.text_field :name, class:"form-control", placeholder:"请输入单位名称" %>
+                <%= customer.text_field :name, class:"form-control", placeholder:"请输入项目名称" %>
             </div>
             <% end %>
-
-      
-          <div class="form-group">
-            <%= f.label :项目名称 %><br>
-            <%= f.text_field :name, class:"form-control", placeholder:"请输入项目名称" %>
-          </div>
-      
-          <div class="form-group">
-            <label for="exampleInputPassword1">联系人</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入联系人">
-          </div>
-      
-          <div class="form-group">
-      
-            <label for="exampleInputPassword1">客户电话</label></dr>
-            <div class="form-inline">
-              <input type="password" class="form-control col-md-6 col-xs-4" id="exampleInputPassword1" placeholder="请输入客户手机号码">
-              <input type="password" class="form-control col-md-6 col-xs-4" id="exampleInputPassword1" placeholder="请输入客户座机号码">
-            </div>  </br>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入客户其它号码">
-          </div>
-      
-          <div class="form-group">
-            <label for="exampleInputPassword1">邮箱地址</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入邮箱地址">
-          </div>
-      
-          <div class="form-group">
-            <label for="exampleInputPassword1">客户职位</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入客户职位">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputPassword1">希望安排的时间</label></br>
-            <%= datetime_local_field(:user, :graduation_day) %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :支持内容 %><br>
-            <%= f.text_area :support_details, size: "24x6", class: "form-control" %>
-          </div>
-      
-          <div class="form-group">
-            <label for="exampleInputPassword1">支持地址</label>
-            <textarea class="form-control" rows="3" placeholder="请输入支持地址..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :建议派遣工程师 %><br>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :指定负责人审批 %><br>
-
-           
-          </div>
-      
-      
-          <p><button type="button" class="btn btn-w-m btn-info">下一步</button>&nbsp;<button type="button" class="btn btn-w-m btn-info">提交</button></p></br></br>
+  
+            <div class="form-group">
+              <%= f.label :项目名称 %><br>
+              <%= f.text_field :name, class:"form-control", placeholder:"请输入项目名称" %>
+            </div>
+            <%= f.fields_for :customer do |customer| %>
+              <%= customer.fields_for :customer_contacts do |contact| %>
+              
+                <div class="form-group">
+                  <%= contact.label :联系人 %><br>
+                  <%= contact.text_field :name, class:"form-control", placeholder:"请输入联系人" %>
+                </div>
+                <div class="form-group">
+                <%= contact.label :客户电话 %><br>
+                <div class="form-inline">
+                  <%= contact.text_field :telephone, class:"form-control col-md-6 col-xs-4", placeholder:"请输入客户号码" %>
+                  <%= contact.text_field :phone_number, class:"form-control col-md-6 col-xs-4", placeholder:"请输入客户手机号码" %>
+              </div>  </br>
+                  <%= contact.text_field :other_phone, class:"form-control", placeholder:"请输入客户其它号码" %>
+              </div>
+              <div class="form-group">
+                  <%= contact.label :客户职位 %><br>
+                  <%= contact.text_field :position, class:"form-control", placeholder:"请输入客户职位" %>
+                </div>
+              <div class="form-group">
+                <%= contact.label :邮箱地址 %><br>
+                <%= contact.text_field :email, class:"form-control", placeholder:"请输入邮箱地址" %>
+              </div>
+              <div class="form-group">
+                <%= contact.label :支持地址 %><br>
+                <%= contact.text_area :address, size: "24x3", class: "form-control" %>
+              </div>
+              <% end %>
+            </div>
+            <% end %>
+  
+            <div class="form-group">
+              <%= f.label :支持内容 %><br>
+              <%= f.text_area :support_details, size: "24x6", class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :建议派遣工程师 %><br>
+              
+            </div>
+  
+         
+            <div class="form-group">
+              <%= f.label :指定技术负责人审批 %><br>
+              
+            
+            </div>
           
-          <% end %>
+            <p><%= f.submit "提交", class:"btn btn-w-m btn-info" %></p></br></br>
+  
+            
+            <% end %>
           </div>
         </div>
 

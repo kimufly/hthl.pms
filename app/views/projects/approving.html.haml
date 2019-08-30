@@ -26,7 +26,6 @@
           %h3.box-title 数据列表
         .col-md-6
           .pull-right-container
-            = link_to "发起变更流程申请", "#", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
             = link_to "发起流程申请", new_project_path, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
     .box-body
       %table.table.table-hover
@@ -65,5 +64,6 @@
             %td
               = link_to '查看', show_approving_projects_url
               = link_to "编辑", edit_project_path(project)
+             
 
 

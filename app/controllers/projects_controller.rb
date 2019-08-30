@@ -9,7 +9,6 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @users = User.all
   end
 
   def create
@@ -20,6 +19,24 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     @project.customer = @customer
     @project.save
+    redirect_to approving_projects_url
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    
+    @project
+
+    @project.update(project_params)
+    @customer = Customer.find(@project.customer_id)
+    @customer.update(customer_params)
+
+    redirect_to approving_projects_url
+  end
+
+  def destroy
+    @project = Project.find.find(params[:id])
+    @project.destroy
     redirect_to approving_projects_url
   end
 
@@ -43,9 +60,6 @@ class ProjectsController < ApplicationController
   def show_approving
   end
 
-  def approving_flow_apply
-    
-  end
 
   def project_flow_apply
   end
@@ -58,7 +72,6 @@ class ProjectsController < ApplicationController
 
   
   private
-
   def get_project
     @project = Project.find(params[:id])
   end
