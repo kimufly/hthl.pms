@@ -50,6 +50,22 @@ ActiveRecord::Schema.define(version: 2019_08_28_105705) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_posts_on_ancestry"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name", default: "", null: false, comment: "项目名称"
     t.text "support_details", default: "", null: false, comment: "支持细节/内容"
@@ -107,7 +123,6 @@ ActiveRecord::Schema.define(version: 2019_08_28_105705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id"
-    t.string "status"
     t.string "explain"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
