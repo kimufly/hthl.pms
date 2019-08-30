@@ -18,7 +18,6 @@ Rails.application.routes.draw do
       get :todo
       get :show_approving
       get :approving_flow_apply
-      get :approving_change_flow_apply
       get :show_flow_apply
       get :show_project
       get :project_flow_apply

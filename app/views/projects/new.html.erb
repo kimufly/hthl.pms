@@ -12,7 +12,6 @@
                 
           <%= f.fields_for :customer do |customer| %>
           <div class="form-group">
-            # <%= f.label :单位名称 %><br>
               <%= customer.label :单位名称 %>
               <%= customer.text_field :name, class:"form-control", placeholder:"请输入单位名称" %>
           </div>
@@ -36,11 +35,38 @@
             </div>  </br>
                 <%= contact.text_field :other_phone, class:"form-control", placeholder:"请输入客户其它号码" %>
             </div>
+            <div class="form-group">
+                <%= contact.label :客户职位 %><br>
+                <%= contact.text_field :position, class:"form-control", placeholder:"请输入客户职位" %>
+              </div>
+            <div class="form-group">
+              <%= contact.label :邮箱地址 %><br>
+              <%= contact.text_field :email, class:"form-control", placeholder:"请输入邮箱地址" %>
+            </div>
+            <div class="form-group">
+              <%= contact.label :支持地址 %><br>
+              <%= contact.text_area :address, size: "24x3", class: "form-control" %>
+            </div>
+
             <% end %>
           </div>
-    
-        
           <% end %>
+
+          <div class="form-group">
+            <%= f.label :支持内容 %><br>
+            <%= f.text_area :support_details, size: "24x3", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :建议派遣工程师 %><br>
+            <%= select("tech_auditor", "user_id", @users.collect{|u| [u.name, u.id]}, { :include_blank => false }, class:"form-control") %>
+          </div>
+
+       
+          <div class="form-group">
+            <%= f.label :指定技术负责人审批 %><br>
+            <%= select("user", "auditor", @users.collect{|u| [u.name, u.id]}, { :include_blank => false }, class:"form-control") %>
+          
+          </div>
         
           <p><%= f.submit "提交", class:"btn btn-w-m btn-info" %></p></br></br>
 
@@ -186,8 +212,4 @@
       <!-- /.container-fluid -->
     </div>
 
-    <script type="text/javascript">
-       function validate(){
-        alert("111111111")
-      }
-    </script>
+   

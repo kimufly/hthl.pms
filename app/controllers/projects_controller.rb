@@ -1,16 +1,16 @@
 class ProjectsController < ApplicationController
-
+  before_action :get_project, only: [:edit, :show]
   
   def show
-    @projects = Project.find(params[:id])
   end
 
+  def edit
+  end
 
   def new
-    @projects = Project.new
+    @project = Project.new
+    @users = User.all
   end
-
-
 
   def create
     @customer = Customer.create(customer_params)
@@ -19,25 +19,9 @@ class ProjectsController < ApplicationController
     @project.customer_contacts << @customer_contact
     @project.user = current_user
     @project.customer = @customer
-    debugger
     @project.save
-    render json: @project
-    # print('todo.....:.................\n\n\n\n\n\n\n\n\n\n')
-    # print('todo.....:.................\n\n\n\n\n\n\n\n\n\n')
-    # id = params[:customer_contact][:id]
-    # print('进入方法.unit_name=:'+id+'.................\n\n\n\n\n\n\n\n\n\n')
-    #todo.....保存联系人
-    # if @projects .save
-    #   redirect_to approving_projects_url
-    # else
-    #   render "approving_flow_apply"
-    # end
+    redirect_to approving_projects_url
   end
-
-
-
-
-
 
   def index
     @page_title = "我的项目"
@@ -60,15 +44,7 @@ class ProjectsController < ApplicationController
   end
 
   def approving_flow_apply
-    @project = Project.new
-    @customer_contact = CustomerContact.where(unit_name: '新华集团').first
-    @users = User.all
-  end
-
-  def approving_change_flow_apply
-  end
-
-  def show_project
+    
   end
 
   def project_flow_apply
@@ -82,8 +58,13 @@ class ProjectsController < ApplicationController
 
   
   private
+
+  def get_project
+    @project = Project.find(params[:id])
+  end
+
   def project_params
-      params.require(:project).permit(:name, :expected_at, :support_details, :support_details, :tech_auditor, :auditor)
+      params.require(:project).permit(:name, :expected_at, :support_details, :tech_auditor, :auditor)
   end
 
   def customer_params
@@ -91,6 +72,6 @@ class ProjectsController < ApplicationController
   end
 
   def customer_contacts_params
-    params.require(:project).require(:customer).require(:customer_contacts).permit(:name, :telephone, :phone_number, :other_phone)
+    params.require(:project).require(:customer).require(:customer_contacts).permit(:name, :telephone, :phone_number, :other_phone, :email, :address, :position)
   end
 end
