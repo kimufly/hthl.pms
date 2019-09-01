@@ -25,8 +25,6 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     
-    @project
-
     @project.update(project_params)
     @customer = Customer.find(@project.customer_id)
     @customer.update(customer_params)
