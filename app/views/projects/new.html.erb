@@ -7,8 +7,8 @@
             <i class="fas fa-chart-area"></i>基本信息
           </div>
           <div class="card-body">
-         <%= form_for @project do |f| %>
-
+         
+          <%= form_for :project, url: projects_path do |f| %> 
                 
           <%= f.fields_for :customer do |customer| %>
           <div class="form-group">
@@ -58,44 +58,24 @@
           </div>
           <div class="form-group">
             <%= f.label :建议派遣工程师 %><br>
+            <%= select("user", "user_id", @users.collect{|u| [u.name, u.id]}, {}, class: "form-control") %>
           </div>
 
        
           <div class="form-group">
             <%= f.label :指定技术负责人审批 %><br>
-          
+            <%= select("user", "user_id", @users.collect{|u| [u.name, u.id]}, {}, class: "form-control") %>
           </div>
         
           <p><%= f.submit "提交", class:"btn btn-w-m btn-info" %></p></br></br>
-
-          
+          </br>
+          </br>
+          </br>
           <% end %>
           </div>
         </div>
 
-        <!-- 快捷入口-->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-chart-area"></i>操作日志记录
-          </div>
-          <div class="card-body">
-
-       
-
-  
-    <!--分页-->
-    <div class="row elements-on-right">
-    <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">上一页</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">下一页</a></li>
-    </ul>
-    </nav>
   </div>
-        </div>
 
       </div>
       <!-- /.container-fluid -->

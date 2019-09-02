@@ -1,0 +1,73 @@
+%section.content-header
+  %h1
+    = "成本管理"
+%section.content
+  .box
+    .box-header
+      %h3.box-title 筛选查询
+    .box-body
+      .row
+        .col-md-4
+          %label.control-label{for:"company_name"}
+            岗位名称：
+          = text_field_tag :company_name
+        .col-md-4
+          %label.control-label{for:"company_name"}
+            姓名：
+          = text_field_tag :company_name
+        .col-md-4
+          %label.control-label{for:"project_name"}
+            项目名称:
+          = text_field_tag :project_name
+  .box
+    .box-header
+      .row
+        .col-md-6
+          %h3.box-title 数据列表
+        .col-md-6
+          .pull-right-container
+          = link_to "导出Excel", new_customer_contact_path, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5" 
+    .box-body
+      %table.table.table-hover
+        %tbody
+          %tr
+            %td 编号
+            %td 岗位名称
+            %td 姓名
+            %td 级别
+            %td 项目名称
+            %td 单位名称
+            %td 售前/售后
+            %td 人天
+            %td 单价(元)
+            %td 合计/元(0.00)
+
+
+        
+          %tr
+            %td
+              = "01"
+            %td
+              = "Ruby开发工程师"
+            %td
+              = "张三"
+            %td
+              = "研发岗0级"
+            %td
+              = "云平台项目"
+            %td
+              = "南方电网"
+            %td
+              = "售后"
+            %td
+              = "5"
+            %td
+              = "1000.00"
+            %td
+              = "5000.00"
+        
+       
+             
+              
+
+
