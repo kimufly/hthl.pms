@@ -12,6 +12,7 @@ class Project < ApplicationRecord
   scope :mine, -> (user_id) { where(user_id: user_id) }
   scope :approving, -> { where(status: [:approving, :correction]) }
   scope :closed, -> { where(status: :close) }
+  scope :todo, -> (user_id) { where(auditor: user_id, status: :approving) }
 
   after_create :generate_number
   before_save :update_done_at, :update_approved_at

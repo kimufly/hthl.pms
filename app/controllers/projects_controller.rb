@@ -52,12 +52,10 @@ class ProjectsController < ApplicationController
 
   def todo
     @page_title = "我的待办"
-    @projects = Project.all
+    @projects = Project.todo(current_user.id)
     render 'projects/todo'
   end
 
-  def show_approving
-  end
 
 
   def project_flow_apply
