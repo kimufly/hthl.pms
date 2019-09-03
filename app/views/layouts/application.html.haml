@@ -58,7 +58,7 @@
                 = link_to edit_user_url(current_user) do
                   %i.fa.fa-circle-o
                   %span 账户设置
-            - if controller_name.eql? "projects"
+            - if %w[costs projects].any? controller_name
               %li.text-center
                 = link_to approving_projects_url do
                   %i.fa.fa-circle-o
