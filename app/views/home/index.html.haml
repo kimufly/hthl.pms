@@ -24,24 +24,27 @@
           %h3.box-title 待处理事务/已办事项
         .box-body
           .row
-            - 1.times do
-              .col-lg-3.col-xs-6
-                = link_to "" do
-                  .row
-                    .col-md-10
-                      我的项目
-                    .col-md-1
-                      = @current_user.projects.size
-            - 1.times do
-              .col-lg-3.col-xs-6
-                = link_to "" do
-                  .row
-                    .col-md-10
-                      我的项目
-                    .col-md-1
-                      = @current_user.projects.approving.size
-
-          
+            .col-lg-3.col-xs-6
+              = link_to projects_url do
+                .row
+                  .col-md-10
+                    我的项目
+                  .col-md-1
+                    = @current_user.projects.size
+            .col-lg-3.col-xs-6
+              = link_to approving_projects_url do
+                .row
+                  .col-md-10
+                    我的申请
+                  .col-md-1
+                    = @current_user.projects.approving.size
+            .col-lg-3.col-xs-6
+              = link_to todo_projects_url do
+                .row
+                  .col-md-10
+                    我的待办
+                  .col-md-1
+                    = Project.todo(current_user.id).size
     .col-md-12
       .box
         .box-header.with-border
