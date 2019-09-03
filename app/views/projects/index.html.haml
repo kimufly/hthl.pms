@@ -63,6 +63,7 @@
             %td
               = project.done_at
             %td
-              = link_to '查看', show_project_projects_url
+              = link_to '查看', project_path(project)
+              = link_to "编辑", edit_project_path(project)
 
 
