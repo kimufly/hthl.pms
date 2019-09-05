@@ -1,8 +1,19 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: %i[edit update]
 
   def index
+    user_name = params[:user_name]
+    department_name = params[:department_name]
     @users = User.all
+    @users = @users.where('name like ?', "%#{user_name}%") if user_name
+    departments = Department.where('departments.name like ?',
+                                   "%#{department_name}%")
+    @users = @users.where(department: departments)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -15,7 +26,7 @@ class UsersController < ApplicationController
 
   def edit
     case params[:by]
-    when "update_password"
+    when 'update_password'
       render :password
     else
       render :form
@@ -34,7 +45,7 @@ class UsersController < ApplicationController
 
   def update
     case params[:by]
-    when "update_password"
+    when 'update_password'
       update_password
     else
       if @user.update(user_params)
@@ -51,20 +62,19 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  private
 
   def update_password
-    @page_title = "修改个人密码"
+    @page_title = '修改个人密码'
     if current_user.update_with_password(user_params)
-      redirect_to root_path, notice: "密码更新成功，现在你需要重新登陆。"
+      redirect_to root_path, notice: '密码更新成功，现在你需要重新登陆。'
     else
       render 'password'
     end
   end
 
-  private
-
   def user_params
-    params.require(:user).permit(*User::ACCESSABLE_ATTRS)
+    params.require(:user).permit(*User::ACCESSIBLE_ATTRS)
   end
 
   def set_user

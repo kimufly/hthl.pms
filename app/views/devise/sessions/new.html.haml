@@ -1,0 +1,26 @@
+.login-box
+  .login-logo
+    = link_to root_path, class: 'logo' do
+      %span.logo-mini
+      %b> HTHL
+      \.PMS
+  .login-box-body
+    %p.login-box-msg
+      = t 'Sign in to start your session'
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-group.has-feedback
+        = f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control", placeholder: "Email address", required: true
+        %span.glyphicon.glyphicon-envelope.form-control-feedback
+      .form-group.has-feedback
+        = f.password_field :password, autocomplete: "current-password",class: "form-control", placeholder: "Password", required: true
+        %span.glyphicon.glyphicon-lock.form-control-feedback
+      .row
+        .col-xs-8
+          - if devise_mapping.rememberable?
+            = f.check_box :remember_me, class: "icheckbox_square-blue", id: "customCheck1"
+            %label{class: "custom-control-label", for: "customCheck1"} Remember me
+
+        .col-xs-4
+          = f.submit "Log in", class: "btn btn-primary btn-block btn-flat"
+    .social-auth-links.text-center
+    = render "devise/share/links"
