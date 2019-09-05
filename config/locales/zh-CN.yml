@@ -15,5 +15,50 @@ en:
           done: "完成"
           close: "关闭"
         genre:
-          pre-sale: "售前服务"
-          after-sale: "售后服务"
+          pre_sale: "售前服务"
+          after_sale: "售后服务"
+      satisfaction:
+        service_type:
+          fault_handling: "故障处理"
+          health_examination: "健康检查"
+          network_changes: "网络变更"
+          other: "其它"
+        service_quality:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        complaints_hotline:
+          know: "知道"
+          be_ignorant: "不知道"
+        service_engineer:
+          excellent: "优"
+          fine: "良"
+          centre: "中"
+          difference: "差"
+        engineer:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        technical_support:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        sales_service:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        customer_eturn_visit:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+

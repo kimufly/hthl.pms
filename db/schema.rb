@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_105705) do
+ActiveRecord::Schema.define(version: 2019_09_05_021823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,22 +50,6 @@ ActiveRecord::Schema.define(version: 2019_08_28_105705) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "departments", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string "name"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "ancestry"
-    t.index ["ancestry"], name: "index_posts_on_ancestry"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "name", default: "", null: false, comment: "项目名称"
     t.text "support_details", default: "", null: false, comment: "支持细节/内容"
@@ -98,6 +82,27 @@ ActiveRecord::Schema.define(version: 2019_08_28_105705) do
     t.string "status"
   end
 
+  create_table "satisfactions", force: :cascade do |t|
+    t.bigint "project_id", comment: "项目id"
+    t.bigint "customer_id", comment: "联系人id"
+    t.string "case_num", comment: "CASE号"
+    t.integer "service_type", default: 0, null: false, comment: "服务类型"
+    t.datetime "start_at", comment: "服务开始时间"
+    t.datetime "use_at", comment: "服务使用时间"
+    t.integer "true_at", comment: "实际使用时间(小时)"
+    t.integer "service_quality", default: 0, null: false, comment: "服务质量"
+    t.integer "complaints_hotline", default: 0, null: false, comment: "投诉电话"
+    t.integer "service_engineer", default: 0, null: false, comment: "服务的工程师"
+    t.integer "engineer", default: 0, null: false, comment: "工程师"
+    t.string "engineer_satisfaction", comment: "工程师满意方面"
+    t.integer "technical_support", default: 0, null: false, comment: "技术支持"
+    t.integer "sales_service", default: 0, null: false, comment: "售后服务"
+    t.integer "customer_eturn_visit", default: 0, null: false, comment: "客户回访"
+    t.string "other_opinions", default: "0", null: false, comment: "其它建议"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "phone_number", default: "", null: false
     t.string "name", default: "", null: false
@@ -123,6 +128,7 @@ ActiveRecord::Schema.define(version: 2019_08_28_105705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id"
+    t.string "status"
     t.string "explain"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"

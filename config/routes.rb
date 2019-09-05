@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'satisfaction/index'
   get 'user_password/index'
 
   resources :customers
+  resources :satisfactions, only: [:new, :create, :show]
 
   resources :customer_contacts do 
     collection do 
