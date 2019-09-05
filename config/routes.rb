@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  get 'user_password/index'
+  root 'home#index'
 
+  get 'costs/index'
   resources :customers
 
-  resources :customer_contacts do 
-    collection do 
+  resources :customer_contacts do
+    collection do
       get :find_unit_name
     end
   end
-
-  get 'costs/index'
 
   resources :projects do
     collection do
@@ -24,27 +23,29 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :documents do 
-    collection do 
+  resources :documents do
+    collection do
       get :upload_files
       get :share_files
     end
   end
 
-  resources :roles do 
-    collection do 
+  resources :roles do
+    collection do
       get :role_permission
     end
   end
 
   resources :hello, only: [:index]
-  root 'home#index'
   devise_for :users, controllers: {
       sessions: 'users/sessions'
   }
 
-  resources :users
-
+  resources :users do
+    collection do
+      get :query_by
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

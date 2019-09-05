@@ -31,7 +31,7 @@
                     .col-md-10
                       我的项目
                     .col-md-1
-                      = @current_user.projects.size
+                      = current_user.projects.size
             - 1.times do
               .col-lg-3.col-xs-6
                 = link_to "" do
@@ -39,9 +39,8 @@
                     .col-md-10
                       我的项目
                     .col-md-1
-                      = @current_user.projects.approving.size
+                      = current_user.projects.approving.size
 
-          
     .col-md-12
       .box
         .box-header.with-border
