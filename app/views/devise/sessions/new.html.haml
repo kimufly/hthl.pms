@@ -6,7 +6,7 @@
       \.PMS
   .login-box-body
     %p.login-box-msg
-      = t 'Sign in to start your session'
+      = t 'views.devise.Sign_In_To_Start_Your_Session'
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-group.has-feedback
         = f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control", placeholder: "Email address", required: true
@@ -18,9 +18,10 @@
         .col-xs-8
           - if devise_mapping.rememberable?
             = f.check_box :remember_me, class: "icheckbox_square-blue", id: "customCheck1"
-            %label{class: "custom-control-label", for: "customCheck1"} Remember me
+            %label{class: "custom-control-label", for: "customCheck1"}
+              = t "views.devise.remember_me"
 
         .col-xs-4
-          = f.submit "Log in", class: "btn btn-primary btn-block btn-flat"
+          = f.submit (t "views.devise.login"), class: "btn btn-primary btn-block btn-flat"
     .social-auth-links.text-center
     = render "devise/shared/links"
