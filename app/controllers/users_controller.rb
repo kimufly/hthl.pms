@@ -3,12 +3,11 @@ class UsersController < ApplicationController
 
   def index
     user_name = params[:user_name]
-    department_name = params[:department_name]
+    department_id = params[:department_id]
     @users = User.all
     @users = @users.where('name like ?', "%#{user_name}%") if user_name
-    departments = Department.where('departments.name like ?',
-                                   "%#{department_name}%")
-    @users = @users.where(department: departments)
+    @users = @users.where(department: department_id) if department_id.present?
+    @users = @users.page(params[:page] ||= 1)
 
     respond_to do |format|
       format.html

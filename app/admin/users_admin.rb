@@ -23,6 +23,7 @@ Trestle.resource(:users) do
     text_field :phone_number
     text_field :password
     select :role_id, Role.all.select(:id, :name)
+    select :department_id, Department.all.select(:id, :name)
     select :sex, User.sex_options.to_h
   
     # row do
@@ -39,6 +40,6 @@ Trestle.resource(:users) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   params do |params|
-    params.require(:user).permit(:name, :email, :phone_number, :password, :sex, :role_id)
+    params.require(:user).permit(:name, :email, :phone_number, :password, :sex, :role_id, :department_id)
   end
 end

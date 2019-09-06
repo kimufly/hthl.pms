@@ -1,49 +1,60 @@
-%table.table.table-hover
-  %tbody
-    %tr
-      %td 真实姓名
-      %td 用户名
-      %td 角色
-      %td 所属部门
-      %td 岗位类型
-      %td 级别
-      %td 单价/人天
-      %td 性别
-      %td 电话
-      %td 状态
-      %td 注册时间
-      %td 是否启用
-      %td 操作
-  - @users.each do |user|
-    %tr
-      %td
-        = user.name
-      %td
-        = user.email
-      %td
-        = user.role.name
-      %td
-        = user.department&.name
-      %td
-        岗位类型
-      %td
-        级别
-      %td
-        成本
-      %td
-        = user.sex_name
-      %td
-        = user.phone_number
-      %td
-        = user.projects.size > 0 ? "忙" : "闲"
-      %td
-        = user.created_at
-      %td
-        = user.locked_at.blank?
-      %ed
-      %td
-        = link_to "查看", user_path(user)
-        = link_to "编辑", edit_user_path(user)
-        = link_to "删除", user_path(user),
-              method: :delete,
-              data: { confirm: 'Are you user?' }
+.box-header
+  .row
+    .col-md-6
+      %h3.box-title 数据列表
+    .col-md-6
+      .pull-right-container
+        = link_to "添加", new_user_path, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+.box-body
+  %table.table.table-hover
+    %tbody
+      %tr
+        %td 真实姓名
+        %td 用户名
+        %td 角色
+        %td 所属部门
+        %td 岗位类型
+        %td 级别
+        %td 单价/人天
+        %td 性别
+        %td 电话
+        %td 状态
+        %td 注册时间
+        %td 是否启用
+        %td 操作
+    - @users.each do |user|
+      %tr
+        %td
+          = user.name
+        %td
+          = user.email
+        %td
+          = user.role.name
+        %td
+          = user.department&.name
+        %td
+          岗位类型
+        %td
+          级别
+        %td
+          成本
+        %td
+          = user.sex_name
+        %td
+          = user.phone_number
+        %td
+          = user.projects.size > 0 ? "忙" : "闲"
+        %td
+          = user.created_at
+        %td
+          = user.locked_at.blank?
+        %ed
+        %td
+          = link_to "查看", user_path(user)
+          = link_to "编辑", edit_user_path(user)
+          = link_to "删除", user_path(user),
+                  method: :delete,
+                  data: { confirm: 'Are you user?' }
+
+.box-footer.clearfix
+  =paginate @users
