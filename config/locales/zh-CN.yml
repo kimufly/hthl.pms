@@ -68,4 +68,7 @@ en:
       previous: "&lsaquo; 上一页"
       next: "下一页 &rsaquo;"
       truncate: "&hellip;"
+    devise:
+      forgot_your_password: 找回密码？
+      didn_t_receive_confirmation_instructions: 没有收到确认邮件?
 
