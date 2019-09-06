@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-  get 'satisfaction/index'
-  get 'user_password/index'
-=======
   root 'home#index'
->>>>>>> df8c777f821cae89c7a3db02697ce550cefe1420
 
   get 'costs/index'
   resources :customers

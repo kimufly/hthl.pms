@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_09_05_021823) do
-=======
-ActiveRecord::Schema.define(version: 2019_09_03_065058) do
->>>>>>> df8c777f821cae89c7a3db02697ce550cefe1420
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +48,22 @@ ActiveRecord::Schema.define(version: 2019_09_03_065058) do
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_posts_on_ancestry"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -132,7 +144,6 @@ ActiveRecord::Schema.define(version: 2019_09_03_065058) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id"
-    t.string "status"
     t.string "explain"
     t.bigint "department_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
