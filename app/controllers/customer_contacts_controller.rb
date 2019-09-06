@@ -1,6 +1,13 @@
 class CustomerContactsController < ApplicationController
   def index
+    position = params[:position]
     @customer_contacts = CustomerContact.all
+    @customer_contacts = @customer_contacts.where('position like ? ', "%#{position}%") if position.present?
+    @customer_contacts = @customer_contacts.page(params[:page] ||= 1)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

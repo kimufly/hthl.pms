@@ -1,6 +1,13 @@
 class RolesController < ApplicationController
   def index
+    name = params[:name]
     @roles = Role.all
+    @roles = @roles.where('name like ? ', "%#{name}%") if name.present?
+    @roles = @roles.page(params[:page] ||= 1)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

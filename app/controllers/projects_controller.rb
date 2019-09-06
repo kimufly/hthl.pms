@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :get_project, only: [:edit, :show]
   
+  
   def show
   end
 
@@ -41,19 +42,53 @@ class ProjectsController < ApplicationController
 
   def index
     @page_title = "我的项目"
+    name = params[:name]
+    status = params[:status]
     @projects = current_user.projects
+    @projects = @projects.where('name like ? ', "%#{name}%") if name.present?
+    @projects = @projects.where(status: status) if status.present?
+    @projects = @projects.page(params[:page] ||= 1)
+    respond_to do |format|
+      format.html
+      format.js
+    end    
   end
 
   def approving
     @page_title = "我的申请"
+    name = params[:name]
+    status = params[:status]
     @projects = current_user.projects.approving
-    render 'projects/approving'
+    @projects = @projects.where('name like ? ', "%#{name}%") if name.present?
+    @projects = @projects.where(status: status) if status.present?
+    @projects = @projects.page(params[:page] ||= 1)
+    respond_to do |format|
+      format.html
+      format.js
+    end    
   end
 
   def todo
     @page_title = "我的待办"
+    name = params[:name]
+    status = params[:status]
     @projects = Project.todo(current_user.id)
-    render 'projects/todo'
+    byebug
+    @projects = @projects.where('name like ? ', "%#{name}%") if name.present?
+    @projects = @projects.where(status: status) if status.present?
+    @projects = @projects.page(params[:page] ||= 1)
+
+
+    name = params[:name]
+    status = params[:status]
+    @projects = current_user.projects.approving
+    @projects = @projects.where('name like ? ', "%#{name}%") if name.present?
+    @projects = @projects.where(status: status) if status.present?
+    @projects = @projects.page(params[:page] ||= 1)
+    respond_to do |format|
+      format.html
+      format.js
+    end    
   end
 
 

@@ -3,58 +3,18 @@
     = @page_title
 %section.content
   .box
-    .box-header
-      %h3.box-title 筛选查询
-    .box-body
-      .row
-        .col-md-4
-          %label.control-label{for:"project :_name"}
-            项目名称：
-          = text_field_tag :project_name
-        .col-md-4
-          %label.control-label{for:"project :_name"}
-            项目状态:
-          = select_tag :name, Project.status_options.to_h
-        .col-md-4
-          %label.control-label
-            时间:
-          = datetime_local_field(:user, :graduation_day)
-  .box
-    .box-header
-      .row
+    = form_with url: roles_path, method: :get do |f|
+      .box-header
         .col-md-6
-          %h3.box-title 数据列表
+          %h3.box-title 筛选查询
         .col-md-6
           .pull-right-container
-            = link_to "添加", new_role_path, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
-           
-    .box-body
-      %table.table.table-hover
-        %tbody
-          %td 序号
-          %td 角色类型
-          %td 角色名称
-          %td 角色定义说明
-          %td 更新时间
-          %td 状态
-          %td 操作
-        - @roles.each do |role|
-          %tr
-            %td
-              = role.id
-            %td
-              "类型"
-            %td
-              = role.name
-            %td
-              = role.explain
-            %td
-              = role.updated_at
-            %td
-            %td
-              = link_to "查看", role_path(role)
-              = link_to "权限设置", role_permission_roles_url
-              = link_to "编辑", edit_role_path(role)
-              = link_to "删除", role_path(role),
-                method: :delete,
-                data: { confirm: 'Are you role?' }
+            = f.submit "查询", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5", id: "action_query"
+      .box-body
+        .row
+          .col-md-4
+            .form-group
+              %label 角色名称:
+              = f.text_field :name, class: "form-control"        
+  .box#roles_list
+    = render 'list'
