@@ -50,7 +50,7 @@ class CustomerContactsController < ApplicationController
   end
 
   def find_unit_name
-    @customer_contact = CustomerContact.where(unit_name: '新华集团').first
+    @customer_contact = CustomerContact.where(name: '新华集团').first
     redirect_to approving_flow_apply_projects_path(@customer_contact)
   end
 
@@ -59,7 +59,7 @@ class CustomerContactsController < ApplicationController
 
   private
   def customer_params
-      params.require(:customer_contact).permit(:unit_name, :project_name, :name, :telephone, :phone_number, :other_phone, :position, :email, :address, :customer_id)
+      params.require(:customer_contact).permit(:project_name, :name, :telephone, :phone_number, :other_phone, :position, :email, :address, :customer_id)
   end
 
 

@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2019_09_05_021823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "customer_id"
-    t.string "unit_name"
     t.string "project_name"
     t.index ["customer_id"], name: "index_customer_contacts_on_customer_id"
   end
