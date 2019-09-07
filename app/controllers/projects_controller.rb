@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @users = User.all
   end
 
   def new
@@ -26,13 +27,15 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    
     @project.update(project_params)
-    @customer = Customer.find(@project.customer_id)
-    @customer.update(customer_params)
-
+    #todo..............
+    # @customer = Customer.where(id: @project.customer_id)
+    # @customer.name = @projectname
+    # @customer.update(@customer)
+    # @customer_contact = Customer_contact.where(@project.customer_id)
+    # @customer_contact.update(customer_contacts_params)
     redirect_to approving_projects_url
-  end
+  end  
 
   def destroy
     @project = Project.find.find(params[:id])

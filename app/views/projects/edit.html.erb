@@ -58,16 +58,15 @@
             </div>
             
             <div class="form-group">
-              <%= f.label :建议派遣工程师 %><br>
-              
-            </div>
-  
-         
-            <div class="form-group">
-              <%= f.label :指定技术负责人审批 %><br>
-              
-            
-            </div>
+            <%= f.label :建议派遣工程师 %><br>
+            <%= f.select(:tech_auditor, @users.collect{|u| [u.name, u.id]}, {}, class: "form-control") %>
+          </div>
+
+       
+          <div class="form-group">
+            <%= f.label :审核人 %><br>
+            <%= f.select(:auditor, @users.collect{|u| [u.name, u.id]}, {}, class: "form-control") %>
+          </div>
           
             <p><%= f.submit "提交", class:"btn btn-w-m btn-info" %></p></br></br>
   
