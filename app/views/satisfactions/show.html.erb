@@ -2,7 +2,11 @@
   <div class="col-md-2">
   </div>
   <div class="tableT col-md-8">
-    <H1 class="tr-center">客户满意度调查表</H1>
+    <% if @flag == 1 %>
+     <H1 class="tr-center">客户满意度调查表提交成功</H1>
+    <% else %>
+     <H1 class="tr-center">客户满意度调查表</H1>
+    <% end %>
     <table id="editTable" class="table table-bordered">
       <tbody>
         <%= form_for @satisfaction, url: satisfactions_path do |f| %>
@@ -179,7 +183,9 @@
           </tr>
         </table>
         <div class="col-md-12 tr-center">
-          <%= f.submit "保存", class:"btn btn-primary btn-rounded btn-block" %>
+          <% if @flag != 1 %>
+             <%= f.submit "保存", class:"btn btn-primary btn-rounded btn-block" %>
+          <% end %>
         </div>
       <% end %>
     </div>

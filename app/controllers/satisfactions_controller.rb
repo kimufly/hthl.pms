@@ -3,6 +3,9 @@ class SatisfactionsController < ApplicationController
   
     def show
       @satisfaction = Satisfaction.find(params[:id])
+      if @satisfaction
+        @flag = 1
+      end
     end
   
     def new
@@ -11,11 +14,9 @@ class SatisfactionsController < ApplicationController
   
     def create
       @satisfaction = Satisfaction.new(satisfaction_params)
-      if @satisfaction.save  
-        redirect_to root_path
-        # 客户提交满意度成功的感谢页面
-      else
-        redirect_to satisfactions_path
+      if @satisfaction.save
+        @flag = 1
+        redirect_to satisfactions_path(article)  
       end
     end
   
