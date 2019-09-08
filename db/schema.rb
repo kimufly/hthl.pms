@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2019_09_05_021823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "customer_id"
-    t.string "unit_name"
     t.string "project_name"
     t.index ["customer_id"], name: "index_customer_contacts_on_customer_id"
   end
@@ -72,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_021823) do
     t.datetime "expected_at", comment: "期望日期"
     t.integer "genre", default: 0, null: false, comment: "类型"
     t.integer "auditor", comment: "审核人"
-    t.integer "tech_auditor", comment: "技术审核人"
+    t.integer "tech_auditor", comment: "建议派遣工程师"
     t.text "remake", comment: "备注"
     t.float "time_limit", default: 0.0, null: false, comment: "工期"
     t.integer "status", default: 0, null: false, comment: "状态"
