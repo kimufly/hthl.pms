@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_05_021823) do
+ActiveRecord::Schema.define(version: 2019_09_09_030242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2019_09_05_021823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "customer_id"
-    t.string "project_name"
     t.index ["customer_id"], name: "index_customer_contacts_on_customer_id"
   end
 
@@ -50,19 +49,10 @@ ActiveRecord::Schema.define(version: 2019_09_05_021823) do
   end
 
   create_table "departments", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "deleted_at"
+    t.string "name", default: "", null: false
+    t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string "name"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "ancestry"
-    t.index ["ancestry"], name: "index_posts_on_ancestry"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -71,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_021823) do
     t.datetime "expected_at", comment: "期望日期"
     t.integer "genre", default: 0, null: false, comment: "类型"
     t.integer "auditor", comment: "审核人"
-    t.integer "tech_auditor", comment: "建议派遣工程师"
+    t.integer "tech_auditor", comment: "技术审核人"
     t.text "remake", comment: "备注"
     t.float "time_limit", default: 0.0, null: false, comment: "工期"
     t.integer "status", default: 0, null: false, comment: "状态"
@@ -143,6 +133,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_021823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id"
+    t.string "status"
     t.string "explain"
     t.bigint "department_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
