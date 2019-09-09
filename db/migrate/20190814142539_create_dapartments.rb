@@ -6,4 +6,4 @@ class CreateDapartments < ActiveRecord::Migration[5.2]
       t.timestamps
     end unless table_exists? :departments
   end
-endP
+end
