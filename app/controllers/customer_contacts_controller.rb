@@ -24,10 +24,10 @@ class CustomerContactsController < ApplicationController
   end
 
   def create
-    @customer_contact = CustomerContact.new(customer_params)
-    #todo.....保存父类返回
-    @customer_contact.customer_id=2
-    if @customer_contact.save
+    @customer = Customer.create(customer_params)
+    @customer_contact = CustomerContact.new(customer_contacts_params)
+    @customer.customer_contacts << @customer_contact
+    if@customer.save
       redirect_to customer_contacts_path
     else
       redirect_to "new"
@@ -54,12 +54,12 @@ class CustomerContactsController < ApplicationController
     redirect_to approving_flow_apply_projects_path(@customer_contact)
   end
 
-
-
-
-  private
   def customer_params
-      params.require(:customer_contact).permit(:project_name, :name, :telephone, :phone_number, :other_phone, :position, :email, :address, :customer_id)
+    params.require(:customer).permit(:name)
+  end
+
+  def customer_contacts_params
+    params.require(:customer).require(:customer_contacts).permit(:name, :telephone, :phone_number, :other_phone, :email, :address, :position)
   end
 
 
