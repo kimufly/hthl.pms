@@ -76,15 +76,6 @@ class ProjectsController < ApplicationController
     name = params[:name]
     status = params[:status]
     @projects = Project.todo(current_user.id)
-    byebug
-    @projects = @projects.where('name like ? ', "%#{name}%") if name.present?
-    @projects = @projects.where(status: status) if status.present?
-    @projects = @projects.page(params[:page] ||= 1)
-
-
-    name = params[:name]
-    status = params[:status]
-    @projects = current_user.projects.approving
     @projects = @projects.where('name like ? ', "%#{name}%") if name.present?
     @projects = @projects.where(status: status) if status.present?
     @projects = @projects.page(params[:page] ||= 1)
