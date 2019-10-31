@@ -1,15 +1,14 @@
 class HomeController < ApplicationController
 
   def index
-    @month_tech_hours = TechHour.where("start_at >= ? AND start_at <= ?", Time.now.beginning_of_month, Time.now.end_of_month)
-    @weeks_tech_hours = TechHour.where("start_at >= ? AND start_at <= ?", Time.now.at_beginning_of_week, Time.now.at_end_of_week).order('start_at ASC')
-    #@weeks_tech_hours = @weeks_tech_hours.pluck(:time_limit)
-    
-    #@weeks_tech_hours = @weeks_tech_hours.where('time_limit')
-    #group_by { |t| t.start_at.beginning_of_day }
+    @month_tech_hours = TechHour.where('start_at >= ? AND start_at <= ?', Time.now.beginning_of_month, Time.now.end_of_month)
+    @weeks_tech_hours = TechHour.select('tech_hours.*').where('start_at >= ? AND start_at <= ?', Time.now.at_beginning_of_week, Time.now.at_end_of_week).order('start_at ASC')
 
+    #@weeks_tech_hours =  @weeks_tech_hours.distinct.select('COUNT(tech_hours.id), COUNT(tech_hours.time_limit) AS time_limit').group_by{ |t| t.start_at.beginning_of_day }
     
-    byebug
+    #@weeks_tech_hours =  @weeks_tech_hours.group_by { |t| t.start_at.beginning_of_day }
+    
+    #TechHour.group_by { |t| t.start_at.beginning_of_day }
     @result_arr = Array.new
     for @weeks_tech_hours in @weeks_tech_hours
       puts @weeks_tech_hours.time_limit
