@@ -1,0 +1,37 @@
+.box-header
+  .row
+    .col-md-6
+      %h3.box-title 数据列表
+    .col-md-6
+      .pull-right-container
+        = link_to "添加", new_project_user_path, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+       
+.box-body
+  %table.table.table-hover
+    %tbody
+      %td 真实姓名
+      %td 用户名
+      %td 项目名称
+      %td 参与项目个数
+      %td 所属部门
+      %td 操作
+    - @project_users.each do |project_user|
+      %tr
+        %td
+          = project_user.user.name
+        %td
+          = project_user.user.email
+        %td
+          = project_user.project.name
+        %td
+          = project_user.user.projects.size
+        %td
+          = project_user.user.department.name
+        %td
+          = link_to "查看", project_user_path(project_user)
+          = link_to "编辑", edit_project_user_path(project_user)
+          = link_to "删除", project_user_path(project_user),
+                  method: :delete,
+                  data: { confirm: 'Are you project on user?' }
+.box-footer.clearfix
+  =paginate @project_users

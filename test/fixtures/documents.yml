@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 1
+  project_id: 1
+  user_id: 1
+  created_at: 2019-10-14 17:31:33
+
+two:
+  name: MyString
+  type: 1
+  project_id: 1
+  user_id: 1
+  created_at: 2019-10-14 17:31:33

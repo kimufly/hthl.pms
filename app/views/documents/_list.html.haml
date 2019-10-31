@@ -1,0 +1,41 @@
+.box-header
+  .row
+    .col-md-6
+      %h3.box-title 数据列表
+    .col-md-6
+      .pull-right-container
+        = link_to "分享", share_files_documents_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+        = link_to "下载", documents_path(:format => :csv), :class => "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+        = link_to "文件上传", upload_files_documents_url, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+.box-body
+  %table.table.table-hover
+    %tbody
+      %tr
+        %td 编号
+        %td 项目名称
+        %td 文档标题
+        %td 文档类型
+        %td 创建人
+        %td 上传时间
+        %td 操作
+    - @documents.each do |document|
+      %tr
+        %td
+          = document.id
+        %td
+          = document.project.name
+        %td
+          = document.name
+        %td
+          = document.document_type
+        %td
+          = document.user.name
+        %td
+          = document.created_at
+        %td
+          = link_to "删除", document_path(document),
+                  method: :delete,
+                  data: { confirm: 'Are you document?' }
+.box-footer.clearfix
+  =paginate @documents
+

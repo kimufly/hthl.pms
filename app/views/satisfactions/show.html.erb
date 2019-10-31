@@ -1,0 +1,193 @@
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="tableT col-md-8">
+    <% if @flag == 1 %>
+     <H1 class="tr-center">客户满意度调查表提交成功</H1>
+    <% else %>
+     <H1 class="tr-center">客户满意度调查表</H1>
+    <% end %>
+    <table id="editTable" class="table table-bordered">
+      <tbody>
+        <%= form_for @satisfaction, url: satisfactions_path do |f| %>
+          <%= f.fields_for :project do |project| %>
+            <tr>
+              <td class="td_width_16">项目号</td>
+              <td class="td_width_16">
+                <%= project.text_field :number, class:"form-control"%>
+              </td>
+              <td class="td_width_16">项目名称</td>
+              <td class="td_width_54" colspan="4">
+                <%= project.text_field :name, class:"form-control"%>
+              </td>
+            </tr>
+            <tr>
+              <%= project.fields_for :customer do |customer| %>
+                <%= customer.fields_for :customer_contacts do |contact| %>
+                  <td class="td_width_16">用户单位</td>
+                  <td class="td_width_16">
+                    <%= customer.text_field :name, class:"form-control"%>
+                  </td>
+                  <td class="td_width_16">联系人</td>
+                  <td class="td_width_16">
+                    <%= contact.text_field :name, class:"form-control"%>
+                  </td>
+                  <td class="td_width_16">联系电话</td>
+                  <td>
+                    <%= contact.text_field :telephone, class:"form-control"%>
+                  </td>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tr>
+          <tr>
+            <td  class="td_width_16">CASE号</td>
+            <td  class="td_width_16">
+              <%= f.text_field :case_num, class:"form-control"%>
+            </td>
+            <td  class="td_width_16">服务类型</td>
+            <td  class="td_width_54" colspan="3">
+              <% Satisfaction.service_type_options.map{|_| _[0] }.each_with_index do |index, service_type| %>
+                <%= f.label :service_type, "#{service_type}.#{index}" %>
+                <%= f.radio_button :service_type, @satisfaction.service_type %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="td_width_16">服务开始时间</td>
+            <td class="td_width_16">
+              <%= f.text_field :start_at, class:"form-control"%>
+            </td>
+            <td class="td_width_16">服务使用时间</td>
+            <td class="td_width_16">
+              <%= f.text_field :use_at, class:"form-control"%>
+            </td>
+            <td class="td_width_16">实际使用时间</td>
+            <td class="td_width_16">
+              <%= f.text_field :true_at, class:"form-control"%>
+            </td>
+          </tr>
+          <tr>
+            <td class="tr-center background-color" colspan="6">满意度调查内容</td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>请你在认为合适的 ‘ <font color='red'>☐</font>’ 中打 ‘<font color='red'>√</font>’</span></td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•请你对汇通合力的 ‘服务质量’ 如何评价？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <% Satisfaction.service_quality_options.map{|_| _[0] }.each_with_index do |index, service_quality| %>
+                <%= f.label :service_quality, "#{service_quality}.#{index}" %>
+                <%= f.radio_button :service_quality, @satisfaction.service_quality %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•如果您感觉不满意？您知道【汇通合力的】的服务投诉电话吗（<font color='blue'>400-102-1033</font>）吗？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <% Satisfaction.complaints_hotline_options.map{|_| _[0] }.each_with_index do |index, complaints_hotline| %>
+                <%= f.label :complaints_hotline, "#{complaints_hotline}.#{index}" %>
+                <%= f.radio_button :complaints_hotline, @satisfaction.complaints_hotline %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•为您服务的工程师是_________，您对该工程师的评价如何？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <% Satisfaction.service_engineer_options.map{|_| _[0] }.each_with_index do |index, service_engineer| %>
+                <%= f.label :service_engineer, "#{service_engineer}.#{index}" %>
+                <%= f.radio_button :service_engineer, @satisfaction.service_engineer %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•您对汇通合力的工程师如何评价？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <% Satisfaction.engineer_options.map{|_| _[0] }.each_with_index do |index, engineer| %>
+                <%= f.label :engineer, "#{engineer}.#{index}" %>
+                <%= f.radio_button :engineer, @satisfaction.engineer %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•具体到如下几个方面，您对该工程师满意的方面是？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <%= f.label :engineer_satisfaction, "1.沟通" %>
+              <%= f.radio_button :engineer_satisfaction, "沟通" %>
+              <%= f.label :engineer_satisfaction, "2.语言表达" %>
+              <%= f.radio_button :engineer_satisfaction, "语言表达" %>
+              <%= f.label :engineer_satisfaction, "3.服务" %>
+              <%= f.radio_button :engineer_satisfaction, "服务" %>
+              <%= f.label :engineer_satisfaction, "4.解决问题" %>
+              <%= f.radio_button :engineer_satisfaction, "解决问题" %>
+              <%= f.label :engineer_satisfaction, "5.维护" %>
+              <%= f.radio_button :engineer_satisfaction, "维护" %>
+              <%= f.label :engineer_satisfaction, "6.责任心" %>
+              <%= f.radio_button :engineer_satisfaction, "责任心" %>
+              <%= f.label :engineer_satisfaction, "7.配合" %>
+              <%= f.radio_button :engineer_satisfaction, "配合" %>
+              <%= f.label :engineer_satisfaction, "8.业务技能" %>
+              <%= f.radio_button :engineer_satisfaction, "业务技能" %>
+              <%= f.label :engineer_satisfaction, "9.其它请注明：" %>
+              <%= f.text_field :engineer_satisfaction, class:"input1"%>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•您对【汇通合力】的“技术支持”如何评价？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <% Satisfaction.technical_support_options.map{|_| _[0] }.each_with_index do |index, technical_support| %>
+                <%= f.label :technical_support, "#{technical_support}.#{index}" %>
+                <%= f.radio_button :technical_support, @satisfaction.technical_support %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•您对【汇通合力】的“售后服务”如何评价？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <% Satisfaction.sales_service_options.map{|_| _[0] }.each_with_index do |index, sales_service| %>
+                <%= f.label :sales_service, "#{sales_service}.#{index}" %>
+                <%= f.radio_button :sales_service, @satisfaction.sales_service %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•您对【汇通合力】的“客户回访”如何评价？</span></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <% Satisfaction.customer_eturn_visit_options.map{|_| _[0] }.each_with_index do |index, customer_eturn_visit| %>
+                <%= f.label :customer_eturn_visit, "#{customer_eturn_visit}.#{index}" %>
+                <%= f.radio_button :customer_eturn_visit, @satisfaction.customer_eturn_visit %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>•如对【汇通合力】还有其它方面的建议和意见，请您写在下面，谢谢！</span></td>
+          </tr>
+          <tr>
+            <td colspan="6"><%= f.text_area :other_opinions, size: "24x3", class: "form-control" %></td>
+          </tr>
+        </table>
+        <div class="col-md-12 tr-center">
+          <% if @flag != 1 %>
+             <%= f.submit "保存", class:"btn btn-primary btn-rounded btn-block" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-2"></div>
+  </div>

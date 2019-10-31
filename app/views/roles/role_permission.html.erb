@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <div class="card mb-3">
+    <div class="card-header">
+    <i class="fas fa-chart-area"></i>设置角色资源权限
+    </div>
+    <div class="card-body" >
+    <div class="row">
+         <div style='width:30%;float:left;height:500px;'>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">角色名称</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="超级管理员">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">角色描述</label>
+            <textarea class="form-control" rows="6" placeholder="请输入角色描述..."></textarea>
+          </div>
+
+         </div>
+          <div style='width:1px;border:1px solid #DCDCDC;float:left;height:500px;'><!--这个div模拟一条垂直分割线--></div>
+          <div style='width:60%;float:left;height:500px;'>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+              <button class="btn btn-success" type="button">Go!</button>
+              </span>
+            </div>
+
+            
+
+            <form name="form" method="post" action="show.jsp">
+ 
+
+            <div  class="div1"><input   type="checkbox"   name="t"     id="101"   value="山东"   οnclick="return   change(this);"/><span onClick="menus('menu1')" >山东</span></div>
+            
+            <div id="menu1" style="display:" class="div2">
+            
+            <div  class="div1">&nbsp;
+            <input   type="checkbox"   name="t"     id="10101"   value="烟台"   οnclick="return   change(this);"/><span onClick="menus('menu1_1')">烟台</span><br/>
+            </div>
+            <!-- 第三级 begin-->
+            <div id="menu1_1" style="display:" class="div2">&nbsp;&nbsp;
+            <input   type="checkbox"   name="t" id="10101001" value="福山"   οnclick="return   change(this);"/>福山<br/>&nbsp;&nbsp;
+            <input   type="checkbox"   name="t" id="10101002" value="龙口"   οnclick="return   change(this);"/>龙口<br/>
+            </div>
+            <!-- 第三级 end-->
+            <div class="div1">&nbsp;
+            <input   type="checkbox"   name="t"     id="10102"   value="济南"   οnclick="return   change(this);"/><span onClick="menus('menu1_2')">济南</span></div>
+            <div id="menu1_2" style="display:" class="div2"> &nbsp;&nbsp;
+            <input   type="checkbox"   name="t" id="10102001" value="市中区"   οnclick="return   change(this);"/>市中区
+            </div>
+            <div   class="div1">&nbsp;
+            <input   type="checkbox"   name="t"     id="10103"   value="青岛"   οnclick="return   change(this);"/><span onClick="menus('menu1_3')">青岛</span></div>
+            <div id="menu1_3" style="display:" class="div2">&nbsp;&nbsp;
+            <input   type="checkbox"   name="t" id="10103001" value="莱西"   οnclick="return   change(this);"/>莱西
+            </div>
+            </div>
+            
+            <!--第二列的树-->
+            <div class="div1">
+            <input   type="checkbox"   name="t"     id="102"   value="河北"   οnclick="return   change(this);"/><span onClick="menus('menu2')">河北</span></div>
+            <div id="menu2" style="display:" class="div2">&nbsp;
+            <input   type="checkbox"   name="t"     id="10201"   value="石家庄"   οnclick="return   change(this);"/>石家庄<br/>&nbsp;
+            <input   type="checkbox"   name="t"     id="10202"   value="保定"   οnclick="return   change(this);"/>保定<br/>
+            </div>
+            
+            <!--第三列的树-->
+            <div class="div1">
+            <input   type="checkbox"   name="t"     id="103"   value="江苏"   οnclick="return   change(this);"/><span  onClick="menus('menu3')">江苏</span></div>
+            <div id="menu3" style="display:" class="div2">&nbsp;
+            <input   type="checkbox"   name="t"     id="10301"   value="南京"   οnclick="return   change(this);"/>南京<br/>&nbsp;
+            <input   type="checkbox"   name="t"     id="10302"   value="徐州"   οnclick="return   change(this);"/>徐州<br/> &nbsp;
+            <input   type="checkbox"   name="t"     id="10303"   value="苏州"   οnclick="return   change(this);"/>苏州<br/>
+            </div>
+              <input   name="submit"   type="submit" class="btn btn-success"   value="提交" />
+             </form>
+   
+
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+
+function menus(str){
+var obj, pic;
+// 返回 str 对象和 picId 对象是否存在
+if (document.getElementByIdx(str)){
+obj=document.getElementByIdx(str); //obj 为 DIV 对象
+  //pic 为 图片对象
+
+if (obj.style.display == "none"){ //如果DIV对象的 display 样式值为 none 的话
+obj.style.display = ""; //就将 display 的样式清空
+//pic.src = "0001.gif"; //更改图片对象的路径
+}else{
+obj.style.display = "none";
+//pic.src = "0000.gif";
+}
+}
+}
+ function   change(obj) 
+  { 
+  var   objs=document.getElementsByName(obj.name); 
+  
+   //如果取消选中某个子,则其父也取消选中
+   for(var   i=0;   i<objs.length;   i++) 
+  { 
+  if(!obj.checked&&obj.id.substr(0,objs[i].id.length)==objs[i].id)
+    objs[i].checked=false; 
+  }
+  //如果选中子,刚其父也被选中
+ // for(var   i=0;   i<objs.length;   i++) 
+ // { 
+ // if(obj.checked&&obj.id.substr(0,objs[i].id.length)==objs[i].id)
+ //   objs[i].checked=true; 
+ // } 
+  //如果选中父,则所有子都被选中
+  for(var   i=0;   i<objs.length;   i++) 
+  { 
+  if(objs[i].id.substr(0,obj.id.length)==obj.id)
+    objs[i].checked=obj.checked; 
+  } 
+  return   true; 
+  }
+//-->
+</script>
+<style type="text/css">
+<!--
+.div1 {
+cursor: hand;
+width: 100px;
+}
+ 
+.div2 {
+color: #666666;
+ 
+}
+-->
+</style>

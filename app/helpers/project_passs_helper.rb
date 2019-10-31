@@ -1,0 +1,2 @@
+module ProjectPasssHelper
+end

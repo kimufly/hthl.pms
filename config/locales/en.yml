@@ -1,0 +1,73 @@
+en:
+  hello: Hello world
+  activerecord:
+    enums:
+      user:
+        sex:
+          unknown: unknown
+          male: male
+          femininity: femininity
+      project:
+        status:
+          approving: approving
+          correction: return to correction
+          doing: doing
+          done: done
+          close: close
+        genre:
+          pre_sale: Pre-Sale Service
+          after_sale: After-Sale Service
+      satisfaction:
+        service_type:
+          fault_handling: Fault Handling
+          health_examination: 健康检查
+          network_changes: 网络变更
+          other: 其它
+        service_quality:
+          quite_satisfied: 很满意
+          satisfaction: 满意
+          ordinary: 一般
+          dissatisfaction: 不满意
+          very_disgruntled: 很不满意
+        complaints_hotline:
+          know: 知道
+          be_ignorant: 不知道
+        service_engineer:
+          excellent: 优
+          fine: 良
+          centre: 中
+          difference: 差
+        engineer:
+          quite_satisfied: 很满意
+          satisfaction: 满意
+          ordinary: 一般
+          dissatisfaction: 不满意
+          very_disgruntled: 很不满意
+        technical_support:
+          quite_satisfied: 很满意
+          satisfaction: 满意
+          ordinary: 一般
+          dissatisfaction: 不满意
+          very_disgruntled: 很不满意
+        sales_service:
+          quite_satisfied: 很满意
+          satisfaction: 满意
+          ordinary: 一般
+          dissatisfaction: 不满意
+          very_disgruntled: 很不满意
+        customer_eturn_visit:
+          quite_satisfied: 很满意
+          satisfaction: 满意
+          ordinary: 一般
+          dissatisfaction: 不满意
+          very_disgruntled: 很不满意
+        views:
+          pagination:
+            first: First
+            last: Last
+            previous: "&lsaquo; 上一页"
+            next: "下一页 &rsaquo;"
+            truncate: "&hellip;"
+          login:
+            Sign_In_To_Start_Your_Session: 登录并开始使用
+

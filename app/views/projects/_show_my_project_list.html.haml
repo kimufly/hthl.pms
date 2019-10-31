@@ -1,0 +1,53 @@
+.box
+  .box-header
+    .row
+      .col-md-6
+        %h3.box-title 每日工时
+      .col-md-6
+        .pull-right-container
+        %button.btn.btn-primary.btn-lg.btn-success.pull-right.col-md-3.margin-l-5.margin-r-5{"data-target" => "#satisfaction", "data-toggle" => "modal", :type => "button"}
+          客户满意度调查表
+        %button.btn.btn-primary.btn-lg.btn-success.pull-right.col-md-3.margin-l-5.margin-r-5{"data-target" => "#create", "data-toggle" => "modal", :type => "button"}
+          添加
+          
+  .box-body
+    %table.table.table-hover
+      %tbody
+        %tr
+          %td 编号
+          %td 姓名
+          %td 项目名称
+          %td 工时记录(天)
+          %td 工作内容描述
+          %td 上传文档
+          %td 开始时间
+          %td 操作
+      - @tech_hours.each do |tech_hour|
+        %tr
+          = form_with(model: tech_hour, local: true) do |form|
+            %td
+              = tech_hour.id
+            %td
+              = tech_hour.user.name
+            %td
+              = tech_hour.project.name
+            %td
+              = tech_hour.time_limit
+            %td
+              = tech_hour.describe
+            %td
+              - begin
+                = tech_hour.document.filename  
+              - rescue
+                = form.file_field :document
+                = form.submit '上传文档' 
+            %td
+              = tech_hour.start_at
+          %td
+            - begin
+              = link_to '下载',download_tech_hour_project_path(tech_hour, :filename=>tech_hour.document.filename)
+              = link_to '删除', tech_hour_path(tech_hour), method: :delete, data: { confirm: 'Are you sure?' }
+            - rescue
+              = link_to '删除', tech_hour_path(tech_hour), method: :delete, data: { confirm: 'Are you sure?' }
+.box-footer.clearfix
+  =paginate @tech_hours

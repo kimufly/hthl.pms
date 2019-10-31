@@ -1,0 +1,101 @@
+
+<style>
+.div3{
+  height:300px;
+  margin:0% 1% 5% 1%; 
+}
+
+.top{
+  margin-top :5%
+}
+
+.left{
+  margin-left :10%
+}
+.red{
+  color:red;
+  font-size:30px
+}
+
+</style>
+<div>
+  <div class="row centre col-md-12 auto top">
+    <div class="panel panel-default panel-body col-md-3 div3 left">
+      <table class="table table-bordered">
+        <tr>
+          <th colspan="4"><H4>迭代统计:</H4></th>
+        </tr>
+        <tr>
+        <% begin %>
+          <% if @project.status_name.eql? "进行中" %>
+            <td class="red"><%= @project.time_limit * @project_users.size %></td>
+            <td class="red"><%= ((Time.new - @project.doing_at).to_i / 60 /60 /24) * @project_users.size %></td>
+            <td class="red"><%= @project.time_limit * @project_users.size %></td>
+            <td class="red"><%= ((Time.new - @project.doing_at).to_i / 60 /60 /24) * @project_users.size %></td>
+          <% elsif @project.status_name.eql? "完成" %>
+            <td class="red"><%= @project.time_limit * @project_users.size %></td>
+            <td class="red"><%= ((Time.new - @project.doing_at).to_i / 60 /60 /24) * @project_users.size %></td>
+            <td class="red"><%= @project.time_limit * @project_users.size %></td>
+            <td class="red"><%= ((@project.done_at - @project.doing_at).to_i / 60 /60 /24) * @project_users.size %></td>
+          <% end %>
+        <% rescue %> 
+        <% end %>
+        </tr>
+        <tr>
+          <td>预计/人天</td>
+          <td>消耗/人天</td>
+          <td>剩余/人天</td>
+          <td>实际使用总数</td>
+        </tr>
+      </table>
+    </div>
+  
+    <div class="panel panel-default panel-body col-md-3 div3">
+      <table class="table table-bordered">
+        <tr>
+          <th colspan="3"><H4>文档列表:</H4></th>
+        </tr>
+        <tr>
+          <th>文档标题</th>
+          <th>上传人</th>
+          <th>上传时间</th>
+        </tr>
+        <% @documents.each do |document| %>
+        <tr>
+          <td><%=document.name %></td>
+          <td><%=document.user.name %></td>
+          <td><%= document.created_at %></td>
+        </tr>
+        <% end %>
+        
+      </table>
+    </div>
+  
+    <div class="panel panel-default panel-body col-md-3 div3">
+      <H4>相关成员:</H4>
+      <div class="row">
+        <% @project_users.each do |project_user| %>
+        <div class="col-md-4"><b><%= project_user.user.name %></b></div>
+        <% end %>
+      </div></br>
+      <a></a>
+      <%= link_to "人员所在项目情况", project_users_url, class: "dropdown-item" %>
+      
+    </div>
+
+    <div class="panel panel-default panel-body col-md-3 div3 left">
+      <table class="table table-bordered">
+        <tr>
+          <th colspan="2"><H4>最新动态:</H4></th>
+        </tr>
+        <% @project_passs.each do |project_pass| %>
+        <tr>
+          <td><%=project_pass.created_at%></td>
+          <td><%=project_pass.user.name%>上传了《<%=project_pass.name%>》</td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+ 
+</div>
+</div>

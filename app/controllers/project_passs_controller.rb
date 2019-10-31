@@ -1,0 +1,2 @@
+class ProjectPasssController < ApplicationController
+end

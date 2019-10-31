@@ -1,0 +1,23 @@
+Department.create name: "技术部"
+exit
+Project.ass
+Project.all
+ProjectUser.new(:project_id -"1", :user -"1")
+ProjectUser.new(:project_id 1, :user 1)
+ProjectUser.new(:project_id "1", :user_id 1)
+ProjectUser.new(:project_id 1, :user_id "1")
+ProjectUser.new(:project_id 1, :user_id =>"1")
+
+ProjectUser.new(:project_id 1, :user_id =>"1")
+ProjectUser.new(:project_id "", :user_id =>"1")
+ProjectUser.new(:project_id => "1", :user_id => "1")
+rails console
+rails console
+exit
+exit
+ProjectUser.all
+User.all
+exit
+User.all
+c
+exit

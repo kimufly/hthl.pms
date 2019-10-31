@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 
+  customer_id: 
+  case_num: MyString
+  service_type: 1
+  start_at: 2019-09-05 10:18:24
+  use_at: 2019-09-05 10:18:24
+  true_at: 1
+  service_quality: 1
+  complaints_hotline: 1
+  service_engineer: 1
+  engineer: 1
+  engineer_satisfaction: MyString
+  technical_support: 1
+  sales_service: 1
+  customer_eturn_visit: 1
+  other_opinions: 1
+
+two:
+  project_id: 
+  customer_id: 
+  case_num: MyString
+  service_type: 1
+  start_at: 2019-09-05 10:18:24
+  use_at: 2019-09-05 10:18:24
+  true_at: 1
+  service_quality: 1
+  complaints_hotline: 1
+  service_engineer: 1
+  engineer: 1
+  engineer_satisfaction: MyString
+  technical_support: 1
+  sales_service: 1
+  customer_eturn_visit: 1
+  other_opinions: 1

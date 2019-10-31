@@ -1,0 +1,49 @@
+<div id="content-wrapper">
+      <div class="container-fluid">
+
+        <!-- 快捷入口-->
+        <div class="card mb-3 col-md-6">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>编辑人员管理信息
+          </div>
+          <div class="card-body">
+          <%= form_for(@project_user) do |f| %>   
+          <div class="form-group">
+            <%= f.label :请选择真实姓名 %><br>
+            <%= f.select(:user_id, @users.collect{|u| [u.name, u.id]}, {}, class: "form-control") %>
+          </div>
+          <%= f.fields_for :user do |user| %> 
+
+          <div class="form-group">
+            <%= f.label :请选择项目名称 %><br>
+            <%= f.select(:project_id, @projects.collect{|u| [u.name, u.id]}, {}, class: "form-control") %>
+          </div>
+         
+          <div class="form-group">
+            <span>参与项目个数<span></br>
+            <%= user.text_field :name, class:"form-control", :value => "#{current_user.projects.size}" %>
+          </div>
+          <%= user.fields_for :department do |department| %> 
+          <div class="form-group">
+            <%= user.label :所属部门 %><br>
+            <%= f.select(:project_id, Department.all.collect{|u| [u.name, u.id]}, {}, class: "form-control") %>
+            
+          </div>
+           <% end %>
+          <% end %>
+
+          <p><%= f.submit "提交", class:"btn btn-w-m btn-info" %></p></br></br>
+          </br>
+          </br>
+          </br>
+          <% end %>
+          </div>
+        </div>
+
+  </div>
+
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+
+   

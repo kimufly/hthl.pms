@@ -1,0 +1,32 @@
+.box-header.with-border
+  %h3.box-title 联系人
+  .box-tools
+    %button.btn.btn-default{"data-target" => "#modal-new-contact", "data-toggle" => "modal", :type => "button"} 添加联系人
+.box-body
+  %table#customer_contacts_table.table.table-bordered
+    %tr
+      %th 编号
+      %th 姓名
+      %th 电话
+      %th 手机号码
+      %th 其它号码
+      %th 职位
+      %th 邮箱
+      %th 支持地址
+      %th 详细
+    - @customer_contacts.each do |customer_contact|
+      %tr
+        %td.c-id= customer_contact.id
+        %td.c-name= customer_contact.name
+        %td.c-telephone= customer_contact.telephone
+        %td.c-phone_number= customer_contact.phone_number
+        %td.c-other_phone= customer_contact.other_phone
+        %td.c-position= customer_contact.position
+        %td.c-email= customer_contact.email
+        %td.c-address= customer_contact.address
+        %td
+          %button.btn.btn-sm.btn-info.b_btnSelect2{"data-target" => "#modal-new-contact2", "data-toggle" => "modal", :type => "button"} 查看
+        %td
+          %button.btn.btn-sm.btn-info.b_btnSelect2{"data-target" => "#modal-new-contact2", "data-toggle" => "modal", :type => "button"} 修改
+.box-footer.clearfix
+  =paginate @customer_contacts

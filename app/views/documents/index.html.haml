@@ -1,0 +1,24 @@
+%section.content-header
+  %h1
+    = @page_title
+%section.content
+  .box
+    .box-header
+      %h3.box-title 筛选查询
+    .box-body
+      .row
+        .col-md-4
+          %label.control-label{for:"company_name"}
+            文档标题：
+          = text_field_tag :company_name
+        .col-md-4
+          %label.control-label{for:"project_name"}
+            文档类型:
+          = text_field_tag :project_name
+        .col-md-4
+          %label.control-label
+            时间:
+          = datetime_local_field(:user, :graduation_day)       
+  .box#documents_list
+    = render 'list'
+

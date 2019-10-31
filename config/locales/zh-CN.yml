@@ -1,0 +1,85 @@
+zh-CN:
+  hello: "你好，世界。"
+  activerecord:
+    enums:
+      user:
+        sex:
+          unknown: "未知"
+          male: "男"
+          femininity: "女"
+      project:
+        status:
+          approving: "审核中"
+          correction: "返回修订"
+          doing: "进行中"
+          done: "完成"
+          close: "关闭"
+        genre:
+          pre_sale: "售前服务"
+          after_sale: "售后服务"
+      project_pass:
+        pass:
+          done: "通过"
+          correction: "返回修订"
+          refuse: "不通过"
+      satisfaction:
+        service_type:
+          fault_handling: "故障处理"
+          health_examination: "健康检查"
+          network_changes: "网络变更"
+          other: "其它"
+        service_quality:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        complaints_hotline:
+          know: "知道"
+          be_ignorant: "不知道"
+        service_engineer:
+          excellent: "优"
+          fine: "良"
+          centre: "中"
+          difference: "差"
+        engineer:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        technical_support:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        sales_service:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+        customer_eturn_visit:
+          quite_satisfied: "很满意"
+          satisfaction: "满意"
+          ordinary: "一般"
+          dissatisfaction: "不满意"
+          very_disgruntled: "很不满意"
+      project_user:
+        user_type:
+          project: "项目人员"
+          tech_user: "指定技术人员"
+  views:
+    pagination:
+      first: "&laquo; 首页"
+      last: "尾页 &raquo;"
+      previous: "&lsaquo; 上一页"
+      next: "下一页 &rsaquo;"
+      truncate: "&hellip;"
+    login:
+      Sign_In_To_Start_Your_Session: 登录并开始使用
+  
+
+
+

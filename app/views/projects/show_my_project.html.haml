@@ -1,0 +1,247 @@
+%section.content-header
+  %h1
+    = "项目管理过程"
+%section.content
+  .box
+    = form_with url: show_my_project_project_path(@project.id), method: :get do |f|
+      .box-header
+        .row
+          .col-md-6
+            %h3.box-title 筛选查询
+          .col-md-6
+            .text-right
+            = f.submit "查询", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5", id: "action_query"    
+      .box-body
+        .row
+          .col-md-4
+            .form-group
+              %label 姓名:
+              = f.text_field :name, class: "form-control"
+  .box#tech_hour_show_my_project_list
+    = render 'show_my_project_list'
+
+
+
+%section.content
+  .box
+    .box-header
+      .row
+        .col-md-6
+          %h3.box-title 项目完成文档提交审核：
+        .col-md-6
+          .pull-right-container
+          %button.btn.btn-success.pull-right.col-md-3.margin-l-5.margin-r-5{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+            上传文档
+
+    .box-body
+      %table.table.table-hover
+        %tbody
+          %tr
+            %td 编号
+            %td 项目名称
+            %td 文档名称
+            %td 上传人
+            %td 上传时间
+            %td 文档评审结果
+            %td 备注
+            %td 操作
+        - @project_passs.each do |project_pass|    
+          %tr
+            %td
+              = project_pass.id
+            %td
+              = project_pass.project.name
+            %td
+              = project_pass.name
+            %td
+              = project_pass.user.name
+            %td
+              = project_pass.created_at
+            %td
+              - if project_pass.pass == "done"
+                通过 
+              - elsif project_pass.pass == "refuse" 
+                拒绝
+              - elsif project_pass.pass == "correction" 
+                打回  
+              - else
+                未审核
+            %td
+              = project_pass.remark
+            %td
+              = link_to "下载", download_project_pass_project_path(project_pass, :format => :csv)
+              - if project_pass.pass == nil
+                %input#button{:class => "btn-success.pull-right.obtain_id", "data-target" => "#auditor", "data-toggle" => "modal", :name => "button", :onclick => "add_project_pass_id('#{project_pass.id}')", :type => "button", :value => "审核"}/
+              = link_to "删除", delete_project_pass_project_path(project_pass),
+                  method: :delete,
+                  data: { confirm: 'Are you delete?' }
+
+
+
+#create.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title 添加
+      .modal-body
+        = form_for :tech_hour, url: tech_hours_path do |f|
+          .form-group
+            = f.label :选择用户
+            = f.select(:user_id, @users.collect{|u| [u.name, u.id]}, {}, class: "form-control")
+          .form-group.hidden
+            = f.label :项目id
+            = f.text_field :project_id, class:"form-control", value:@project.id
+          .form-group
+            = f.label :工时记录
+            = f.text_field :time_limit, class:"form-control"
+          .form-group
+            = f.label :开始时间
+            = f.text_field :start_at, class:"form-control", id:"start_at"
+          .form-group
+            = f.label :工作内容描述
+            = f.text_area :describe, size: "24x6", class: "form-control"
+          %button.btn.btn-default.btn-w-m.btn-info{"data-dismiss" => "modal", :type => "button"} 取消 
+          = f.submit "保存", class:"btn btn-w-m btn-info"  
+
+
+
+#auditor.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title 审核
+      .modal-body
+        = form_for :tech_hour, url: tech_hours_path do |f|
+          .form-group 
+            %input#project_pass_id{:name => "project_pass_id", :style => "display:none", :type => "text"}/
+            %label 审核通过：
+            %label.radio-inline
+              %input#radi1{:name => "radi1", :type => "radio", :value => "done"}/
+              通过
+            %label.radio-inline
+              %input#radi2{:name => "radi1", :type => "radio", :value => "refuse"}/
+              拒绝
+          .form-group
+            %label 备注:
+            %textarea#textarea1.form-control{:name => "textarea1", :rows => "8"}
+          %input#button.btn.btn-default.btn-w-m.btn-info{:name => "button", :onclick => "auditorPass('done')", :type => "button", :value => "提交"}/
+          %input#button.btn.btn-default.btn-w-m.btn-info{:name => "button", :onclick => "auditorPass('correction')", :type => "button", :value => "驳回"}/
+ 
+        
+
+#satisfaction.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title 客户满意度调查
+      .modal-body
+        %form
+          .form-group
+            %label.control-label{:for => "recipient-name"} 主送人:
+            %input#recipient-name.form-control{:type => "text"}/
+          .form-group
+            %label.control-label{:for => "recipient-name"} 抄送人:
+            %input#recipient-name.form-control{:type => "text"}/
+          .form-group
+            %label.control-label{:for => "message-text"} 备注:
+            %textarea#message-text.form-control
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} 取消
+        %button.btn.btn-primary{:type => "button"} 确定
+
+/ 上传文档弹窗
+#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title 文件上传：
+      .modal-body
+        = form_tag import_project_path(@project.id), :multipart => true do
+          %p= file_field_tag "csv_file"
+          %p= submit_tag "文件上传", :class => "btn btn-success"
+          
+
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+        
+       
+:javascript
+
+  //保存project_pass.idid
+  function add_project_pass_id(id){
+    $("#project_pass_id").val(id);
+  }
+  
+  //审核提交
+  function auditorPass(type){
+    var id = $("#project_pass_id").val().trim();
+    var pass = $('input:radio[name="radi1"]:checked').val();
+    var remark = $("#textarea1").val().trim();
+    var url = "http://" + window.location.host + "/projects/project_over_auditor"
+    if(type == "done"){
+      if(pass == null || pass == '') {
+        alert("您还没有进行审核，请选择审核后再次提交！")
+        return false;
+      }
+    }else{
+      //驳回
+      pass = type;
+    }
+
+    $.ajax({
+      url:url,
+      async:true,
+      data : {
+        "id" : id,
+        "pass" : pass,
+        "remark" : remark
+      },
+      success : function(data) {
+        window.location.reload();
+      }
+     });
+  
+  }
+
+
+
+    
+
+  $(function () {
+  	 	//单个时间插件
+  	     $("#start_at").daterangepicker(
+  	    		 {
+  	    	            singleDatePicker: true,//设置为单个的datepicker，而不是有区间的datepicker 默认false
+  	    	            showDropdowns: true,//当设置值为true的时候，允许年份和月份通过下拉框的形式选择 默认false
+  	    	            autoUpdateInput: false,//1.当设置为false的时候,不给与默认值(当前时间)2.选择时间时,失去鼠标焦点,不会给与默认值 默认true
+  	    	            timePicker24Hour : true,//设置小时为24小时制 默认false
+  	    	            timePicker : true,//可选中时分 默认false
+  	    	    		locale: {
+  	    	    			format: "YYYY-MM-DD HH:mm:ss",
+  	    	    			separator: " - ",
+  	    	    			daysOfWeek: ["日","一","二","三","四","五","六"],
+  	    	    			monthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+  	    	    		}
+  	    	    			
+  	    	     }
+  	     ).on('cancel.daterangepicker', function(ev, picker) {
+  	         $("#start_at").val("请选择日期");
+  	         $("#submitDate").val("");
+  	     }).on('apply.daterangepicker', function(ev, picker) {
+  	     $("#submitDate").val(picker.startDate.format('YYYY-MM-DD HH:mm:ss'));
+  	     $("#start_at").val(picker.startDate.format('YYYY-MM-DD HH:mm:ss'));
+  	 });	 			 		
+   });
+            
+              
+
+

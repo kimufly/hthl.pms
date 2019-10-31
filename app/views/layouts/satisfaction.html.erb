@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 	rel="stylesheet"/>
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 	rel="reload"/>
+    <style>
+      .table-bordered tr,th,td {
+        border: 1px solid #000 !important;
+      }
+      .td_width_16{
+        width:16%;
+        font-weight: bold;
+      }
+      .td_width_58{
+        width:58%
+      }
+      .form-control{
+        border:0;
+        webkit-box-shadow:none;
+        box-shadow:none;
+      }
+      .form-control:focus{
+        border-color:#fff;
+        webkit-box-shadow:none;
+        box-shadow:none;
+      }
+      .h1{
+        margin-left:300px
+      }
+      .input1 {
+        border: 0;
+        border-bottom: thin solid;
+        }
+        .tr-center{
+          font-weight: bold;
+          white-space: nowrap;
+          text-align: center;
+        }
+        .background-color{
+          background:	#C0C0C0
+        }
+        .background-red{
+          background:	red
+        }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

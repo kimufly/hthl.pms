@@ -1,0 +1,7 @@
+{
+  "name": "hthl_pms",
+  "private": true,
+  "dependencies": {
+    "echarts": "^4.2.1"
+  }
+}

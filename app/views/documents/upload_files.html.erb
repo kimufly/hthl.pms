@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="col-md-4"></div>
+  <div class="col-md-4" style="margin-top:20%">
+    <div class="card-body" >
+      <%= form_tag import_documents_path(), :multipart => true do %>
+        <p><%= file_field_tag "csv_file" %></p>
+        <p><%= submit_tag "文件上传CSV", :class => "btn btn-success" %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
