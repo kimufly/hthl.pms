@@ -1,15 +1,30 @@
 class HomeController < ApplicationController
 
-  def index
-    #yebug
-    @month_tech_hours = TechHour.where("start_at >= ? AND start_at <= ?", Time.now.beginning_of_month, Time.now.end_of_month)
-    @weeks_tech_hours = TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * SUM(users.price)) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', Time.now.at_beginning_of_week, Time.now.at_end_of_week).group('date(tech_hours.start_at)').order('start_at ASC')
-    @result_weeks_cb = Array[11.0, 2.2, 70.4]
-    @result_weeks_time = Array['2016-02-06', '2019-05-03', '2016-04-06']
-    
-    for tech_hours in @weeks_tech_hours
-      #@result_weeks_cb << tech_hours.time_limit
+  def index 
+    @tech_hours = nil
+    if params[:type].eql? "week"
+      #本周
+      @tech_hours = TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * SUM(users.price)) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', Time.now.at_beginning_of_week, Time.now.at_end_of_week).group('date(tech_hours.start_at)').order('start_at ASC')
+    elsif params[:type].eql? "month"
+      #本月
+      @tech_hours =TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * SUM(users.price)) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', Time.now.beginning_of_month, Time.now.end_of_month).group('date(tech_hours.start_at)').order('start_at ASC')
+    elsif params[:type].eql? "quarter"
+      #本季度
+      @tech_hours =TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * SUM(users.price)) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', Time.now.beginning_of_quarter, Time.now.end_of_quarter).group('date(tech_hours.start_at)').order('start_at ASC')
+    else
+      #默认本周
+      @tech_hours = TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * SUM(users.price)) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', Time.now.at_beginning_of_week, Time.now.at_end_of_week).group('date(tech_hours.start_at)').order('start_at ASC')
     end
+
+    
+    @result_date = Array.new
+    @result_time = Array.new
+    for tech_hours in @tech_hours
+      @result_date << tech_hours.time_limit
+      @result_time << tech_hours.start_at.strftime('%Y-%m-%d')
+    end
+
+    
     
     # @result_weeks = Array[0,0,0,0,0,0,0]
     # tech_hours = TechHour.new

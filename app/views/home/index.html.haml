@@ -100,18 +100,21 @@
                 %strong 项目列表
             .col-md-6.text-right
               .col-md-8.text-right{:style => "padding-top: 8px;"}
-                = succeed "\u{a0}\u{a0}\u{a0}" do
-                  %a{:href => "#"} 本周
-                = succeed "\u{a0}\u{a0}\u{a0}" do
-                  %a{:href => "#"} 本月
-                = succeed "\u{a0}\u{a0}\u{a0}" do
-                  %a{:href => "#"} 季度
+                = link_to root_url(type: 'week') do
+                  %i.fa.fa-circle-o
+                  %span 本周
+                = link_to root_url(type: 'month') do
+                  %i.fa.fa-circle-o
+                  %span 本月
+                = link_to root_url(type: 'quarter') do
+                  %i.fa.fa-circle-o
+                  %span 季度
               .col-md-4
                 .form-group
                   .input-group.date
                     .input-group-addon
                       %i.fa.fa-calendar
-                    = text_field(:user, :graduation_day, class: "form-control date-range-picker")
+                    = text_field(:user, :daterange_btn, class: "form-control date-range-picker")
           .row
             .col-md-5
               .box
@@ -163,8 +166,6 @@
 :javascript
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('main'));
-  console.log("#{@result_weeks_cb}".split(","))
-  console.log("#{{key: @result_weeks_cb}.to_json}")
   option = {
     title: {
         text: ''
@@ -173,7 +174,7 @@
         trigger: 'axis'
     },
     legend: {
-        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+        data:['成本统计']
     },
     grid: {
         left: '3%',
@@ -189,29 +190,41 @@
     xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: #{@result_weeks_time}
+        data: "#{@result_time}".replace("[", "").replace(/&quot;/g, "").replace("]", "").split(",")
     },
     yAxis: {
         type: 'value'
     },
     series: [
         {
-            name:'交付类',
+            name:'成本统计',
             type:'line',
             stack: '总量',
-            data:#{@result_weeks_cb}.split(",")
-        },
-        {
-            name:'服务类',
-            type:'line',
-            stack: '总量',
-            data:[150, 232, 201, 154, 190, 330, 410]
+            data:#{@result_date}
         }
     ]
   };
-  
+
   
   // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(option);
 
 
+  $('#daterange_btn').daterangepicker({
+        ranges: {
+           
+            '本周': [moment().startOf('week'), moment().endOf('week')],
+            '本月': [moment().startOf('month'), moment().endOf('month')],
+            '今年': [moment().startOf('year'), moment().endOf('year')]
+        },
+        startDate: moment(),
+        endDate: moment().endOf('month')
+    },
+    function(start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+    }
+);
+ 
+
+  
