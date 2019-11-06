@@ -135,22 +135,41 @@
                   .col-md-3.hidden-xs.text-right
                     .row.text-center{:style => "display:inline-block;margin-bottom: 20px"}
                       %h5.text-navy{:style => "margin: 5px 0"} 本月成本总数
-                      %h2{:style => "margin:5px 0"}
-                        = @current_month
-                      .text-green.inline
-                        /%i.fa.fa-sort-asc{:style => 'vertical-align: middle; margin-top: 3px;'}
-                        %span 
-                          = @comparison_month
-                        %span{:style => 'color: #999; margin-left: 10px;'} 同比上月
+                      - if @comparison_month >= 0
+                        %h2{:style => "margin:5px 0"} 
+                          = @current_month
+                        .text-green.inline
+                          %i.fa.fa-sort-asc{:style => 'vertical-align: middle; margin-top: 3px;'}
+                          %span
+                            = @comparison_month
+                          %span{:style => 'color: #999; margin-left: 10px;'} %同比上月
+                      -else 
+                        %h2{:style => "margin:5px 0"}
+                          = @current_month
+                        .text-red{:style => 'display:inline-block'}
+                          %i.fa.fa-sort-desc{:style => 'vertical-align: middle; margin-top: -7px;'}
+                          %span 
+                            = @comparison_month
+                          %span{:style => 'color: #999; margin-left: 10px;'} %同比上月
+                        
                     .row.text-center{:style => "display:inline-block;"}
                       %h5.text-navy{:style => "margin: 5px 0"} 本周成本数量
-                      %h2{:style => "margin:5px 0"} 
-                        = @current_week
-                      .text-red{:style => 'display:inline-block'}
-                        /%i.fa.fa-sort-desc{:style => 'vertical-align: middle; margin-top: -7px;'}
-                        %span 
-                          = @comparison_week
-                        %span{:style => 'color: #999; margin-left: 10px;'}同比上周
+                      - if @comparison_week >= 0
+                        %h2{:style => "margin:5px 0"} 
+                          = @current_week
+                        .text-green.inline
+                          %i.fa.fa-sort-asc{:style => 'vertical-align: middle; margin-top: 3px;'}
+                          %span 
+                            = @comparison_week
+                          %span{:style => 'color: #999; margin-left: 10px;'} %同比上周
+                      -else
+                        %h2{:style => "margin:5px 0"} 
+                          = @current_week
+                        .text-red{:style => 'display:inline-block'}
+                          %i.fa.fa-sort-desc{:style => 'vertical-align: middle; margin-top: -7px;'}
+                          %span 
+                            = @comparison_week
+                          %span{:style => 'color: #999; margin-left: 10px;'} %同比上周
             .col-md-7
               .box
                 .box-header
