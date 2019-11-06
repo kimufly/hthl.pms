@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :tests
   resources :tech_hours
+
   root 'home#index'
 
 

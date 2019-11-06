@@ -55,6 +55,13 @@
         </div>
 
         <div class="form-group">
+          <%= f.radio_button(:genre, "pre_sale") %>
+          <%= label_tag(:genre, "售前") %>
+          <%= f.radio_button(:genre, "after_sale") %>
+          <%= label_tag(:genre, "售后") %>
+        </div>
+
+        <div class="form-group">
           <%= f.label :审核人 %><br>
           <%= f.select(:auditor, @users.collect{|u| ["#{u.department.name}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
         </div>

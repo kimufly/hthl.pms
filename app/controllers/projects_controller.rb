@@ -36,8 +36,9 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user.id
     @project.approved_at = Time.new
     if @project.save
-      redirect_to approving_projects_url
+     redirect_to approving_projects_url
     end  
+
   end
 
   def update
@@ -284,7 +285,7 @@ class ProjectsController < ApplicationController
 
 
   def project_params
-    params.require(:project).permit(:name, :expected_at, :support_details, :tech_auditor, :auditor, :status, :customer_id)
+    params.require(:project).permit(:name, :expected_at, :support_details, :tech_auditor, :auditor, :status, :customer_id, :genre)
   end
 
   def customer_params

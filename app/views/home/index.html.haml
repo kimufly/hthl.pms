@@ -95,26 +95,24 @@
           %h3.box-title 人力成本统计
         .box-body
           .row
-            .col-md-6.text-left
+            .col-md-2.text-left
               %h4
                 %strong 项目列表
-            .col-md-6.text-right
+            .col-md-10.text-right
               .col-md-8.text-right{:style => "padding-top: 8px;"}
                 = link_to root_url(type: 'week') do
-                  %i.fa.fa-circle-o
-                  %span 本周
+                  %span -本周&nbsp;&nbsp;
                 = link_to root_url(type: 'month') do
-                  %i.fa.fa-circle-o
-                  %span 本月
+                  %span -本月&nbsp;&nbsp;
                 = link_to root_url(type: 'quarter') do
-                  %i.fa.fa-circle-o
-                  %span 季度
+                  %span -本季度&nbsp;&nbsp;
               .col-md-4
-                .form-group
+                = form_with url: root_path(type: 'select_date'), method: :get do |f|
+                  = f.submit "查询", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5", id: "action_query"
                   .input-group.date
                     .input-group-addon
                       %i.fa.fa-calendar
-                    = text_field(:user, :graduation_day, class: "form-control date-range-picker")
+                    = f.text_field :graduation_day, class: "form-control date-range-picker"
           .row
             .col-md-5
               .box
@@ -166,6 +164,8 @@
 :javascript
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('main'));
+    console.log("#{@result_date}")
+    console.log("#{@result_date2}")
   option = {
     title: {
         text: ''
