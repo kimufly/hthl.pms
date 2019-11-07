@@ -6,8 +6,8 @@ class HomeController < ApplicationController
       among_time = params[:graduation_day].gsub(' ','').split("-")
       start_time = among_time[0].to_time.beginning_of_day
       end_time = among_time[1].to_time.at_end_of_day
-      @tech_hours = TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * users.price) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', start_time, end_time).group('date(tech_hours.start_at)').order('start_at ASC')    
-
+      byebug
+      @tech_hours = TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * users.price) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', start_time, end_time).group('date(tech_hours.start_at), users.price').order('start_at ASC')    
     else
       if params[:type].eql? "week"
         #本周
@@ -30,10 +30,15 @@ class HomeController < ApplicationController
       @result_date.push(tech_hours.time_limit)
       @result_time.push(tech_hours.start_at.strftime('%Y-%m-%d'))
     end
-    @comparison_month = format("%.2f",current_month_comparison_last_month()[0]).to_f  
-    @comparison_week = format("%.2f",current_week_comparison_last_week()[0]).to_f  
+    #本月成本总数
+    @comparison_month = format("%.2f",current_month_comparison_last_month()[0]).to_f 
+    #同比上月相差百分之多少 
     @current_month = format("%.2f",current_month_comparison_last_month()[1]).to_f  
+    #本周成本总数
+    @comparison_week = format("%.2f",current_week_comparison_last_week()[0]).to_f  
+    #同比上周相差百分之多少
     @current_week = format("%.2f",current_week_comparison_last_week()[1]).to_f 
+
     
     @projects = Project.all
     @project_top_5 = ProjectUser.left_outer_joins(:project, :user).distinct.select('COUNT(project_users.id), project_users.project_id, COUNT(projects.time_limit * users.price) AS project_count').group('project_users.id, project_users.project_id').order('project_count DESC').first(5)
@@ -74,6 +79,5 @@ class HomeController < ApplicationController
     arr_week.push(sum_current_week_cost)
     return arr_week
   end
-
 
 end
