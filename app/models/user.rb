@@ -20,7 +20,6 @@ class User < ApplicationRecord
   has_many :token
   delegate :computed_permissions, to: :role
   scope :up_password, -> { where(email: email, password: password) }
-  scope :find_by_role_id, -> (role_id) { where(role_id: role_id) }
   accepts_nested_attributes_for :department
   ACCESSIBLE_ATTRS = %i[name email role_id sex phone_number status password locked_at explain password password_confirmation current_password department_id picture price]
 end
