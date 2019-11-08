@@ -1,13 +1,11 @@
 class HomeController < ApplicationController
 
   def index 
-    #byebug
     @tech_hours = nil
     if params[:graduation_day]
       among_time = params[:graduation_day].gsub(' ','').split("-")
       start_time = among_time[0].to_time.beginning_of_day
       end_time = among_time[1].to_time.at_end_of_day
-      byebug
       @tech_hours = TechHour.left_outer_joins(:user).distinct.select('(SUM(tech_hours.time_limit) * users.price) AS time_limit, date(tech_hours.start_at) AS start_at').where('start_at >= ? AND start_at <= ?', start_time, end_time).group('date(tech_hours.start_at), users.price').order('start_at ASC')    
     else
       if params[:type].eql? "week"
