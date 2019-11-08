@@ -67,7 +67,6 @@ class HomeController < ApplicationController
     
     @projects = Project.all
     @project_top_5 = ProjectUser.left_outer_joins(:project, :user).distinct.select('COUNT(project_users.id), project_users.project_id, COUNT(projects.time_limit * users.price) AS project_count').group('project_users.id, project_users.project_id').order('project_count DESC').first(5)
-    
     #条件搜索
     if params[:project_name]
       name = params[:project_name]
