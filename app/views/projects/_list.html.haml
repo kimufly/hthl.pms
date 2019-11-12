@@ -49,9 +49,12 @@
           -if action_name.eql? "project"
             = link_to '查看', show_my_project_project_path(project)
             = link_to "编辑", edit_project_path(project)
+            = link_to "删除", project_path(project),
+                  method: :delete,
+                  data: { confirm: 'Are you project?' }
           - if action_name.eql? "todo"
             = link_to "审核", audit_project_path(project)
-            = link_to "删除", projects_path(project),
+            = link_to "删除", project_path(project),
                   method: :delete,
                   data: { confirm: 'Are you user?' }
           
