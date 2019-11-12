@@ -14,7 +14,6 @@ class CreateProjects < ActiveRecord::Migration[5.2]
     end
     add_reference :projects, :user, foreign_key: true, comment: "项目归属人/项目经理"
     add_reference :projects, :customer, foreign_key: true, comment: "客户公司名"
-    add_reference :projects, :project_pass, foreign_key: true, comment: "项目结束文档审核"
     create_join_table :projects, :customer_contacts
     add_index :customer_contacts_projects, [:project_id, :customer_contact_id], unique: true, name: "unique_relationship"
   end

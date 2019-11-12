@@ -10,5 +10,6 @@ class CreateProjectPasses < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_reference :projects, :project_pass, foreign_key: true, comment: "项目结束文档审核"
   end
 end
