@@ -58,7 +58,6 @@ class HomeController < ApplicationController
     for week_tech_hours in @last_week
       sum_last_week_cost += week_tech_hours.time_limit
     end
-    byebug
     @current_week = format("%.2f", sum_current_week_cost).to_f 
     #同比上周相差百分之多少
     @comparison_week = format("%.2f", (sum_current_week_cost - sum_last_week_cost) / sum_last_week_cost * 100).to_f 
