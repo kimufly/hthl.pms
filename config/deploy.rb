@@ -5,7 +5,7 @@ set :application, "hthl_pms"
 set :repo_url, "git@gitlab.hthl-tech.com:linjingjing/hthl-pms.git"
 
 # Default branch is :master
-set :branch, :master
+set :branch, :deploy
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "~/hthl.pms"
