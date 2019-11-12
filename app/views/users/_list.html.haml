@@ -21,7 +21,6 @@
         %td 单价
         %td 状态
         %td 注册时间
-        %td 是否启用
         %td 操作
     - @users.each do |user|
       %tr
@@ -46,12 +45,9 @@
         %td
           = user.price
         %td
-          = user.projects.size > 0 ? "忙" : "闲"
+          = user.projects.size > 0 ? "忙碌" : "空闲"
         %td
           = user.created_at
-        %td
-          = user.locked_at.blank?
-        %ed
         %td
           = link_to "查看", user_path(user)
           = link_to "编辑", edit_user_path(user)
