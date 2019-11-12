@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :get_project, only: [:edit, :show]
   
   def index 
-    @page_title = "查看所有项目列表"
+    @page_title = "查看所有项目列表 "
     name = params[:name]
     status = params[:status]
     @projects = Project.all
@@ -51,6 +51,13 @@ class ProjectsController < ApplicationController
     end
   end  
 
+  def destroy
+    Project.transaction do  
+      @project = Project.find(params[:id])
+      @project.destroy
+    end
+    redirect_to project_projects_path
+  end
 
   def project
     @page_title = "我的项目"

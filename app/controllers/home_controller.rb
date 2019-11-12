@@ -58,12 +58,9 @@ class HomeController < ApplicationController
     for week_tech_hours in @last_week
       sum_last_week_cost += week_tech_hours.time_limit
     end
-    arr_week = Array.new
-    arr_week.push((sum_current_week_cost - sum_last_week_cost) / sum_last_week_cost * 100 / 10)
-    arr_week.push(sum_current_week_cost)
     @current_week = format("%.2f", sum_current_week_cost).to_f 
     #同比上周相差百分之多少
-    @comparison_week = format("%.2f", (sum_current_week_cost - sum_last_week_cost) / sum_last_week_cost * 100 / 10).to_f 
+    @comparison_week = format("%.2f", (sum_current_week_cost - sum_last_week_cost) / sum_last_week_cost * 100).to_f 
     
     @projects = Project.all
     @project_top_5 = ProjectUser.left_outer_joins(:project, :user).distinct.select('COUNT(project_users.id), project_users.project_id, COUNT(projects.time_limit * users.price) AS project_count').group('project_users.id, project_users.project_id').order('project_count DESC').first(5)
