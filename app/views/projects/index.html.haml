@@ -21,6 +21,8 @@
             .form-group
               %label 项目状态:
               = f.select :status, options_for_select(Project.status_options.to_h), {include_blank: "全部"} , class: "form-control select2 select2-hidden-accessible", style: "width: 100%;", "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
+              = f.select :department_id, options_for_select(Department.all.collect{|d| [d.name, d.id] }, params[:department_id]), {include_blank: "全部部门"},
+              class: "form-control select2 select2-accessible", style: "width: 100%;", "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
           .col-md-4
             .form-group
               %label 时间:
