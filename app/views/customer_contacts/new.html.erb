@@ -18,7 +18,7 @@
           <%= form_for :project, url: projects_path do |f| %>        
             <div class="form-group">
               <%= f.label :单位名称 %>
-              <%= f.select(:customer_id, @customers.collect{|c| [c.name, c.id]}, {}, class: "form-control select2", id:"find_by_customer_id") %>
+              <%= f.select(:customer_id, @customers.collect{|c| [c.name+c.id.to_s, c.id]}, {}, class: "form-control select2", id:"find_by_customer_id") %>
             </div>
           </div>
         </div>
@@ -262,7 +262,7 @@
         success : function(data) {
           $("#customer_contacts_table").html("");
           var add_html = "";
-            add_html +="<tr><th>编号</th><th>姓名</th><th>电话</th><th>手机号码</th><th>其它号码</th><th>职位</th><th>邮箱</th><th>支持地址</th><th>详细</th></tr>";
+            add_html +="<tr><th>编号</th><th>姓名</th><th>电话</th><th>手机号码</th><th>其它号码</th><th>职位</th><th>邮箱</th><th>支持地址</th><th>操作</th></tr>";
           for (var i = 0; i < data.length; i++) { 
               add_html +="<tr>"; 
               add_html +="<td class='c-id' value=''>"+data[i].id+"</td>"
@@ -273,8 +273,8 @@
               add_html +="<td class='c-position'>"+data[i].position+"</td>"
               add_html +="<td class='c-email'>"+data[i].email+"</td>"
               add_html +="<td class='c-address'>"+data[i].address+"</td>"
-              add_html +="<td><button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>查看</button></td>"
-              add_html +="<td><button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>修改</button></td>"
+              add_html +="<td><button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>查看</button>&nbsp;&nbsp;"
+              add_html +="<button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>修改</button></td>"
               add_html +="</tr>"   
           }
           $("#customer_contacts_table").append(add_html)     
