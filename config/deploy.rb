@@ -5,7 +5,7 @@ set :application, "hthl_pms"
 set :repo_url, "git@gitlab.hthl-tech.com:linjingjing/hthl-pms.git"
 
 # Default branch is :master
-set :branch, :deploy
+set :branch, :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "~/hthl.pms"
@@ -21,7 +21,7 @@ set :deploy_to, "~/hthl.pms"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/email.yml", "config/master.key"
+append :linked_files, "config/database.yml", "config/email.yml", "config/master.key", "puma.rb"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", ".bundle"
