@@ -5,10 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-Token.create(
-  ticket:"1",
-  name:"李四",
-  status:"1",
-  email:"lisi@qq.com"
-)
