@@ -44,8 +44,6 @@ class HomeController < ApplicationController
     end
     @current_month = format("%.2f", sum_current_month_cost).to_f 
     #同比上月相差百分之多少 
-    
-   
     @comparison_month = current_comparison_last(sum_current_month_cost, sum_last_month_cost)
     
    
