@@ -44,7 +44,9 @@ class HomeController < ApplicationController
     end
     @current_month = format("%.2f", sum_current_month_cost).to_f 
     #同比上月相差百分之多少 
-    @comparison_month = format("%.2f", (sum_current_month_cost - sum_last_month_cost) / sum_last_month_cost * 100).to_f 
+    
+   
+    @comparison_month = current_comparison_last(sum_current_month_cost, sum_last_month_cost)
     
    
     #本周成本总数数据
@@ -60,7 +62,7 @@ class HomeController < ApplicationController
     end
     @current_week = format("%.2f", sum_current_week_cost).to_f 
     #同比上周相差百分之多少
-    @comparison_week = format("%.2f", (sum_current_week_cost - sum_last_week_cost) / sum_last_week_cost * 100).to_f 
+    @comparison_week = current_comparison_last(sum_current_week_cost, sum_last_week_cost)
     
     @projects = Project.all
     @project_top_5 = ProjectUser.left_outer_joins(:project, :user).distinct.select('COUNT(project_users.id), project_users.project_id, COUNT(projects.time_limit * users.price) AS project_count').group('project_users.id, project_users.project_id').order('project_count DESC').first(5)
@@ -68,6 +70,20 @@ class HomeController < ApplicationController
     if params[:project_name]
       name = params[:project_name]
       @project_top_5 = ProjectUser.left_outer_joins(:project, :user).distinct.select('COUNT(project_users.id), project_users.project_id, COUNT(projects.time_limit * users.price) AS project_count').where('projects.name like ? ', "%#{name}%").group('project_users.id, project_users.project_id').order('project_count DESC').first(5) 
+    end
+  end
+
+  def current_comparison_last(current,last)
+    result = 0.00
+    if current <= 0 || last <= 0
+      if current <= 0
+        result = (current == 0 && last == 0 ? 0.00 : -last)
+      else
+        result = current
+      end
+    return result = format("%.2f", result).to_f 
+    else
+      return result = format("%.2f", (current - last) / last * 100).to_f 
     end
   end
 
