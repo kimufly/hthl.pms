@@ -18,12 +18,12 @@
             = f.label :请选择角色类型
             %br/
             = f.select :role_id, options_for_select(Role.all.collect{|d| [d.name, d.id] }, params[:role_id]), {},
-              class: "form-control select2 select2-hidden-accessible", style: "width: 100%;", "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
+              class: "form-control select2 select2-accessible", style: "width: 100%;", "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
           .form-group
             = f.label :所属部门
             %br/
             = f.select :department_id, options_for_select(Department.all.collect{|d| [d.name, d.id] }, params[:department_id]), {},
-              class: "form-control select2 select2-hidden-accessible", style: "width: 100%;", "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
+              class: "form-control select2 select2-accessible", style: "width: 100%;", "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
           .form-group
             = f.label :请选择性别
             %br/

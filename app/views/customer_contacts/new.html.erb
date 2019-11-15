@@ -18,7 +18,7 @@
           <%= form_for :project, url: projects_path do |f| %>        
             <div class="form-group">
               <%= f.label :单位名称 %>
-              <%= f.select(:customer_id, @customers.collect{|c| [c.name+c.id.to_s, c.id]}, {}, class: "form-control select2", id:"find_by_customer_id") %>
+              <%= f.select(:customer_id, @customers.collect{|c| [c.name, c.id]}, {}, class: "form-control select2", id:"find_by_customer_id") %>
             </div>
           </div>
         </div>

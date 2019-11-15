@@ -13,12 +13,10 @@
         %td 用户名
         %td 角色
         %td 所属部门
-        %td 岗位类型
         %td 级别
         %td 单价/人天
         %td 性别
         %td 电话
-        %td 单价
         %td 状态
         %td 注册时间
         %td 操作
@@ -33,17 +31,13 @@
         %td
           = user.department&.name
         %td
-          岗位类型
-        %td
           级别
         %td
-          成本
+          = user.price
         %td
           = user.sex_name
         %td
           = user.phone_number
-        %td
-          = user.price
         %td
           = user.projects.size > 0 ? "忙碌" : "空闲"
         %td

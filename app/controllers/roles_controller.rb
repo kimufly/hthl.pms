@@ -43,9 +43,16 @@ class RolesController < ApplicationController
   end
 
   def destroy
-    @role = Role.find(params[:id])
+    @role = Role.find(params[:id])  
+    exist_role = Role.where('name = ?', '普通角色').take
+    if exist_role
+      User.where('role_id = ?', @role.id).update_all(role_id: exist_role.id)
+    else 
+      r = Role.new(:name => "普通角色")
+      r.save
+      User.where('role_id = ?', @role.id).update(role_id: r.id)
+    end
     @role.destroy
-    
     redirect_to roles_path
   end
 

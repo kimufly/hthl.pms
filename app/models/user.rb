@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  validates :name, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :phone_number, presence: true, length: { minimum: 11 }
+  validates :email, presence: true, format: { with: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/, message: "邮箱格式不正确，请从新输入" }
   acts_as_paranoid
   has_one_attached :picture
   
