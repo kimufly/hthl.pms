@@ -73,11 +73,11 @@ class DocumentsController < ApplicationController
       success = 0
       failed_records = []
       CSV.parse( params[:csv_file].read, headers: true) do |row|
-        project = Project.where(name: str_formt(row[1])).first
+        project = Project.where(name: row[1]).first
           registration = Document.new( 
             :project_id =>  project.id,
-            :name => str_formt(row[2]),
-            :document_type => str_formt(row[3]),
+            :name => row[2],
+            :document_type => row[3],
             :user_id => current_user.id,
             :created_at => Time.new)
         if registration.save
