@@ -17,21 +17,23 @@
       %td 操作
     - @project_users.each do |project_user|
       %tr
-        %td
-          = project_user.user.name
-        %td
-          = project_user.user.email
-        %td
-          = project_user.project.name
-        %td
-          = project_user.user.projects.size
-        %td
-          = project_user.user.department.name
-        %td
-          = link_to "查看", project_user_path(project_user)
-          = link_to "编辑", edit_project_user_path(project_user)
-          = link_to "删除", project_user_path(project_user),
-                  method: :delete,
-                  data: { confirm: 'Are you project on user?' }
+        -begin
+          %td
+            = project_user.user.name
+          %td
+            = project_user.user.email
+          %td
+            = project_user.project.name
+          %td
+            = project_user.user.projects.size
+          %td
+            = project_user.user.department.name
+          %td
+            = link_to "查看", project_user_path(project_user)
+            = link_to "编辑", edit_project_user_path(project_user)
+            = link_to "删除", project_user_path(project_user),
+                    method: :delete,
+                    data: { confirm: 'Are you project on user?' }
+        -rescue
 .box-footer.clearfix
   =paginate @project_users

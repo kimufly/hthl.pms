@@ -82,13 +82,13 @@
           .col-lg-2.text-center
             .btn.btn-group-vertical
               .text-red{:style => "font-size:40px;"} 
-                = find_by_status_projects_path('doing').size
-              正在进行中
+                = Project.where(status: 'doing').size
+              = link_to '正在进行中', projects_path()
           .col-lg-2.text-center
             .btn.btn-group-vertical
               .text-red{:style => "font-size:40px;"}
-                = find_by_status_projects_path('done').size
-              已完成 年/单位
+                = Project.where(status: 'done').size
+              = link_to '已完成 年/单位', projects_path()
     .col-md-12
       .box.box-default.box-solid
         .box-header.with-border
