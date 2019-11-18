@@ -34,3 +34,11 @@
 .generators
 .rakeTasks
 .vscode-server/
+.bash_history
+.irb-history
+.lesshst
+Booting
+.ssh/
+.npm/
+.cache/
+master.key

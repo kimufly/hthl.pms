@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "dependencies": {
-    "types-registry": "^0.1.451"
-  },
-  "devDependencies": {
-    "@types/echarts": "^4.1.12"
-  }
-}
