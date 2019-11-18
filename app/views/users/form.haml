@@ -29,17 +29,21 @@
             %br/
             = f.select(:sex, User.sex_options, {}, class:"form-control select2" )
           .form-group
+            = f.label :请选择状态
+            %br/
+            = f.select(:status, User.status_options, {}, class:"form-control select2" )
+          .form-group
             = f.label :电话
             %br/
             = f.text_field :phone_number,
               class:"form-control", placeholder:"请输入电话"
           .form-group
+            = f.label :单价（元）
+            %br/
+            = f.text_field :price,                         |
+              class:"form-control", placeholder:"请输入单价（元）" |
+          .form-group
             = f.label :备注信息
             %br/
             = f.text_area :explain, size: "24x6", class: "form-control"
-          .form-group
-          = f.label :单价（元）
-          %br/
-          = f.text_field :price,                         |
-            class:"form-control", placeholder:"请输入单价（元）" |
           %p= f.submit "保存", class:"btn btn-w-m btn-info"

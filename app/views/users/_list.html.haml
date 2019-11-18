@@ -19,6 +19,7 @@
         %td 电话
         %td 状态
         %td 注册时间
+        %td 是否开启
         %td 操作
     - @users.each do |user|
       %tr
@@ -42,6 +43,8 @@
           = user.projects.size > 0 ? "忙碌" : "空闲"
         %td
           = user.created_at
+        %td
+          = user.status_name
         %td
           = link_to "查看", user_path(user)
           = link_to "编辑", edit_user_path(user)

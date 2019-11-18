@@ -7,6 +7,9 @@ zh-CN:
           unknown: "未知"
           male: "男"
           femininity: "女"
+        status:
+          open: "启用"
+          disable: "禁用"
       project:
         status:
           approving: "审核中"

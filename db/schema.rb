@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_021512) do
+ActiveRecord::Schema.define(version: 2019_11_18_094301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,21 @@ ActiveRecord::Schema.define(version: 2019_10_25_021512) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "event_registrations", force: :cascade do |t|
+    t.integer "ticket"
+    t.string "name"
+    t.integer "status"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "project_passes", force: :cascade do |t|
     t.string "name", default: "", null: false, comment: "文档名称"
     t.integer "project_id", null: false, comment: "项目ID"
@@ -121,10 +136,10 @@ ActiveRecord::Schema.define(version: 2019_10_25_021512) do
     t.datetime "approved_at"
     t.datetime "done_at"
     t.datetime "deleted_at"
-    t.bigint "project_pass_id", comment: "项目结束文档审核"
+    t.datetime "audit_at"
     t.datetime "doing_at"
+    t.integer "project_pass"
     t.index ["customer_id"], name: "index_projects_on_customer_id"
-    t.index ["project_pass_id"], name: "index_projects_on_project_pass_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -205,6 +220,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_021512) do
     t.string "explain"
     t.bigint "department_id"
     t.float "price"
+    t.integer "status"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["department_id"], name: "index_users_on_department_id"
@@ -218,7 +234,6 @@ ActiveRecord::Schema.define(version: 2019_10_25_021512) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "customer_contacts", "customers"
   add_foreign_key "projects", "customers"
-  add_foreign_key "projects", "project_passes"
   add_foreign_key "projects", "users"
   add_foreign_key "users", "roles"
 end
