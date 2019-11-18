@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
   def index
-    user_name = params[:user_name]
+    user_email = params[:user_email]
     department_id = params[:department_id]
     @users = User.all
-    @users = @users.where('name like ?', "%#{user_name}%") if user_name
+    @users = @users.where('email like ?', "%#{user_email}%") if user_email
     @users = @users.where(department: department_id) if department_id.present?
     @users = @users.page(params[:page] ||= 1)
 
