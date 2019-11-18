@@ -15,10 +15,10 @@ class User < ApplicationRecord
 
   belongs_to :role
   belongs_to :department
-  has_many :projects
-  has_many :project_users
-  has_many :tech_hours
-  has_many :project_pass
+  has_many :projects, :dependent => :destroy
+  has_many :project_users, :dependent => :destroy
+  has_many :tech_hours, :dependent => :destroy
+  has_many :project_pass, :dependent => :destroy
   has_many :documents
   has_many :token
   delegate :computed_permissions, to: :role

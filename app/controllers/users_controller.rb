@@ -62,7 +62,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    #删除软删除
+    @user.really_destroy!
     redirect_to users_path
   end
 
