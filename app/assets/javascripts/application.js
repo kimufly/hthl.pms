@@ -14,7 +14,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require activestorage
-//= require turbolinks
 //= require bootstrap
 //= require 'adminlte/moment.min.js'
 //= require adminlte/adminlte
