@@ -57,7 +57,8 @@ class CustomerContactsController < ApplicationController
 
   def destroy
     @customer_contact = CustomerContact.find(params[:id])
-    @customer_contact.destroy
+    byebug
+    #@customer_contact.destroy
     redirect_to customer_contacts_path
   end
 

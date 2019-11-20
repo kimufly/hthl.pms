@@ -8,7 +8,7 @@ class Project < ApplicationRecord
   has_many :satisfactions
   has_many :project_users, :dependent => :destroy
   has_many :tech_hours, :dependent => :destroy
-  has_many :project_passs, :dependent => :destroy
+  has_many :project_passs
   has_many :documents
   has_and_belongs_to_many :customer_contacts
   accepts_nested_attributes_for :customer
