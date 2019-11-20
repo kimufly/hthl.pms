@@ -54,7 +54,7 @@
           <% begin %>
             <%= f.select(:tech_auditor, @users.collect{|u| ["#{u.department.name}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
           <% rescue %> 
-            <%= f.select(:tech_auditor, @users.collect{|u| [u.name, u.id]}, {}, class: "form-control select2") %>
+            <%= f.select(:tech_auditor, @users.collect{|u| ["#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
           <% end %>
         </div>
 
@@ -70,7 +70,7 @@
           <% begin %>
             <%= f.select(:auditor, @users.collect{|u| ["#{u.department.name}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
           <% rescue %> 
-            <%= f.select(:auditor, @users.collect{|u| [u.name, u.id]}, {}, class: "form-control select2") %>
+            <%= f.select(:auditor, @users.collect{|u| ["#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
           <% end %>
         </div>
         <p><%= f.submit "提交", class:"btn btn-w-m btn-info" %></p></br></br>
