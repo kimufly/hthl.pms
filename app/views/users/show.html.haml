@@ -1,0 +1,57 @@
+.container-fluid
+  .card.mb-3
+    .card-header
+      %i.fas.fa-chart-area
+      %h3
+        查看用户
+        %h3
+    .card-body.col-md-6
+      = form_for(@user) do |f|
+        - if @user.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@user.errors.count, "error")
+              prohibited
+              this article from being saved:
+            %ul
+              - @user.errors.full_messages.each do |msg|
+                %li= msg
+
+        .form-group
+          = f.label :真实名字
+          %br/
+          = f.text_field :name,                         |
+            class:"form-control", readonly:"readonly", placeholder:"请输入真实名字" |
+        .form-group
+          = f.label :用户名
+          %br/
+          = f.text_field :email,                      |
+            class:"form-control", readonly:"readonly", placeholder:"请输入邮箱" |
+        .form-group
+          = f.label :请选择角色类型
+          %br/
+          = f.select :role_id, options_for_select(Role.all.collect{|d| [d.name, d.id] }, params[:role_id]), {}, disabled:"disabled",
+              class: "form-control select2 select2-accessible", style: "width: 100%;", "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
+        .form-group
+          = f.label :请选择性别
+          %br/
+          = f.select(:sex, User.sex_options, {}, disabled:"disabled", class:"form-control") |
+        .form-group
+          = f.label :电话
+          %br/
+          = f.text_field :phone_number,               |
+            class:"form-control", readonly:"readonly", placeholder:"请输入电话" |
+        .form-group
+          = f.label :请选择状态
+          %br/
+          = f.select(:status, User.status_options, {}, disabled:"disabled", class:"form-control") |
+        .form-group
+          = f.label :单价（元）
+          %br/
+          = f.text_field :price,                         |
+            class:"form-control", readonly:"readonly", placeholder:"请输入单价（元）" |
+        .form-group
+          = f.label :备注信息
+          %br/
+          = f.text_area :explain, size:   |
+            "24x6", readonly:"readonly", class: "form-control" |

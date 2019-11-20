@@ -275,7 +275,7 @@
               add_html +="<td class='c-address'>"+data[i].address+"</td>"
               add_html +="<td><button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>查看</button>&nbsp;&nbsp;"
               add_html +="<button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>修改</button>&nbsp;&nbsp;"
-              //add_html +="<button class='btn btn-sm btn-info b_btnSelect2' onclick='delect("+data[i].id+")'>删除</button>"
+              add_html +="<button class='btn btn-sm btn-info b_btnSelect2' onclick='delect("+data[i].id+")'>删除</button>"
               add_html +="</td>;</tr>"  
           }
           $("#customer_contacts_table").append(add_html)     
@@ -309,23 +309,22 @@
     });
 
 
-
-    
     function delect(id){
-      var url = "http://" + window.location.host + "/customer_contacts";
-   
-      alert("You clicked the right mouse button!="+url)
+      var url = "http://" + window.location.host + "/customer_contacts/" + id;
       $.ajax({
         type: "POST",
         url:url,
         dataType:"json",
         data : {
-          "id" : id
+          "_method" : "delete"
         },
-        success : function(data) {
+        success : function() {
+          location.reload();
+        },
+        error:function(e){  
+          location.reload();
         }  
       });
-
     }
 
   

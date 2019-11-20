@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :审核人 %><br>
+          <%= f.label :审核人 %><br>                       
           <% begin %>
             <%= f.select(:auditor, @users.collect{|u| ["#{u.department.name}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
           <% rescue %> 
@@ -309,8 +309,9 @@
               add_html +="<td class='c-email'>"+data[i].email+"</td>"
               add_html +="<td class='c-address'>"+data[i].address+"</td>"
               add_html +="<td><button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>查看</button>&nbsp;&nbsp;"
-              add_html +="<button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>修改</button></td>"
-              add_html +="</tr>"   
+              add_html +="<button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>修改</button>&nbsp;&nbsp;"
+              add_html +="<button class='btn btn-sm btn-info b_btnSelect2' onclick='delect("+data[i].id+")'>删除</button>"
+              add_html +="</td>;</tr>"      
           }
           $("#customer_contacts_table").append(add_html)     
         }  
@@ -341,6 +342,24 @@
       $("#u_email").val(email);
       $("#u_address").val(address);
     });
+
+    function delect(id){
+      var url = "http://" + window.location.host + "/customer_contacts/" + id;
+      $.ajax({
+        type: "POST",
+        url:url,
+        dataType:"json",
+        data : {
+          "_method" : "delete"
+        },
+        success : function() {
+          location.reload();
+        },
+        error:function(e){  
+          location.reload();
+        }  
+      });
+    }
 
   
 

@@ -27,13 +27,13 @@
         %td
           = "岗位"
         %td
-          = project_user.user.name
+          = project_user.user.name.blank?
         %td
           = ""
         %td
-          = project_user.project.name
+          = project_user.project.name.blank?
         %td
-          = project_user.project.customer.name
+          = project_user.project.customer.name.blank?
         %td
           = ""
         %td
