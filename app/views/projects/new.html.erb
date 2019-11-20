@@ -51,11 +51,7 @@
 
         <div class="form-group">
           <%= f.label :建议派遣工程师 %><br>
-          <% begin %>
-            <%= f.select(:tech_auditor, @users.collect{|u| ["#{u.department.name}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
-          <% rescue %> 
-            <%= f.select(:tech_auditor, @users.collect{|u| ["#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
-          <% end %>
+            <%= f.select(:tech_auditor, @users.collect{|u| ["#{u.department.name.blank?}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
         </div>
 
         <div class="form-group">
@@ -67,11 +63,7 @@
 
         <div class="form-group">
           <%= f.label :审核人 %><br>
-          <% begin %>
-            <%= f.select(:auditor, @users.collect{|u| ["#{u.department.name}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
-          <% rescue %> 
-            <%= f.select(:auditor, @users.collect{|u| ["#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
-          <% end %>
+            <%= f.select(:auditor, @users.collect{|u| ["#{u.department.name.blank?}-#{u.name}-#{u.projects.size == 0 ? '空闲' : '忙碌'}", u.id]}, {}, class: "form-control select2") %>
         </div>
         <p><%= f.submit "提交", class:"btn btn-w-m btn-info" %></p></br></br>
       </div>
