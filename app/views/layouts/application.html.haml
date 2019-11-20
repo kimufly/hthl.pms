@@ -25,18 +25,6 @@
             %b> HTHL
             \.PMS
         %nav.navbar.navbar-static-top
-          #navbar-collapse.collapse.navbar-collapse.pull-left
-            %ul.nav.navbar-nav
-              %li.active
-                = link_to "首页", root_path
-              %li
-                = link_to "项目管理", approving_projects_url
-              %li
-                = link_to "文档管理", documents_url
-              %li
-                = link_to "客户管理", customer_contacts_url
-              %li
-                = link_to "系统管理", users_url
           .navbar-custom-menu
             %ul.nav.navbar-nav
               %li.dropdown.user.user-menu
@@ -48,90 +36,65 @@
                 = link_to "退出登录", destroy_user_session_url, class: "btn btn-primary"
       %aside.main-sidebar
         %section.sidebar
-          %ul.sidebar-menu.tree{'data-widget': 'true'}
-            - if controller_name.eql? "home"
-              %li.text-center
+          %ul.sidebar-menu.tree{'data-widget': 'tree'}
+            - if true == true 
+              %li
                 = link_to root_path do
-                  %i.fa.fa-circle-o
-                  %span 系统首页
-              %li.text-center
-                = link_to edit_user_url(current_user) do
-                  %i.fa.fa-circle-o
-                  %span 账户设置
-            - if %w[costs projects].any? controller_name
-              %li.text-center
-                = link_to approving_projects_url do
-                  %i.fa.fa-circle-o
-                  %span 我的申请
-              %li.text-center
-                = link_to project_projects_url do
-                  %i.fa.fa-circle-o
-                  %span 我的项目
-              %li.text-center
-                = link_to todo_projects_url do
-                  %i.fa.fa-circle-o
-                  %span 我的待办
-              %li.text-center
-                = link_to costs_index_url do
-                  %i.fa.fa-circle-o
-                  %span 成本管理
-            - if controller_name.eql? "documents"
-              %li.text-center
+                  %i.fa.fa-dashboard 
+                  %span 仪表盘
+              %li.treeview
+                = link_to '#' do 
+                  %i.fa.fa-cubes
+                  %span 项目管理
+                  %span.pull-right-container
+                    %i.fa.fa-angle-left.pull-right
+                %ul.treeview-menu
+                  %li
+                    = link_to approving_projects_url do
+                      %i.fa.fa-plus
+                      %span 我的申请
+                  %li
+                    = link_to project_projects_url do
+                      %i.fa.fa-cubes
+                      %span 我的项目
+                  %li
+                    = link_to todo_projects_url do
+                      %i.fa.fa-check-square
+                      %span 我的待办
+                  %li
+                    = link_to costs_index_url do
+                      %i.fa.fa-cny
+                      %span 成本管理
+              %li.treevie
                 = link_to documents_url do
-                  %i.fa.fa-circle-o
+                  %i.fa.fa-archive
                   %span 文档列表
-            - if controller_name.eql? "customer_contacts"
-              %li.text-center
+              %li.treevie
                 = link_to customer_contacts_url do
-                  %i.fa.fa-circle-o
+                  %i.fa.fa-user
                   %span 客户管理
-            - if ["roles", "users"].any? controller_name
-              %li.text-center
-                = link_to users_url do
-                  %i.fa.fa-circle-o
-                  %span 用户管理
-              %li.text-center
-                = link_to roles_url do
-                  %i.fa.fa-circle-o
-                  %span 角色管理
-              %li.text-center
-                = link_to edit_user_url(current_user, {by: :update_password}) do
-                  %i.fa.fa-circle-o
-                  %span 修改个人密码
-              %li.text-center
-                = link_to edit_user_url(current_user) do
-                  %i.fa.fa-circle-o
-                  %span 修改个人信息
-
+              %li.treeview
+                = link_to '#' do
+                  %i.fa.fa-cog
+                  %span 账户设置
+                  %span.pull-right-container
+                    %i.fa.fa-angle-left.pull-right
+                %ul.treeview-menu
+                  %li
+                    = link_to users_url do
+                      %i.fa.fa-user
+                      %span 用户管理
+                  %li
+                    = link_to roles_url do
+                      %i.fa.fa-users
+                      %span 角色管理
+                  %li
+                    = link_to edit_user_url(current_user, {by: :update_password}) do
+                      %i.fa.fa-lock
+                      %span 修改个人密码
+                  %li
+                    = link_to edit_user_url(current_user) do
+                      %i.fa.fa-info
+                      %span 修改个人信息
       .content-wrapper
         = yield
-:javascript
-  $(function () {
-    setTimeout(function() {
-      $('.select2').select2({
-        minimumResultsForSearch: -1
-      });
-      var rangeOption = {
-          autoApply: true,
-        ranges: {
-          '今天': [moment(),moment()],
-          '昨天': [moment().subtract(1, 'days'),moment().subtract(1, 'days')],
-          '本周': [moment().weekday(1), moment().weekday(7)],
-          '本月': [moment().startOf('month'), moment().endOf('month')],
-          '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        locale: {
-          format: "YYYY/MM/DD",
-          separator: " - ",
-          applyLabel: "确认",
-          cancelLabel: "清空",
-          fromLabel: "开始时间",
-          toLabel: "结束时间",
-          customRangeLabel: "自定义",
-          daysOfWeek: ["日","一","二","三","四","五","六"],
-          monthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
-        }
-      }
-      $('.date-range-picker').daterangepicker(rangeOption);
-    }, 500);
-  });
