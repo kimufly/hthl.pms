@@ -1,0 +1,17 @@
+#content-wrapper
+  .container-fluid
+    .card.mb-12.col-md-12
+      .card-header
+        %h3 添加客户信息
+      .card-body
+        .row
+          .col-md-6
+            .box
+              = form_for @customer_contact, html: {class: "form-horizontal"} do |f|
+                .box-body
+                  .form-group
+                    = f.label :客户单位, class: 'col-sm-2 control-label'
+                    .col-sm-10
+                      = f.select :customer_id, options_for_select(@customers.collect { |c| [c.name, c.id] }, params[:customer_id]), {}, class: "form-control"
+                      %span.input-group-addon
+                        %i.fa.fa-plus
