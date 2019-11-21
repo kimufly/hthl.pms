@@ -12,6 +12,27 @@
                   .form-group
                     = f.label :客户单位, class: 'col-sm-2 control-label'
                     .col-sm-10
-                      = f.select :customer_id, options_for_select(@customers.collect { |c| [c.name, c.id] }, params[:customer_id]), {}, class: "form-control"
-                      %span.input-group-addon
-                        %i.fa.fa-plus
+                      .input-group
+                        = f.select :customer_id, options_for_select(@customers.collect { |c| [c.name, c.id] }, params[:customer_id]), {}, class: "form-control"
+                        %span.input-group-addon
+                          %i.fa.fa-plus
+                  .form-group
+                    = f.label :联系人姓名, class: 'col-sm-2 control-label'
+                    .col-sm-10
+                      = f.text_field :name, class: "form-control"
+                  .form-group
+                    = f.label :联系人电话, class: 'col-sm-2 control-label'
+                    .col-sm-10
+                      = f.text_field :name, class: "form-control"
+                  .form-group
+                    = f.label :联系人手机, class: 'col-sm-2 control-label'
+                    .col-sm-10
+                      = f.text_field :name, class: "form-control"
+                  .form-group
+                    = f.label :联系人其他电话, class: 'col-sm-2 control-label'
+                    .col-sm-10
+                      = f.text_field :name, class: "form-control"
+                  .form-group
+                    = f.label :联系人姓名, class: 'col-sm-2 control-label'
+                    .col-sm-10
+                      = f.text_field :name, class: "form-control"
