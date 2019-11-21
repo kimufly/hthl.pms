@@ -1,0 +1,61 @@
+%aside.main-sidebar
+  %section.sidebar
+    %ul.sidebar-menu.tree{'data-widget': 'tree'}
+      %li
+        = link_to root_path do
+          %i.fa.fa-dashboard
+          %span 仪表盘
+      %li.treeview{menu_open("projects")[0] }
+        = link_to '#' do
+          %i.fa.fa-cubes
+          %span 项目管理
+          %span.pull-right-container
+            %i.fa.fa-angle-left.pull-right
+        %ul.treeview-menu{menu_open("projects")[1]}
+          %li
+            = link_to approving_projects_url do
+              %i.fa.fa-plus
+              %span 我的申请
+          %li
+            = link_to project_projects_url do
+              %i.fa.fa-cubes
+              %span 我的项目
+          %li
+            = link_to todo_projects_url do
+              %i.fa.fa-check-square
+              %span 我的待办
+          %li
+            = link_to costs_index_url do
+              %i.fa.fa-cny
+              %span 成本管理
+      %li.treevie
+        = link_to documents_url do
+          %i.fa.fa-archive
+          %span 文档列表
+      %li.treevie
+        = link_to customer_contacts_url do
+          %i.fa.fa-user
+          %span 客户管理
+      %li.treeview{menu_open(["users", "roles"])[0]}
+        = link_to '#' do
+          %i.fa.fa-cog
+          %span 账户设置
+          %span.pull-right-container
+            %i.fa.fa-angle-left.pull-right
+        %ul.treeview-menu{menu_open(["users", "roles"])[1]}
+          %li
+            = link_to users_url do
+              %i.fa.fa-user
+              %span 用户管理
+          %li
+            = link_to roles_url do
+              %i.fa.fa-users
+              %span 角色管理
+          %li
+            = link_to edit_user_url(current_user, {by: :update_password}) do
+              %i.fa.fa-lock
+              %span 修改个人密码
+          %li
+            = link_to edit_user_url(current_user) do
+              %i.fa.fa-info
+              %span 修改个人信息
