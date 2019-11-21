@@ -11,12 +11,13 @@
       %tr
         %td 真实姓名
         %td 用户名
-        %td 角色
         %td 所属部门
+        %td 岗位
         %td 级别
         %td 单价/人天
         %td 性别
         %td 电话
+        %td 角色
         %td 状态
         %td 注册时间
         %td 是否开启
@@ -28,9 +29,9 @@
         %td
           = user.email
         %td
-          = user.role.name
-        %td
           = user.department&.name
+        %td
+          = "岗位"
         %td
           级别
         %td
@@ -42,9 +43,11 @@
         %td
           = user.phone_number
         %td
+          = user.role.name
+        %td
           = user.projects.size > 0 ? "忙碌" : "空闲"
         %td
-          = user.created_at
+          = user.created_at.to_date
         %td
           = user.status_name
         %td

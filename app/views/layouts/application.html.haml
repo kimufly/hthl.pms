@@ -27,13 +27,26 @@
         %nav.navbar.navbar-static-top
           .navbar-custom-menu
             %ul.nav.navbar-nav
-              %li.dropdown.user.user-menu
+              %li.dropdown.user.user-menu.notifications-menu
                 = link_to "#", class: "dropdown-toggle", 'data-toggle': "dropdown" do
                   = image_tag "a3", class: "user-image", alt: "User Image"
                   %span.hidden-xs
                     = current_user.name
-              %li.dropdown.user.user-menu
-                = link_to "退出登录", destroy_user_session_url, class: "btn btn-primary"
-      = render "layouts/menu" 
+                %ul.dropdown-menu
+                  %li
+                    %ul.menu
+                      %li.user-body
+                        = link_to edit_user_url(current_user, {by: :update_password}) do
+                          %i.fa.fa-lock
+                          %span 修改个人密码
+                        = link_to edit_user_url(current_user) do
+                          %i.fa.fa-info
+                          %span 修改个人信息
+                      %li.user-footer
+                        = link_to destroy_user_session_url class: "btn btn-default btn-flat" do
+                          %i.fa.fa-sign-out
+                          %span 退出登录
+              -#%li.dropdown.user.user-menu
+      = render "layouts/menu"
       .content-wrapper
         = yield

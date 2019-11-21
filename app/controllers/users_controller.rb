@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   def find_by_role_id
     @role = Role.find(current_user.role_id)
     @users = @role.users
-  end 
+  end
 
   private
 
