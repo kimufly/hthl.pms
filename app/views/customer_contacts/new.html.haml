@@ -10,38 +10,38 @@
               = form_for @customer_contact, html: {class: "form-horizontal"} do |f|
                 .box-body
                   .form-group
-                    = f.label :客户单位, class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :客户单位, class: 'col-sm-3 control-label'
+                    .col-sm-9
                       .input-group
                         = f.select :customer_id, options_for_select(@customers.collect { |c| [c.name, c.id] }, params[:customer_id]), {}, class: "form-control"
                         %span.input-group-addon
                           %i.fa.fa-plus
                   .form-group
-                    = f.label :联系人姓名, class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :联系人姓名, class: 'col-sm-3 control-label'
+                    .col-sm-9
                       = f.text_field :name, class: "form-control"
                   .form-group
-                    = f.label :电话号码, class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :电话号码, class: 'col-sm-3 control-label'
+                    .col-sm-9
                       = f.text_field :name, class: "form-control"
                   .form-group
-                    = f.label :手机号码, class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :手机号码, class: 'col-sm-3 control-label'
+                    .col-sm-9
                       = f.text_field :name, class: "form-control"
                   .form-group
-                    = f.label :其他电话, class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :其他电话, class: 'col-sm-3 control-label'
+                    .col-sm-9
                       = f.text_field :name, class: "form-control"
                   .form-group
-                    = f.label :职位, class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :职位, class: 'col-sm-3 control-label'
+                    .col-sm-9
                       = f.text_field :name, class: "form-control"
                   .form-group
-                    = f.label :邮件, class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :邮件, class: 'col-sm-3 control-label'
+                    .col-sm-9
                       = f.email_field :name, class: "form-control"
                   .form-group
-                    = f.label :支持地址 , class: 'col-sm-2 control-label'
-                    .col-sm-10
+                    = f.label :支持地址 , class: 'col-sm-3 control-label'
+                    .col-sm-9
                       = f.text_field :name, class: "form-control"
 

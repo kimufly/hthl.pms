@@ -2,23 +2,27 @@
   %h1
     = @page_title
 %section.content
-  .box
-    .box-header
-      %h3.box-title 筛选查询
-    .box-body
-      .row
+  -#.box
+    = form_with url: documents_path, method: :get do |f|
+      .box-header
+        .col-md-6
+          %h3.box-title 筛选查询
+        .col-md-6
+          .pull-right-container
+            = f.submit "查询", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5", id: "action_query"
+      .box-body
         .col-md-4
-          %label.control-label{for:"company_name"}
-            文档标题：
-          = text_field_tag :company_name
+          .form-group
+            %label 文档标题:
+            = f.text_field :company_name, class: "form-controller"
         .col-md-4
-          %label.control-label{for:"project_name"}
-            文档类型:
-          = text_field_tag :project_name
+          .form-group
+            %label 文档类型:
+            = f.text_field :project_name, class: "form-controller"
         .col-md-4
-          %label.control-label
-            时间:
-          = datetime_local_field(:user, :graduation_day)       
+          .form-group
+            %label 时间:
+            = datetime_local_field(:user, :graduation_day)
   .box#documents_list
     = render 'list'
 
