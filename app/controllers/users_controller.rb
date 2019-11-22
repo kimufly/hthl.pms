@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     user_email = params[:user_email]
     department_id = params[:department_id]
     @users = User.all
-    @users = @users.where('email like ?', "%#{user_email}%") if user_email
+    @users = @users.where('email like ? or name like ? or phone like ?', "%#{user_email}%", "%#{user_email}%") if user_email
     @users = @users.where(department: department_id) if department_id.present?
     @users = @users.page(params[:page] ||= 1)
 

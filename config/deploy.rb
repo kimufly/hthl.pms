@@ -7,7 +7,7 @@ set :application_name, 'hthl.pms'
 set :domain, '192.168.13.28'
 set :deploy_to, '/var/www/pms.hthl-tech.com'
 set :repository, 'git@gitlab.hthl-tech.com:linjingjing/hthl-pms.git'
-set :branch, 'master'
+set :branch, 'kimufly'
 set :rails_env, 'development'
 
 set :forward_agent, true
