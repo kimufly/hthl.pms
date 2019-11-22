@@ -1,0 +1,20 @@
+%section.content
+  .row
+    .col-md-6
+      .box.box-default
+        .box-header.with-border
+          %h3.box-title 查看角色
+        .box-body
+          %form.form-horizontal
+            .form-group
+              %label.col-sm-3.control-label 角色名称
+              .col-sm-9
+                = @role.name
+            .form-group
+              %label.col-sm-3.control-label 角色定义说明
+              .col-sm-9
+                = @role.explain
+        .box-footer
+          = link_to "返回", roles_url, class: "btn btn-default pull-right"
+
+

@@ -77,7 +77,6 @@ Rails.application.routes.draw do
 
   resources :roles do
     collection do
-      get :role_permission
       get :export
     end
   end

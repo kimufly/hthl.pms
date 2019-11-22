@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-   
+  before_action :set_role, only: [:edit, :update, :show]
 
   def index
     name = params[:name]
@@ -13,7 +13,6 @@ class RolesController < ApplicationController
   end
 
   def show
-    @role = Role.find(params[:id])
   end
 
   def new
@@ -21,7 +20,6 @@ class RolesController < ApplicationController
   end
 
   def edit
-    @role = Role.find(params[:id])
   end
 
   def create
@@ -43,11 +41,11 @@ class RolesController < ApplicationController
   end
 
   def destroy
-    @role = Role.find(params[:id])  
-    exist_role = Role.where('name = ?', '普通角色').take
+    @role = Role.find(params[:id])
+    exist_role = Role.where('name = ?', '普通角色').taken
     if exist_role
       User.where('role_id = ?', @role.id).update_all(role_id: exist_role.id)
-    else 
+    else
       r = Role.new(:name => "普通角色")
       r.save
       User.where('role_id = ?', @role.id).update(role_id: r.id)
@@ -56,11 +54,11 @@ class RolesController < ApplicationController
     redirect_to roles_path
   end
 
- 
-  def role_permission
+  private
+  def set_role
+    @role = Role.find(params[:id])
   end
 
-  private
   def role_params
     params.require(:role).permit(:type, :name, :explain, :status)
   end
