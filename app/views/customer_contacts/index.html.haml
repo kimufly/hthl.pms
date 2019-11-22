@@ -11,10 +11,9 @@
           .pull-right-container
             = f.submit "查询", class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5", id: "action_query"
       .box-body
-        .row
-          .col-md-4
-            .form-group
-              %label 单位名称:
-              = f.text_field :position, class: "form-control"        
+        .col-md-4
+          .form-group
+            %label 单位名称:
+            = f.text_field :position, class: "form-control"
   .box#customer_contacts_list
     = render 'list'

@@ -3,14 +3,14 @@
     <!-- 快捷入口-->
     <div class="card mb-12 col-md-12">
       <div class="card-header">
-        <i class="fa fa-chart-area"></i><h3>添加客户信息</h3>
+        <h3>添加客户信息</h3>
       </div>
       <div class="card-body">
         <div class="box">
           <div class="box-header with-border">
             <h3 class="box-title">单位名称</h3>
             <div class="box-tools">
-              <button type="button" class="btn btn-default" data-toggle="modal"
+              <button type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#modal-new-customer">添加单位</button>
             </div>
           </div>
@@ -43,6 +43,7 @@
     </div>
      <% end %>
   </div>
+</div>
 </div>
 
 <!- 添加联系人 ->
@@ -222,111 +223,3 @@
         </div>
       </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-</br></br></br></br></br></br></br></br></br></br></br></br></br>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    var customer_id = $("#find_by_customer_id").val();
-
-    ajax_request(customer_id);
-    $("#find_by_customer_id").change(function(){
-      var customer_id = $("#find_by_customer_id").val();
-      $("#find_by_customer_id").val(customer_id)     
-      ajax_request(customer_id);
-    });
-
-  });
-
-
-  function ajax_request(customer_id) {
-    var url = "http://" + window.location.host + "/customer_contacts/find_by_customer_id";
-      $.ajax({
-        type: "GET",
-        url:url,
-        dataType:"json",
-        data : {
-          "customer_id" : customer_id
-        },
-        success : function(data) {
-          $("#customer_contacts_table").html("");
-          var add_html = "";
-            add_html +="<tr><th>编号</th><th>姓名</th><th>电话</th><th>手机号码</th><th>其它号码</th><th>职位</th><th>邮箱</th><th>支持地址</th><th>操作</th></tr>";
-          for (var i = 0; i < data.length; i++) { 
-              add_html +="<tr>"; 
-              add_html +="<td class='c-id' value=''>"+data[i].id+"</td>"
-              add_html +="<td class='c-name'>"+data[i].name+"</td>"
-              add_html +="<td class='c-telephone'>"+data[i].telephone+"</td>"
-              add_html +="<td class='c-phone_number'>"+data[i].phone_number+"</td>"
-              add_html +="<td class='c-other_phone'>"+data[i].other_phone+"</td>"
-              add_html +="<td class='c-position'>"+data[i].position+"</td>"
-              add_html +="<td class='c-email'>"+data[i].email+"</td>"
-              add_html +="<td class='c-address'>"+data[i].address+"</td>"
-              add_html +="<td><button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>查看</button>&nbsp;&nbsp;"
-              add_html +="<button type='button' class='btn btn-sm btn-info b_btnSelect2' data-toggle='modal' data-target='#modal-new-contact2'>修改</button>&nbsp;&nbsp;"
-              add_html +="<button class='btn btn-sm btn-info b_btnSelect2' onclick='delect("+data[i].id+")'>删除</button>"
-              add_html +="</td>;</tr>" 
-          }
-          $("#customer_contacts_table").append(add_html)     
-        }  
-      });
-  }
- 
-    
-    //修改
-    $("#customer_contacts_table").on('click', '.b_btnSelect2', function() {
-      //获得当前行
-      var currentRow = $(this).closest("tr");
-      var id = currentRow.find(".c-id").html(); //获得当前行第一个表格单元格TD值
-      var name = currentRow.find(".c-name").html(); //获得当前行第一个表格单元格TD值
-      var telephone = currentRow.find(".c-telephone").html(); //获得当前行第二个表格单元格TD值
-      var phone_number = currentRow.find(".c-phone_number").html(); //获得当前行第二个表格单元格TD值
-      var other_phone = currentRow.find(".c-other_phone").html(); //获得当前行第二个表格单元格TD值
-      var position = currentRow.find(".c-position").html(); //获得当前行第一个表格单元格TD值
-      var email = currentRow.find(".c-email").html(); //获得当前行第一个表格单元格TD值
-      var address = currentRow.find(".c-address").html(); //获得当前行第一个表格单元格TD值
-      var data = id + "\n" + name + "\n" + telephone + "\n" + position + "\n" + email + "\n" + address;
-      //alert(data);
-      $("#u_id").val(id);
-      $("#u_name").val(name);
-      $("#u_telephone").val(telephone);
-      $("#u_phone_number").val(phone_number);
-      $("#u_other_phone").val(other_phone);
-      $("#u_position").val(position);
-      $("#u_email").val(email);
-      $("#u_address").val(address);
-    });
-
-
-    function delect(id){
-      var url = "http://" + window.location.host + "/customer_contacts/" + id;
-      $.ajax({
-        type: "POST",
-        url:url,
-        dataType:"json",
-        data : {
-          "_method" : "delete"
-        },
-        success : function() {
-          location.reload();
-        },
-        error:function(e){  
-          location.reload();
-        }  
-      });
-    }
-
-  
-
-</script>

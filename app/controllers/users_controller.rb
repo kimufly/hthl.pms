@@ -20,18 +20,19 @@ class UsersController < ApplicationController
   end
 
   def new
-    @roles = Role.all
     @user = User.new
   end
 
   def edit
-    @roles = Role.all
     case params[:by]
     when 'update_password'
       render :password
-    else
-      render :form
     end
+  end
+
+  def profile
+    @user = current_user
+    render 'edit'
   end
 
   def create

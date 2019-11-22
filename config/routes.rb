@@ -90,9 +90,8 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :query_by
-    end
-    member do
-      get 'find_by_role_id'
+      get :profile
+      get :change_password
     end
   end
 end
