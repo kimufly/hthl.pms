@@ -64,4 +64,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
 
   config.i18n.available_locales = [:en, 'zh-CN']
+
+
+  config.assets.digest = false
 end

@@ -16,5 +16,6 @@
  *= require font-awesome
  *= require adminlte/bootstrap-datepicker.min
  *= require adminlte/daterangepicker
+ *= require 'users'
  *= require_self
  */

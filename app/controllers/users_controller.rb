@@ -48,16 +48,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    case params[:by]
-    when 'update_password'
-      update_password
-    else
-      if @user.update(user_params)
-        redirect_to users_path
-      else
-        render 'edit'
-      end
-    end
+    @user.update(user_params)
   end
 
   def destroy
@@ -67,22 +58,7 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def find_by_role_id
-    @role = Role.find(current_user.role_id)
-    @users = @role.users
-  end
-
   private
-
-  def update_password
-    @page_title = '修改个人密码'
-    if current_user.update_with_password(user_params)
-      redirect_to root_path, notice: '密码更新成功，现在你需要重新登陆。'
-    else
-      render 'password'
-    end
-  end
-
   def user_params
     params.require(:user).permit(*User::ACCESSIBLE_ATTRS)
   end
