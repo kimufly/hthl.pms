@@ -1,0 +1,67 @@
+= form_for @user, html: {class: "form-horizontal"} do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited
+        this article from being saved:
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  .form_group
+    = f.label :请选择头像, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.file_field :picture, class:"form-control"
+  .form-group
+    = f.label :真实名字, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :name,
+              class:"form-control", placeholder:"请输入真实名字"
+  .form-group
+    = f.label :用户名, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :email,
+              class:"form-control", placeholder:"请输入邮箱", readonly: action_name.eql?("edit")
+  .form-group
+    = f.label :请选择性别, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.select(:sex, User.sex_options, {}, class:"form-control select2")
+  .form-group
+    = f.label :电话, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :phone_number,
+              class:"form-control", placeholder:"请输入电话"
+  - if action_name.eql? "new"
+    .form-group
+      = f.label :登录密码, class: "col-sm-3 control-label"
+      .col-sm-9
+        = f.text_field :password,
+                class:"form-control", placeholder:"请输入登录密码"
+  - if %w{ new edit}.any? action_name
+    .form-group
+      = f.label :请选择角色, class: "col-sm-3 control-label"
+      .col-sm-9
+        = f.select :role_id, options_from_collection_for_select(Role.all, :id, :name, @user.role_id),
+        {include_blank: "请选择角色"}, class: "form-control select2 select2-accessible", style: "width: 100%;",
+        "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
+      .form-group
+      = f.label :请选择部门, class: "col-sm-3 control-label"
+      .col-sm-9
+        = f.select :department_id, options_from_collection_for_select(Department.all, :id, :name, @user.department_id),
+        { include_blank: "请选择部门"}, class: "form-control select2 select2-accessible", style: "width: 100%;",
+        "data-select2-id": "1", tabindex:"-1", "aria-hidden": "true"
+    .form-group
+      = f.label :请选择状态, class: "col-sm-3 control-label"
+      .col-sm-9
+        = f.select(:status, [['开启', 'open'], ['关闭', 'disable']], {}, class:"form-control select2")
+    .form-group
+      = f.label :单价（元）, class: "col-sm-3 control-label"
+      .col-sm-9
+        = f.text_field :price,
+                class:"form-control", placeholder:"请输入单价（元）"
+  .form-group
+    = f.label :备注信息, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_area :explain, size: "24x6", class: "form-control"
+  = f.submit "保存", class:"btn btn-w-m btn-info pull-right"
+
