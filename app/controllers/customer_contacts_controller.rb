@@ -20,9 +20,7 @@ class CustomerContactsController < ApplicationController
 
 
   def new
-    @customers = Customer.all
     @customer_contact = CustomerContact.new
-    @users = User.all
   end
 
   def edit

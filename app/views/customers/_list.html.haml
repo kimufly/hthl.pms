@@ -1,0 +1,23 @@
+.box-header
+  .col-md-6
+    %h3.box-title 客户单位列表
+  .col-md-6
+    .pull-right-container
+      = link_to "添加客户", new_customer_path, class: "btn btn-success pull-right col-md-3 margin-l-5 margin-r-5"
+.box-body
+  %table.table.table-hover
+    %tbody
+      %tr
+        %td 编号
+        %td 单位名称
+        %td 操作
+    - @customers.each do |customer|
+      %tr
+        %td
+          = customer.id
+        %td
+          = customer.name
+        %td
+          = link_to "显示联系人", "#"
+.box-footer.clearfix
+  =paginate @customers

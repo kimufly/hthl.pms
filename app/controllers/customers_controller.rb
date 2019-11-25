@@ -1,28 +1,32 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.all
-  end 
-
-  def new
-      @customer = Customer.new
+    @customers = Customer.includes(:customer_contacts).page(params[:page] ||= 1)
+    @customer_contacts = CustomerContact.where(customer_id: @customers.map(&:id)).page(params[:page] ||= 1)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
+  def new
+    @customer = Customer.new
+  end
 
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
       respond_to do |format|
         format.html
-        format.js
-      end 
-
+      end
+    else
+      render new_customer_path
       # redirect_to new_project_path
     end
   end
 
   def update
-    Project.transaction do 
+    Project.transaction do
       @customer = Customer.find(params[:id])
       if @customer
         @customer.update(customer_params)
@@ -34,8 +38,9 @@ class CustomersController < ApplicationController
       end
     end
   end
-  
+
   private
+
   def customer_params
     params.require(:customer).permit(:name)
   end
@@ -47,9 +52,4 @@ class CustomersController < ApplicationController
   def customer_contacts_params
     params.require(:customer).require(:customer_contacts_attributes).permit(:name, :telephone, :phone_number, :other_phone, :email, :address, :position)
   end
-
-
-
-
-
 end
