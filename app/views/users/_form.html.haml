@@ -8,11 +8,12 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    = f.label :请选择头像, class: "col-sm-3 control-label"
-    .col-sm-9
-      = image_tag "avatar2" , class: 'profile_avater'
-      = f.file_field :picture, class:"profile_avater_input"
+  - if action_name.eql? "profile"
+    .form-group
+      = f.label :请选择头像, class: "col-sm-3 control-label"
+      .col-sm-9
+        = image_tag "avatar2" , class: 'profile_avater'
+        = f.file_field :picture, class:"profile_avater_input"
   .form-group
     = f.label :真实名字, class: "col-sm-3 control-label"
     .col-sm-9
