@@ -8,3 +8,6 @@ require_relative 'config/environment'
 
 
 run Rails.application
+
+
+阿斯顿发多少分
